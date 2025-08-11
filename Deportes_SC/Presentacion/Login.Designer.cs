@@ -36,7 +36,6 @@
             this.txt_usr = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnl_arriba.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Minimized)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Exit)).BeginInit();
@@ -126,21 +125,11 @@
             this.btnRegistrar.TabStop = false;
             this.btnRegistrar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(600, 238);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 749);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txt_psw);
             this.Controls.Add(this.txt_usr);
@@ -169,7 +158,6 @@
         private System.Windows.Forms.TextBox txt_usr;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox btnRegistrar;
-        private System.Windows.Forms.Button button1;
     }
 }
 
