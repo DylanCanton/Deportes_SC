@@ -157,7 +157,7 @@
             this.lbl_title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbl_title.Location = new System.Drawing.Point(305, 92);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(306, 143);
+            this.lbl_title.Size = new System.Drawing.Size(320, 143);
             this.lbl_title.TabIndex = 18;
             this.lbl_title.Text = "Asoc. Deportes";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
