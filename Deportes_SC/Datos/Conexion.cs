@@ -11,10 +11,10 @@ namespace Deportes_SC.Datos
     {
         SqlConnection con;
 
-        String conector = "Data Source = Jeudy;" + // Servidor
+        String conector = "Data Source = LAPTOP-1AMJQ3VT\\SQLEXPRESS;" + // Servidor
                           "Initial Catalog = Torneos;" + // Base de datos
                           "User = sa;" + // Usuario
-                          "Password = 12345678;" + // Clave de sql server
+                          "Password = 1234;" + // Clave de sql server
                           "Integrated Security = True"; // Modelo de seguridad
 
         public Conexion()

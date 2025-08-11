@@ -34,6 +34,21 @@ namespace Deportes_SC
 
         private void btn_iniciarSesion_Click(object sender, EventArgs e)
         {
+            
+
+        }
+
+        private void btn_registrar_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void txt_usr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
             string usuario = txt_usr.Text;
             string contrasenna = txt_psw.Text;
 
@@ -62,13 +77,6 @@ namespace Deportes_SC
                 // Ningun usuario valido
                 MessageBox.Show("Usuario o contraseña inválidos. Intente de nuevo", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-        }
-
-        private void btn_registrar_Click(object sender, EventArgs e)
-        {
-            FrmUsuarios prc = new FrmUsuarios();
-            prc.Show();
         }
     }
 }
