@@ -23,16 +23,17 @@ namespace Deportes_SC.Objetos
 
         }
 
-        public Equipo(int identificador, string nombre, string lugarOrigen, string encargado, string teléfono, int torneo, string nombreTorneo)
+        public Equipo(int identificador, string nombre, string lugarOrigen, string encargado, string telefono, int torneo, string nombreTorneo)
         {
             this.identificador = identificador;
             this.nombre = nombre;
-            LugarOrigen = lugarOrigen;
-            Encargado = encargado;
-            this.Telefono = telefono;
+            this.lugarOrigen = lugarOrigen;
+            this.encargado = encargado;
+            this.telefono = telefono;
             this.torneo = torneo;
             this.nombreTorneo = nombreTorneo;
         }
+
 
         public int Identificador { get => identificador; set => identificador = value; }
         public string Nombre { get => nombre; set => nombre = value; }
