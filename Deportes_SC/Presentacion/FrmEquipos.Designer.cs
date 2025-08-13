@@ -59,7 +59,7 @@
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(819, 44);
             this.pnl_superior.TabIndex = 46;
             // 
             // volver
@@ -239,11 +239,11 @@
             // dgv_equipos
             // 
             this.dgv_equipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_equipos.Location = new System.Drawing.Point(12, 474);
+            this.dgv_equipos.Location = new System.Drawing.Point(66, 436);
             this.dgv_equipos.Name = "dgv_equipos";
             this.dgv_equipos.RowHeadersWidth = 51;
             this.dgv_equipos.RowTemplate.Height = 24;
-            this.dgv_equipos.Size = new System.Drawing.Size(976, 403);
+            this.dgv_equipos.Size = new System.Drawing.Size(637, 368);
             this.dgv_equipos.TabIndex = 87;
             this.dgv_equipos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_equipos_CellDoubleClick);
             // 
@@ -251,7 +251,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 900);
+            this.ClientSize = new System.Drawing.Size(819, 972);
             this.Controls.Add(this.dgv_equipos);
             this.Controls.Add(this.cmb_torneo);
             this.Controls.Add(this.lbl_torneo);

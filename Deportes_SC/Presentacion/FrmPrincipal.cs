@@ -36,27 +36,33 @@ namespace Deportes_SC.Presentacion
             this.Hide();
         }
 
-    /*-----------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------*/
+
+        public void Abrir_formhijo(object formhijo)
+        {
+            if (this.pnl_contenedor.Controls.Count > 0)
+                this.pnl_contenedor.Controls.RemoveAt(0);
+            Form fh = formhijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.pnl_contenedor.Controls.Add(fh);
+            this.pnl_contenedor.Tag = fh;
+            fh.Show();
+        }
         // Asignacion de botones para abrir el form que corresponde :)
         private void btn_Torneos_Click(object sender, EventArgs e)
         {
-            FrmTorneos frmTorneos = new FrmTorneos();
-            frmTorneos.Show();
-            this.Hide();
+            Abrir_formhijo(new FrmTorneos());
         }
 
         private void btn_Equipos_Click(object sender, EventArgs e)
         {
-            FrmEquipos frmEquipos = new FrmEquipos();
-            frmEquipos.Show();
-            this.Hide();
+            Abrir_formhijo(new FrmEquipos());
         }
 
         private void btn_Jugadores_Click(object sender, EventArgs e)
         {
-            FrmJugadores frmJugadores = new FrmJugadores();
-            frmJugadores.Show();
-            this.Hide();
+            Abrir_formhijo(new FrmJugadores());
         }
 
         private void btn_Partidos_Click(object sender, EventArgs e)

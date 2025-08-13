@@ -51,7 +51,6 @@
     <Compile Include="Datos\BDTorneos.cs" />
     <Compile Include="Datos\BDUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
-    <Compile Include="Objetos\EquipoJugador.cs" />
     <Compile Include="Objetos\Jugador.cs" />
     <Compile Include="Objetos\Equipo.cs" />
     <Compile Include="Objetos\Partido.cs" />

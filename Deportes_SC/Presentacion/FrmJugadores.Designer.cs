@@ -50,6 +50,8 @@
             this.dgv_jugadores = new System.Windows.Forms.DataGridView();
             this.cmb_posicion = new System.Windows.Forms.ComboBox();
             this.lbl_posicion = new System.Windows.Forms.Label();
+            this.txt_dorsal = new System.Windows.Forms.TextBox();
+            this.lbl_dorsal = new System.Windows.Forms.Label();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).BeginInit();
@@ -63,7 +65,7 @@
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(819, 44);
             this.pnl_superior.TabIndex = 46;
             // 
             // volver
@@ -83,10 +85,10 @@
             this.btn_eliminar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(637, 362);
+            this.btn_eliminar.Location = new System.Drawing.Point(592, 381);
             this.btn_eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.Size = new System.Drawing.Size(166, 83);
+            this.btn_eliminar.Size = new System.Drawing.Size(146, 75);
             this.btn_eliminar.TabIndex = 82;
             this.btn_eliminar.Text = "Eliminar";
             this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -99,10 +101,10 @@
             this.btn_modificar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_modificar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("btn_modificar.Image")));
-            this.btn_modificar.Location = new System.Drawing.Point(451, 362);
+            this.btn_modificar.Location = new System.Drawing.Point(670, 303);
             this.btn_modificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_modificar.Name = "btn_modificar";
-            this.btn_modificar.Size = new System.Drawing.Size(166, 83);
+            this.btn_modificar.Size = new System.Drawing.Size(146, 75);
             this.btn_modificar.TabIndex = 81;
             this.btn_modificar.Text = "Modificar";
             this.btn_modificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -115,10 +117,10 @@
             this.btn_guardar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
-            this.btn_guardar.Location = new System.Drawing.Point(265, 362);
+            this.btn_guardar.Location = new System.Drawing.Point(518, 303);
             this.btn_guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(166, 83);
+            this.btn_guardar.Size = new System.Drawing.Size(146, 75);
             this.btn_guardar.TabIndex = 80;
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -127,9 +129,9 @@
             // 
             // dtp_fechaNacimiento
             // 
-            this.dtp_fechaNacimiento.Location = new System.Drawing.Point(276, 202);
+            this.dtp_fechaNacimiento.Location = new System.Drawing.Point(293, 315);
             this.dtp_fechaNacimiento.Name = "dtp_fechaNacimiento";
-            this.dtp_fechaNacimiento.Size = new System.Drawing.Size(252, 22);
+            this.dtp_fechaNacimiento.Size = new System.Drawing.Size(201, 22);
             this.dtp_fechaNacimiento.TabIndex = 79;
             this.dtp_fechaNacimiento.Value = new System.DateTime(2025, 8, 7, 0, 0, 0, 0);
             // 
@@ -139,7 +141,7 @@
             this.lbl_nacimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbl_nacimiento.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_nacimiento.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_nacimiento.Location = new System.Drawing.Point(307, 167);
+            this.lbl_nacimiento.Location = new System.Drawing.Point(299, 280);
             this.lbl_nacimiento.Name = "lbl_nacimiento";
             this.lbl_nacimiento.Size = new System.Drawing.Size(192, 21);
             this.lbl_nacimiento.TabIndex = 78;
@@ -219,7 +221,7 @@
             this.cmb_equipo.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cmb_equipo.Location = new System.Drawing.Point(301, 303);
+            this.cmb_equipo.Location = new System.Drawing.Point(293, 416);
             this.cmb_equipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_equipo.Name = "cmb_equipo";
             this.cmb_equipo.Size = new System.Drawing.Size(197, 29);
@@ -231,7 +233,7 @@
             this.lbl_equipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbl_equipo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_equipo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_equipo.Location = new System.Drawing.Point(356, 264);
+            this.lbl_equipo.Location = new System.Drawing.Point(348, 377);
             this.lbl_equipo.Name = "lbl_equipo";
             this.lbl_equipo.Size = new System.Drawing.Size(75, 21);
             this.lbl_equipo.TabIndex = 83;
@@ -270,7 +272,7 @@
             this.pic_fondo.Image = ((System.Drawing.Image)(resources.GetObject("pic_fondo.Image")));
             this.pic_fondo.Location = new System.Drawing.Point(0, 0);
             this.pic_fondo.Name = "pic_fondo";
-            this.pic_fondo.Size = new System.Drawing.Size(1000, 900);
+            this.pic_fondo.Size = new System.Drawing.Size(819, 972);
             this.pic_fondo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_fondo.TabIndex = 87;
             this.pic_fondo.TabStop = false;
@@ -282,7 +284,7 @@
             this.dgv_jugadores.Name = "dgv_jugadores";
             this.dgv_jugadores.RowHeadersWidth = 51;
             this.dgv_jugadores.RowTemplate.Height = 24;
-            this.dgv_jugadores.Size = new System.Drawing.Size(976, 409);
+            this.dgv_jugadores.Size = new System.Drawing.Size(795, 353);
             this.dgv_jugadores.TabIndex = 88;
             this.dgv_jugadores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_jugadores_CellDoubleClick);
             // 
@@ -314,11 +316,35 @@
             this.lbl_posicion.Text = "Posicion:";
             this.lbl_posicion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txt_dorsal
+            // 
+            this.txt_dorsal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.txt_dorsal.Location = new System.Drawing.Point(293, 207);
+            this.txt_dorsal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_dorsal.Name = "txt_dorsal";
+            this.txt_dorsal.Size = new System.Drawing.Size(196, 28);
+            this.txt_dorsal.TabIndex = 92;
+            // 
+            // lbl_dorsal
+            // 
+            this.lbl_dorsal.AutoSize = true;
+            this.lbl_dorsal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbl_dorsal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_dorsal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_dorsal.Location = new System.Drawing.Point(298, 172);
+            this.lbl_dorsal.Name = "lbl_dorsal";
+            this.lbl_dorsal.Size = new System.Drawing.Size(71, 21);
+            this.lbl_dorsal.TabIndex = 91;
+            this.lbl_dorsal.Text = "Dorsal:";
+            this.lbl_dorsal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmJugadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 900);
+            this.ClientSize = new System.Drawing.Size(819, 972);
+            this.Controls.Add(this.txt_dorsal);
+            this.Controls.Add(this.lbl_dorsal);
             this.Controls.Add(this.cmb_posicion);
             this.Controls.Add(this.lbl_posicion);
             this.Controls.Add(this.dgv_jugadores);
@@ -375,5 +401,7 @@
         private System.Windows.Forms.DataGridView dgv_jugadores;
         private System.Windows.Forms.ComboBox cmb_posicion;
         private System.Windows.Forms.Label lbl_posicion;
+        private System.Windows.Forms.TextBox txt_dorsal;
+        private System.Windows.Forms.Label lbl_dorsal;
     }
 }

@@ -56,7 +56,7 @@
             "Administrador",
             "SubAdministrador",
             "Arbitro"});
-            this.cmb_tipo.Location = new System.Drawing.Point(412, 387);
+            this.cmb_tipo.Location = new System.Drawing.Point(386, 390);
             this.cmb_tipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_tipo.Name = "cmb_tipo";
             this.cmb_tipo.Size = new System.Drawing.Size(196, 29);
@@ -66,7 +66,7 @@
             // 
             this.lbl_tipoUsuario.AutoSize = true;
             this.lbl_tipoUsuario.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tipoUsuario.Location = new System.Drawing.Point(239, 390);
+            this.lbl_tipoUsuario.Location = new System.Drawing.Point(213, 393);
             this.lbl_tipoUsuario.Name = "lbl_tipoUsuario";
             this.lbl_tipoUsuario.Size = new System.Drawing.Size(148, 21);
             this.lbl_tipoUsuario.TabIndex = 43;
@@ -76,7 +76,7 @@
             // txt_psw
             // 
             this.txt_psw.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_psw.Location = new System.Drawing.Point(412, 501);
+            this.txt_psw.Location = new System.Drawing.Point(386, 504);
             this.txt_psw.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_psw.Name = "txt_psw";
             this.txt_psw.Size = new System.Drawing.Size(196, 28);
@@ -86,7 +86,7 @@
             // lbl_contraseña
             // 
             this.lbl_contraseña.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_contraseña.Location = new System.Drawing.Point(227, 500);
+            this.lbl_contraseña.Location = new System.Drawing.Point(201, 503);
             this.lbl_contraseña.Name = "lbl_contraseña";
             this.lbl_contraseña.Size = new System.Drawing.Size(154, 21);
             this.lbl_contraseña.TabIndex = 41;
@@ -97,7 +97,7 @@
             // 
             this.btn_eliminar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(435, 578);
+            this.btn_eliminar.Location = new System.Drawing.Point(409, 581);
             this.btn_eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(166, 83);
@@ -111,7 +111,7 @@
             // 
             this.btn_modificar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("btn_modificar.Image")));
-            this.btn_modificar.Location = new System.Drawing.Point(348, 683);
+            this.btn_modificar.Location = new System.Drawing.Point(322, 686);
             this.btn_modificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_modificar.Name = "btn_modificar";
             this.btn_modificar.Size = new System.Drawing.Size(166, 83);
@@ -125,7 +125,7 @@
             // 
             this.btn_guardar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
-            this.btn_guardar.Location = new System.Drawing.Point(242, 580);
+            this.btn_guardar.Location = new System.Drawing.Point(216, 583);
             this.btn_guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(166, 83);
@@ -142,7 +142,7 @@
             this.cmb_estado.Items.AddRange(new object[] {
             "Inactivo",
             "Activo"});
-            this.cmb_estado.Location = new System.Drawing.Point(412, 444);
+            this.cmb_estado.Location = new System.Drawing.Point(386, 447);
             this.cmb_estado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_estado.Name = "cmb_estado";
             this.cmb_estado.Size = new System.Drawing.Size(196, 29);
@@ -151,7 +151,7 @@
             // txt_usr
             // 
             this.txt_usr.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_usr.Location = new System.Drawing.Point(412, 203);
+            this.txt_usr.Location = new System.Drawing.Point(386, 206);
             this.txt_usr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_usr.Name = "txt_usr";
             this.txt_usr.Size = new System.Drawing.Size(196, 28);
@@ -160,7 +160,7 @@
             // txt_id
             // 
             this.txt_id.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_id.Location = new System.Drawing.Point(412, 132);
+            this.txt_id.Location = new System.Drawing.Point(386, 135);
             this.txt_id.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(196, 28);
@@ -170,7 +170,7 @@
             // 
             this.lbl_estado.AutoSize = true;
             this.lbl_estado.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_estado.Location = new System.Drawing.Point(271, 447);
+            this.lbl_estado.Location = new System.Drawing.Point(245, 450);
             this.lbl_estado.Name = "lbl_estado";
             this.lbl_estado.Size = new System.Drawing.Size(74, 21);
             this.lbl_estado.TabIndex = 34;
@@ -181,7 +181,7 @@
             // 
             this.lbl_usuario.AutoSize = true;
             this.lbl_usuario.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_usuario.Location = new System.Drawing.Point(223, 202);
+            this.lbl_usuario.Location = new System.Drawing.Point(197, 205);
             this.lbl_usuario.Name = "lbl_usuario";
             this.lbl_usuario.Size = new System.Drawing.Size(179, 21);
             this.lbl_usuario.TabIndex = 33;
@@ -192,7 +192,7 @@
             // 
             this.lbl_id.AutoSize = true;
             this.lbl_id.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_id.Location = new System.Drawing.Point(246, 131);
+            this.lbl_id.Location = new System.Drawing.Point(220, 134);
             this.lbl_id.Name = "lbl_id";
             this.lbl_id.Size = new System.Drawing.Size(135, 21);
             this.lbl_id.TabIndex = 32;
@@ -206,7 +206,7 @@
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(819, 44);
             this.pnl_superior.TabIndex = 45;
             // 
             // volver
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 900);
+            this.ClientSize = new System.Drawing.Size(819, 972);
             this.Controls.Add(this.pnl_superior);
             this.Controls.Add(this.cmb_tipo);
             this.Controls.Add(this.lbl_tipoUsuario);

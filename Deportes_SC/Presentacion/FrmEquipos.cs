@@ -42,10 +42,29 @@ namespace Deportes_SC.Presentacion
 
         private void cargarEquipos()
         {
-            List<Equipo> lista = equipos.mostrarEquiposSQL();
-            dgv_equipos.DataSource = null;
-            dgv_equipos.DataSource = lista;
+            var dt = equipos.ListarEquiposSQL();   // o new BDEquipos().ListarEquiposSQL();
+            dgv_equipos.AutoGenerateColumns = true;
+            dgv_equipos.DataSource = dt;
+
+            // Encabezados bonitos (coinciden con los alias del SELECT)
+            if (dgv_equipos.Columns.Contains("Id"))
+                dgv_equipos.Columns["Id"].HeaderText = "ID";
+            if (dgv_equipos.Columns.Contains("Nombre"))
+                dgv_equipos.Columns["Nombre"].HeaderText = "Nombre";
+            if (dgv_equipos.Columns.Contains("LugarOrigen"))
+                dgv_equipos.Columns["LugarOrigen"].HeaderText = "Lugar de origen";
+            if (dgv_equipos.Columns.Contains("NombreTorneo"))
+                dgv_equipos.Columns["NombreTorneo"].HeaderText = "Torneo";
+
+            // Ocultar columnas usadas solo para edición
+            if (dgv_equipos.Columns.Contains("Encargado"))
+                dgv_equipos.Columns["Encargado"].Visible = false;
+            if (dgv_equipos.Columns.Contains("Telefono"))
+                dgv_equipos.Columns["Telefono"].Visible = false;
+            if (dgv_equipos.Columns.Contains("IdTorneo"))
+                dgv_equipos.Columns["IdTorneo"].Visible = false;
         }
+
 
         public void limpiar()
         {
@@ -102,17 +121,24 @@ namespace Deportes_SC.Presentacion
 
         private void dgv_equipos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = dgv_equipos.Rows[e.RowIndex];
+            if (e.RowIndex < 0) return;
 
-                txt_id.Text = fila.Cells["Identificador"].Value.ToString();
-                txt_equipo.Text = fila.Cells["Nombre"].Value.ToString();
-                txt_origen.Text = fila.Cells["lugarOrigen"].Value.ToString();
-                txt_encargado.Text = fila.Cells["Encargado"].Value.ToString();
-                txt_telefono.Text = fila.Cells["Telefono"].Value.ToString();
-                cmb_torneo.SelectedValue = fila.Cells["Torneo"].Value;
-            }
+            var fila = dgv_equipos.Rows[e.RowIndex];
+
+            // Visibles (coinciden con los alias de ListarEquiposSQL)
+            txt_id.Text = fila.Cells["Id"].Value?.ToString();
+            txt_equipo.Text = fila.Cells["Nombre"].Value?.ToString();
+            txt_origen.Text = fila.Cells["LugarOrigen"].Value?.ToString();
+
+            // Ocultos para edición (mismo patrón que en jugadores)
+            txt_encargado.Text = fila.Cells["Encargado"].Value?.ToString();
+            txt_telefono.Text = fila.Cells["Telefono"].Value?.ToString();
+
+            // Combo de torneo por Id oculto (equivalente al IdEquipo en jugadores)
+            if (fila.Cells["IdTorneo"].Value != null && fila.Cells["IdTorneo"].Value != DBNull.Value)
+                cmb_torneo.SelectedValue = Convert.ToInt32(fila.Cells["IdTorneo"].Value);
+            else
+                cmb_torneo.SelectedIndex = -1;
         }
     }
 }

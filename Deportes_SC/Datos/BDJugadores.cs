@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,23 +60,27 @@ namespace Deportes_SC.Datos
 
             if (BuscarJugadorSQL(j.Identificador) != 0)
             {
+                // UPDATE: dorsal corregido y sin errores de sintaxis
                 sql = "UPDATE Jugador SET " +
                       "cedula = '" + j.Cédula + "', " +
                       "nombre = '" + j.Nombre + "', " +
                       "genero = '" + j.Genero + "', " +
                       "posicion = '" + j.Posicion + "', " +
+                      "dorsal = " + j.Dorsal + ", " +
                       "idEquipo = " + j.Equipo + ", " +
                       "fechaNacimiento = '" + j.FechaNacimiento.ToString("yyyy-MM-dd") + "' " +
                       "WHERE id = " + j.Identificador;
             }
             else
             {
-                sql = "INSERT INTO Jugador (id, cedula, nombre, genero, posicion, idEquipo, fechaNacimiento) VALUES (" +
+                // INSERT: se incluye la columna dorsal y se respeta el mismo orden en VALUES
+                sql = "INSERT INTO Jugador (id, cedula, nombre, genero, posicion, dorsal, idEquipo, fechaNacimiento) VALUES (" +
                       j.Identificador + ", '" +
                       j.Cédula + "', '" +
                       j.Nombre + "', '" +
                       j.Genero + "', '" +
                       j.Posicion + "', " +
+                      j.Dorsal + ", " +
                       j.Equipo + ", '" +
                       j.FechaNacimiento.ToString("yyyy-MM-dd") + "')";
             }
@@ -98,11 +103,13 @@ namespace Deportes_SC.Datos
 
         public bool modificarJugadorSQL(Jugador j)
         {
+            // UPDATE corregido: se asigna el valor de dorsal correctamente
             string sql = "UPDATE Jugador SET " +
                          "cedula = '" + j.Cédula + "', " +
                          "nombre = '" + j.Nombre + "', " +
                          "genero = '" + j.Genero + "', " +
                          "posicion = '" + j.Posicion + "', " +
+                         "dorsal = " + j.Dorsal + ", " +
                          "idEquipo = " + j.Equipo + ", " +
                          "fechaNacimiento = '" + j.FechaNacimiento.ToString("yyyy-MM-dd") + "' " +
                          "WHERE id = " + j.Identificador;
@@ -123,6 +130,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
 
         public bool eliminarEquipoSQL(int id)
@@ -146,54 +154,41 @@ namespace Deportes_SC.Datos
             }
         }
 
-        public List<Jugador> mostrarJugadoresSQL()
+        public DataTable ListarJugadoresSQL()
         {
-            List<Jugador> lista = new List<Jugador>();
-
-            string sql = @"SELECT 
-                        j.id, 
-                        j.cedula, 
-                        j.nombre, 
-                        j.genero, 
-                        j.posicion, 
-                        j.fechaNacimiento, 
-                        j.idEquipo, 
-                        e.nombre AS nombreEquipo
-                   FROM Jugador j
-                   JOIN Equipo e ON j.idEquipo = e.id";
+            var dt = new DataTable();
+            string sql = @"
+        SELECT 
+            j.id               AS Id,              -- visible
+            j.cedula           AS Cedula,          -- visible
+            j.nombre           AS Nombre,          -- visible
+            j.posicion         AS Posicion,        -- visible
+            j.dorsal           AS Dorsal,          -- visible
+            e.nombre           AS NombreEquipo,    -- visible
+            j.genero           AS Genero,          -- oculto (para editar)
+            j.fechaNacimiento  AS FechaNacimiento, -- oculto (para editar)
+            j.idEquipo         AS IdEquipo         -- oculto (para editar/Combo)
+        FROM Jugador j
+        JOIN Equipo e ON j.idEquipo = e.id;";
 
             try
             {
                 using (SqlConnection conn = new Conexion().Conectar())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    SqlCommand comando = new SqlCommand(sql, conn);
-                    SqlDataReader lector = comando.ExecuteReader();
-
-                    while (lector.Read())
-                    {
-                        Jugador j = new Jugador();
-                        j.Identificador = Convert.ToInt32(lector["id"]);
-                        j.Cédula = lector["cedula"].ToString();
-                        j.Nombre = lector["nombre"].ToString();
-                        j.Genero = lector["genero"].ToString();
-                        j.Posicion = lector["posicion"].ToString();
-                        j.FechaNacimiento = Convert.ToDateTime(lector["fechaNacimiento"]);
-                        j.Equipo = Convert.ToInt32(lector["idEquipo"]);
-                        j.NombreEquipo = lector["nombreEquipo"].ToString();
-
-                        lista.Add(j);
-                    }
-
-                    lector.Close();
+                    dt.Load(r);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al mostrar jugadores: " + ex.Message);
+                MessageBox.Show("Error al listar jugadores: " + ex.Message);
             }
 
-            return lista;
+            return dt;
         }
+
+       
 
         //--------------------------------------------------------------------------//
         // Validaciones para el jugador

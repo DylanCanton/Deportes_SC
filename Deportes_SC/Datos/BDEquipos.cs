@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -125,50 +126,37 @@ namespace Deportes_SC.Datos
             }
         }
 
-        public List<Equipo> mostrarEquiposSQL()
+        public DataTable ListarEquiposSQL()
         {
-            List<Equipo> lista = new List<Equipo>();
-            string sql = @"SELECT 
-                     e.id, 
-                     e.nombre, 
-                     e.lugarOrigen, 
-                     e.encargado, 
-                     e.telefono, 
-                     e.idTorneo, 
-                     t.nombre AS nombreTorneo
-                   FROM Equipo e
-                   JOIN Torneo t ON e.idTorneo = t.id";
+            var dt = new DataTable();
+            string sql = @"
+        SELECT
+            e.id           AS Id,            -- visible
+            e.nombre       AS Nombre,        -- visible
+            e.lugarOrigen  AS LugarOrigen,   -- visible
+            t.nombre       AS NombreTorneo,  -- visible
+            e.encargado    AS Encargado,     -- oculto (para editar)
+            e.telefono     AS Telefono,      -- oculto (para editar)
+            e.idTorneo     AS IdTorneo       -- oculto (para editar/Combo)
+        FROM Equipo e
+        JOIN Torneo t ON e.idTorneo = t.id;";
 
             try
             {
                 using (SqlConnection conn = new Conexion().Conectar())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    SqlCommand comando = new SqlCommand(sql, conn);
-                    SqlDataReader lector = comando.ExecuteReader();
-
-                    while (lector.Read())
-                    {
-                        Equipo e = new Equipo();
-                        e.Identificador = Convert.ToInt32(lector["id"]);
-                        e.Nombre = lector["nombre"].ToString();
-                        e.LugarOrigen = lector["lugarOrigen"].ToString();
-                        e.Encargado = lector["encargado"].ToString();
-                        e.Telefono = lector["telefono"].ToString();
-                        e.Torneo = Convert.ToInt32(lector["idTorneo"]);
-                        e.NombreTorneo = lector["nombreTorneo"].ToString();
-
-                        lista.Add(e);
-                    }
-
-                    lector.Close();
+                    dt.Load(r);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al mostrar equipos: " + ex.Message);
+                MessageBox.Show("Error al listar equipos: " + ex.Message);
             }
 
-            return lista;
+            return dt;
         }
+
     }
 }

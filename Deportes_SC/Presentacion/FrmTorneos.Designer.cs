@@ -59,7 +59,7 @@
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(819, 44);
             this.pnl_superior.TabIndex = 46;
             // 
             // volver
@@ -79,7 +79,7 @@
             this.lbl_año.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbl_año.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_año.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_año.Location = new System.Drawing.Point(27, 507);
+            this.lbl_año.Location = new System.Drawing.Point(298, 187);
             this.lbl_año.Name = "lbl_año";
             this.lbl_año.Size = new System.Drawing.Size(189, 21);
             this.lbl_año.TabIndex = 66;
@@ -92,7 +92,7 @@
             this.lbl_CategoriaGenero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lbl_CategoriaGenero.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_CategoriaGenero.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_CategoriaGenero.Location = new System.Drawing.Point(27, 406);
+            this.lbl_CategoriaGenero.Location = new System.Drawing.Point(298, 80);
             this.lbl_CategoriaGenero.Name = "lbl_CategoriaGenero";
             this.lbl_CategoriaGenero.Size = new System.Drawing.Size(189, 21);
             this.lbl_CategoriaGenero.TabIndex = 65;
@@ -172,7 +172,7 @@
             this.cmb_catGenero.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cmb_catGenero.Location = new System.Drawing.Point(14, 439);
+            this.cmb_catGenero.Location = new System.Drawing.Point(283, 115);
             this.cmb_catGenero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_catGenero.Name = "cmb_catGenero";
             this.cmb_catGenero.Size = new System.Drawing.Size(223, 29);
@@ -180,7 +180,7 @@
             // 
             // dtp_año
             // 
-            this.dtp_año.Location = new System.Drawing.Point(3, 540);
+            this.dtp_año.Location = new System.Drawing.Point(272, 243);
             this.dtp_año.Name = "dtp_año";
             this.dtp_año.Size = new System.Drawing.Size(258, 22);
             this.dtp_año.TabIndex = 68;
@@ -192,7 +192,7 @@
             this.btn_eliminar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_eliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(822, 540);
+            this.btn_eliminar.Location = new System.Drawing.Point(624, 285);
             this.btn_eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(166, 83);
@@ -208,7 +208,7 @@
             this.btn_modificar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_modificar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("btn_modificar.Image")));
-            this.btn_modificar.Location = new System.Drawing.Point(640, 540);
+            this.btn_modificar.Location = new System.Drawing.Point(442, 285);
             this.btn_modificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_modificar.Name = "btn_modificar";
             this.btn_modificar.Size = new System.Drawing.Size(166, 83);
@@ -224,7 +224,7 @@
             this.btn_guardar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_guardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
-            this.btn_guardar.Location = new System.Drawing.Point(457, 540);
+            this.btn_guardar.Location = new System.Drawing.Point(259, 285);
             this.btn_guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(166, 83);
@@ -237,11 +237,11 @@
             // dgv_torneos
             // 
             this.dgv_torneos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_torneos.Location = new System.Drawing.Point(258, 68);
+            this.dgv_torneos.Location = new System.Drawing.Point(14, 389);
             this.dgv_torneos.Name = "dgv_torneos";
             this.dgv_torneos.RowHeadersWidth = 51;
             this.dgv_torneos.RowTemplate.Height = 24;
-            this.dgv_torneos.Size = new System.Drawing.Size(730, 449);
+            this.dgv_torneos.Size = new System.Drawing.Size(793, 348);
             this.dgv_torneos.TabIndex = 72;
             this.dgv_torneos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_torneos_CellDoubleClick);
             // 
@@ -251,7 +251,7 @@
             this.pic_fondo.Image = ((System.Drawing.Image)(resources.GetObject("pic_fondo.Image")));
             this.pic_fondo.Location = new System.Drawing.Point(0, 0);
             this.pic_fondo.Name = "pic_fondo";
-            this.pic_fondo.Size = new System.Drawing.Size(1000, 900);
+            this.pic_fondo.Size = new System.Drawing.Size(819, 972);
             this.pic_fondo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_fondo.TabIndex = 73;
             this.pic_fondo.TabStop = false;
@@ -260,7 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 900);
+            this.ClientSize = new System.Drawing.Size(819, 972);
             this.Controls.Add(this.dgv_torneos);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_modificar);

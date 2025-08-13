@@ -15,15 +15,14 @@ namespace Deportes_SC.Objetos
         string encargado;
         string telefono;
         int torneo;
-        string nombreTorneo; // solo para mostrar el nombre el el datagridview
-                             // y que no se vea feo jeje
+
 
         public Equipo()
         {
 
         }
 
-        public Equipo(int identificador, string nombre, string lugarOrigen, string encargado, string telefono, int torneo, string nombreTorneo)
+        public Equipo(int identificador, string nombre, string lugarOrigen, string encargado, string telefono, int torneo)
         {
             this.identificador = identificador;
             this.nombre = nombre;
@@ -31,7 +30,6 @@ namespace Deportes_SC.Objetos
             this.encargado = encargado;
             this.telefono = telefono;
             this.torneo = torneo;
-            this.nombreTorneo = nombreTorneo;
         }
 
 
@@ -41,6 +39,5 @@ namespace Deportes_SC.Objetos
         public string Encargado { get => encargado; set => encargado = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public int Torneo { get => torneo; set => torneo = value; }
-        public string NombreTorneo {  get => nombreTorneo; set => nombreTorneo = value;}
     }
 }

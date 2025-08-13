@@ -13,8 +13,8 @@ namespace Deportes_SC.Objetos
         string nombre;
         string genero;
         string posicion;
+        int dorsal;
         int equipo; // Aca se tienen que cargar los equipos creados y se hace la relacion con la tabla Jugador/Equipo 
-        string nombreEquipo;
         DateTime fechaNacimiento;
 
         public Jugador ()
@@ -22,15 +22,15 @@ namespace Deportes_SC.Objetos
 
         }
 
-        public Jugador(int identificador, string cédula, string nombre, string genero, string posicion, int equipo, string nombreEquipo, DateTime fechaNacimiento)
+        public Jugador(int identificador, string cédula, string nombre, string genero, string posicion, int dorsal, int equipo, DateTime fechaNacimiento)
         {
             this.identificador = identificador;
             this.cédula = cédula;
             this.nombre = nombre;
             this.genero = genero;
             this.posicion = posicion;
+            this.dorsal = dorsal;
             this.equipo = equipo;
-            this.nombreEquipo = nombreEquipo;
             this.fechaNacimiento = fechaNacimiento;
             
         }
@@ -40,8 +40,8 @@ namespace Deportes_SC.Objetos
         public string Nombre { get => nombre; set => nombre = value; }
         public string Genero { get => genero; set => genero = value; }
         public string Posicion { get => posicion; set => posicion = value; }
+        public int Dorsal { get => dorsal; set => dorsal = value; }
         public int Equipo { get => equipo; set => equipo = value; }
-        public string NombreEquipo { get => nombreEquipo; set => nombreEquipo = value; }
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
 
         //Validar la edad cumplida al momento de hacer el registro
