@@ -32,10 +32,10 @@
             this.pnl_arriba = new System.Windows.Forms.Panel();
             this.Minimized = new System.Windows.Forms.PictureBox();
             this.Exit = new System.Windows.Forms.PictureBox();
-            this.txt_psw = new System.Windows.Forms.TextBox();
             this.txt_usr = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
+            this.txt_psw = new System.Windows.Forms.TextBox();
             this.pnl_arriba.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Minimized)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Exit)).BeginInit();
@@ -82,25 +82,13 @@
             this.Exit.TabStop = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // txt_psw
-            // 
-            this.txt_psw.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.txt_psw.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_psw.Location = new System.Drawing.Point(258, 557);
-            this.txt_psw.Multiline = true;
-            this.txt_psw.Name = "txt_psw";
-            this.txt_psw.Size = new System.Drawing.Size(285, 44);
-            this.txt_psw.TabIndex = 13;
-            this.txt_psw.UseSystemPasswordChar = true;
-            // 
             // txt_usr
             // 
             this.txt_usr.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_usr.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_usr.Location = new System.Drawing.Point(258, 379);
-            this.txt_usr.Multiline = true;
+            this.txt_usr.Location = new System.Drawing.Point(258, 390);
             this.txt_usr.Name = "txt_usr";
-            this.txt_usr.Size = new System.Drawing.Size(285, 44);
+            this.txt_usr.Size = new System.Drawing.Size(285, 28);
             this.txt_usr.TabIndex = 12;
             this.txt_usr.TextChanged += new System.EventHandler(this.txt_usr_TextChanged);
             // 
@@ -125,13 +113,23 @@
             this.btnRegistrar.TabStop = false;
             this.btnRegistrar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // txt_psw
+            // 
+            this.txt_psw.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.txt_psw.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.txt_psw.Location = new System.Drawing.Point(258, 565);
+            this.txt_psw.Name = "txt_psw";
+            this.txt_psw.Size = new System.Drawing.Size(285, 28);
+            this.txt_psw.TabIndex = 22;
+            this.txt_psw.UseSystemPasswordChar = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 749);
-            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txt_psw);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txt_usr);
             this.Controls.Add(this.pnl_arriba);
             this.Controls.Add(this.pictureBox2);
@@ -154,10 +152,10 @@
         private System.Windows.Forms.Panel pnl_arriba;
         private System.Windows.Forms.PictureBox Minimized;
         private System.Windows.Forms.PictureBox Exit;
-        private System.Windows.Forms.TextBox txt_psw;
         private System.Windows.Forms.TextBox txt_usr;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox btnRegistrar;
+        private System.Windows.Forms.TextBox txt_psw;
     }
 }
 
