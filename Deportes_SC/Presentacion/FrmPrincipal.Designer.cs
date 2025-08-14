@@ -43,6 +43,7 @@
             this.pnl_izquierda = new System.Windows.Forms.Panel();
             this.btn_CargarDatos = new System.Windows.Forms.Button();
             this.pnl_contenedor = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picFondo)).BeginInit();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Exit)).BeginInit();
@@ -206,6 +207,7 @@
             // pnl_izquierda
             // 
             this.pnl_izquierda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnl_izquierda.Controls.Add(this.button1);
             this.pnl_izquierda.Controls.Add(this.btn_Torneos);
             this.pnl_izquierda.Controls.Add(this.btn_Jugadores);
             this.pnl_izquierda.Controls.Add(this.btn_CerrarSesion);
@@ -239,6 +241,21 @@
             this.pnl_contenedor.Name = "pnl_contenedor";
             this.pnl_contenedor.Size = new System.Drawing.Size(819, 972);
             this.pnl_contenedor.TabIndex = 21;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(12, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(259, 68);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Emparejamientos";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmPrincipal
             // 
@@ -279,5 +296,6 @@
         private System.Windows.Forms.PictureBox Exit;
         private System.Windows.Forms.Button btn_CargarDatos;
         private System.Windows.Forms.Panel pnl_contenedor;
+        private System.Windows.Forms.Button button1;
     }
 }

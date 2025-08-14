@@ -158,5 +158,33 @@ namespace Deportes_SC.Datos
             return dt;
         }
 
+        public List<int> ListarIdsPorTorneo(int idTorneo)
+        {
+            List<int> ids = new List<int>();
+            try
+            {
+                Conexion conex = new Conexion();
+                string sql = "SELECT id FROM Equipo WHERE idTorneo = " + idTorneo + " ORDER BY id";
+                SqlCommand cmd = new SqlCommand(sql, conex.Conectar());
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ids.Add(Convert.ToInt32(dr["id"]));
+                }
+
+                dr.Close();
+                conex.Desconectar();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error listando equipos por torneo: " + e.Message);
+            }
+            return ids;
+        }
+
+        
     }
+
 }
+

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPartidos));
             this.pnl_superior = new System.Windows.Forms.Panel();
             this.volver = new System.Windows.Forms.PictureBox();
+            this.lblTorneo = new System.Windows.Forms.Label();
+            this.cmb_torneo = new System.Windows.Forms.ComboBox();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             this.SuspendLayout();
@@ -56,11 +58,34 @@
             this.volver.TabStop = false;
             this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
+            // lblTorneo
+            // 
+            this.lblTorneo.AutoSize = true;
+            this.lblTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTorneo.Location = new System.Drawing.Point(23, 73);
+            this.lblTorneo.Name = "lblTorneo";
+            this.lblTorneo.Size = new System.Drawing.Size(76, 21);
+            this.lblTorneo.TabIndex = 48;
+            this.lblTorneo.Text = "Torneo:";
+            this.lblTorneo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmb_torneo
+            // 
+            this.cmb_torneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmb_torneo.FormattingEnabled = true;
+            this.cmb_torneo.Location = new System.Drawing.Point(236, 70);
+            this.cmb_torneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmb_torneo.Name = "cmb_torneo";
+            this.cmb_torneo.Size = new System.Drawing.Size(196, 29);
+            this.cmb_torneo.TabIndex = 87;
+            // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 900);
+            this.Controls.Add(this.cmb_torneo);
+            this.Controls.Add(this.lblTorneo);
             this.Controls.Add(this.pnl_superior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmPartidos";
@@ -69,6 +94,7 @@
             this.pnl_superior.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -76,5 +102,7 @@
 
         private System.Windows.Forms.Panel pnl_superior;
         private System.Windows.Forms.PictureBox volver;
+        private System.Windows.Forms.Label lblTorneo;
+        private System.Windows.Forms.ComboBox cmb_torneo;
     }
 }

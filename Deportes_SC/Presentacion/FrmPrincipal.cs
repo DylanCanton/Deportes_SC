@@ -172,6 +172,13 @@ namespace Deportes_SC.Presentacion
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmEmparejamientos frmEmparejamientos = new FrmEmparejamientos();
+            frmEmparejamientos.Show();
+            this.Hide();
+        }
+
         /*-----------------------------------------------------------------------------*/
 
     }

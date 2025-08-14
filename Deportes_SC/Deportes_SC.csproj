@@ -48,14 +48,22 @@
   <ItemGroup>
     <Compile Include="Datos\BDEquipos.cs" />
     <Compile Include="Datos\BDJugadores.cs" />
+    <Compile Include="Datos\BDPartidos.cs" />
     <Compile Include="Datos\BDTorneos.cs" />
     <Compile Include="Datos\BDUsuarios.cs" />
     <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Objetos\EmparejamientosGenerador.cs" />
     <Compile Include="Objetos\Jugador.cs" />
     <Compile Include="Objetos\Equipo.cs" />
     <Compile Include="Objetos\Partido.cs" />
     <Compile Include="Objetos\Torneo.cs" />
     <Compile Include="Objetos\Usuario.cs" />
+    <Compile Include="Presentacion\FrmEmparejamientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmEmparejamientos.Designer.cs">
+      <DependentUpon>FrmEmparejamientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\FrmEquipos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +114,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentacion\FrmEmparejamientos.resx">
+      <DependentUpon>FrmEmparejamientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmEquipos.resx">
       <DependentUpon>FrmEquipos.cs</DependentUpon>
     </EmbeddedResource>
