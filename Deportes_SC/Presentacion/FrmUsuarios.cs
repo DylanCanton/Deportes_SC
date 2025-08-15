@@ -23,15 +23,7 @@ namespace Deportes_SC.Presentacion
         private void btn_guardar_Click(object sender, EventArgs e)
         {
 
-            Usuario usr = new Usuario();
-            usr.Id = int.Parse(txt_id.Text);
-            usr.Nusuario = txt_usr.Text;
-            usr.Contrasenna = txt_psw.Text;
-            usr.Estado = cmb_estado.SelectedIndex;
-            usr.Rol = cmb_tipo.Text;
-
-            usuarios.guardarUsuarioSQL(usr);
-            MessageBox.Show("Registrado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)
@@ -56,6 +48,24 @@ namespace Deportes_SC.Presentacion
             FrmPrincipal principal = new FrmPrincipal();
             principal.Show();
             this.Hide();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Usuario usr = new Usuario();
+            usr.Id = int.Parse(txt_id.Text);
+            usr.Nusuario = txt_usr.Text;
+            usr.Contrasenna = txt_psw.Text;
+            usr.Estado = cmb_estado.SelectedIndex;
+            usr.Rol = cmb_tipo.Text;
+
+            usuarios.guardarUsuarioSQL(usr);
+            MessageBox.Show("Registrado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

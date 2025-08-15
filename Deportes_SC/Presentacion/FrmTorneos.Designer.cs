@@ -101,6 +101,7 @@
             // 
             // txt_catEtaria
             // 
+            this.txt_catEtaria.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_catEtaria.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.txt_catEtaria.Location = new System.Drawing.Point(14, 340);
             this.txt_catEtaria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -123,6 +124,7 @@
             // 
             // txt_torneo
             // 
+            this.txt_torneo.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_torneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.txt_torneo.Location = new System.Drawing.Point(14, 237);
             this.txt_torneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -132,6 +134,7 @@
             // 
             // txt_id
             // 
+            this.txt_id.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_id.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.txt_id.Location = new System.Drawing.Point(14, 115);
             this.txt_id.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -167,6 +170,7 @@
             // 
             // cmb_catGenero
             // 
+            this.cmb_catGenero.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.cmb_catGenero.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmb_catGenero.FormattingEnabled = true;
             this.cmb_catGenero.Items.AddRange(new object[] {
