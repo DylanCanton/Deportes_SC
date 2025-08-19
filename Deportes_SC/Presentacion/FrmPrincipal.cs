@@ -64,12 +64,14 @@ namespace Deportes_SC.Presentacion
         {
             Abrir_formhijo(new FrmJugadores());
         }
+        private void btn_Emparejamientos_Click(object sender, EventArgs e)
+        {
+            Abrir_formhijo(new FrmEmparejamientos());
+        }
 
         private void btn_Partidos_Click(object sender, EventArgs e)
         {
-            FrmPartidos frmPartidos = new FrmPartidos();
-            frmPartidos.Show();
-            this.Hide();
+            Abrir_formhijo(new FrmPartidos());
         }
 
         private void btn_Estadisticas_Click(object sender, EventArgs e)
@@ -170,13 +172,6 @@ namespace Deportes_SC.Presentacion
                 conexion.Desconectar();
             }
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FrmEmparejamientos frmEmparejamientos = new FrmEmparejamientos();
-            frmEmparejamientos.Show();
-            this.Hide();
         }
 
         /*-----------------------------------------------------------------------------*/

@@ -71,16 +71,6 @@ namespace Deportes_SC.Presentacion
             }
         }
 
-        private void cmbTorneo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void OcultarColumnasNoNecesarias()
         {
             string[] ocultar = new string[]
@@ -121,7 +111,7 @@ namespace Deportes_SC.Presentacion
             int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
 
             // Evitar doble clic durante el guardado
-            btnGuardar.Enabled = false;
+            btnRegistrar.Enabled = false;
             btnGenerar.Enabled = false;
             try
             {
@@ -147,7 +137,7 @@ namespace Deportes_SC.Presentacion
             }
             finally
             {
-                btnGuardar.Enabled = true;
+                btnRegistrar.Enabled = true;
                 btnGenerar.Enabled = true;
             }
         }
@@ -165,6 +155,13 @@ namespace Deportes_SC.Presentacion
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void volver_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal principal = new FrmPrincipal();
+            principal.Show();
+            this.Hide();
         }
     }
 }

@@ -49,7 +49,6 @@
             this.cmbTorneo.Name = "cmbTorneo";
             this.cmbTorneo.Size = new System.Drawing.Size(196, 29);
             this.cmbTorneo.TabIndex = 89;
-            this.cmbTorneo.SelectedIndexChanged += new System.EventHandler(this.cmbTorneo_SelectedIndexChanged);
             // 
             // dgvEmparejamientos
             // 
@@ -80,7 +79,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(-6, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(835, 860);
+            this.pictureBox1.Size = new System.Drawing.Size(853, 816);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 108;
             this.pictureBox1.TabStop = false;
@@ -100,13 +99,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 853);
+            this.ClientSize = new System.Drawing.Size(853, 853);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.dgvEmparejamientos);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.cmbTorneo);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmEmparejamientos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmEmparejamientos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

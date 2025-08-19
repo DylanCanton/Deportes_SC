@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmJugadores));
-            this.pnl_superior = new System.Windows.Forms.Panel();
-            this.volver = new System.Windows.Forms.PictureBox();
             this.dtp_fechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txt_nombre = new System.Windows.Forms.TextBox();
             this.txt_cedula = new System.Windows.Forms.TextBox();
@@ -44,35 +42,13 @@
             this.btnDelete = new System.Windows.Forms.PictureBox();
             this.btnEditar = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
-            this.pnl_superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
+            this.pnl_superior = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_jugadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pnl_superior
-            // 
-            this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.pnl_superior.Controls.Add(this.volver);
-            this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_superior.Location = new System.Drawing.Point(0, 0);
-            this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(819, 44);
-            this.pnl_superior.TabIndex = 46;
-            // 
-            // volver
-            // 
-            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
-            this.volver.Location = new System.Drawing.Point(3, 3);
-            this.volver.Name = "volver";
-            this.volver.Size = new System.Drawing.Size(60, 38);
-            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.volver.TabIndex = 0;
-            this.volver.TabStop = false;
-            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // dtp_fechaNacimiento
             // 
@@ -145,7 +121,7 @@
             this.pic_fondo.Image = ((System.Drawing.Image)(resources.GetObject("pic_fondo.Image")));
             this.pic_fondo.Location = new System.Drawing.Point(0, 41);
             this.pic_fondo.Name = "pic_fondo";
-            this.pic_fondo.Size = new System.Drawing.Size(819, 931);
+            this.pic_fondo.Size = new System.Drawing.Size(853, 816);
             this.pic_fondo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_fondo.TabIndex = 87;
             this.pic_fondo.TabStop = false;
@@ -221,11 +197,20 @@
             this.btnRegistrar.TabStop = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
+            // pnl_superior
+            // 
+            this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_superior.Location = new System.Drawing.Point(0, 0);
+            this.pnl_superior.Name = "pnl_superior";
+            this.pnl_superior.Size = new System.Drawing.Size(853, 44);
+            this.pnl_superior.TabIndex = 46;
+            // 
             // FrmJugadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 972);
+            this.ClientSize = new System.Drawing.Size(853, 853);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnRegistrar);
@@ -244,8 +229,6 @@
             this.Name = "FrmJugadores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmJugadores";
-            this.pnl_superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_jugadores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
@@ -257,9 +240,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnl_superior;
-        private System.Windows.Forms.PictureBox volver;
         private System.Windows.Forms.DateTimePicker dtp_fechaNacimiento;
         private System.Windows.Forms.TextBox txt_nombre;
         private System.Windows.Forms.TextBox txt_cedula;
@@ -273,5 +253,6 @@
         private System.Windows.Forms.PictureBox btnDelete;
         private System.Windows.Forms.PictureBox btnEditar;
         private System.Windows.Forms.PictureBox btnRegistrar;
+        private System.Windows.Forms.Panel pnl_superior;
     }
 }

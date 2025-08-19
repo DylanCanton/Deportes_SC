@@ -34,6 +34,38 @@ namespace Deportes_SC.Datos
             return existe;
         }
 
+        public bool GuardarPartidoSQL(Partido p)
+        {
+            string sql = @"
+        UPDATE Partido
+        SET golesCasa = @gc,
+            golesVisita = @gv,
+            estado = @est
+        WHERE id = @id";
+
+            try
+            {
+                Conexion conex = new Conexion();
+                using (SqlCommand cmd = new SqlCommand(sql, conex.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@gc", p.GolesCasa);
+                    cmd.Parameters.AddWithValue("@gv", p.GolesVisita);
+                    cmd.Parameters.AddWithValue("@est", string.IsNullOrEmpty(p.Estado) ? "Finalizado" : p.Estado);
+                    cmd.Parameters.AddWithValue("@id", p.Identificador);
+
+                    int cant = cmd.ExecuteNonQuery();
+                    conex.Desconectar();
+                    return (cant == 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error guardando partido: " + ex.Message);
+                return false;
+            }
+        }
+
+
         // Borra todos los partidos de una Fase/Torneo (útil para regenerar calendario)
         public bool EliminarPartidosDelTorneo(int idTorneo, string fase)
         {
@@ -55,90 +87,58 @@ namespace Deportes_SC.Datos
             }
         }
 
-        // Inserta una lista de partidos (en transacción)
-        public int InsertarPartidos(List<Partido> lista)
+        public List<Partido> MostrarPartidosPorTorneoSQL(int idTorneo, string fase = null)
         {
-            int cont = 0;
-            if (lista == null || lista.Count == 0) return cont;
-
-            try
-            {
-                Conexion conex = new Conexion();
-                SqlConnection cn = conex.Conectar();
-                SqlTransaction tx = cn.BeginTransaction();
-
-                // Ajusta los nombres de columnas a tu tabla real (ver script al final)
-                string sql = @"
-                    INSERT INTO Partido
-                    (torneo, jornada, fechaHora, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado)
-                    VALUES (@torneo, @jornada, @fecha, @casa, @visita, @golesC, @golesV, @fase, @estado)";
-
-                using (SqlCommand cmd = new SqlCommand(sql, cn, tx))
-                {
-                    cmd.Parameters.Add("@torneo", SqlDbType.Int);
-                    cmd.Parameters.Add("@jornada", SqlDbType.Int);
-                    cmd.Parameters.Add("@fecha", SqlDbType.DateTime);
-                    cmd.Parameters.Add("@casa", SqlDbType.Int);
-                    cmd.Parameters.Add("@visita", SqlDbType.Int);
-                    cmd.Parameters.Add("@golesC", SqlDbType.Int);
-                    cmd.Parameters.Add("@golesV", SqlDbType.Int);
-                    cmd.Parameters.Add("@fase", SqlDbType.VarChar, 20);
-                    cmd.Parameters.Add("@estado", SqlDbType.VarChar, 20);
-
-                    foreach (var p in lista)
-                    {
-                        cmd.Parameters["@torneo"].Value = p.Torneo;
-                        cmd.Parameters["@jornada"].Value = p.Jornada;
-                        cmd.Parameters["@fecha"].Value = p.FechaHora;
-                        cmd.Parameters["@casa"].Value = p.EquipoCasa;
-                        cmd.Parameters["@visita"].Value = p.EquipoVisita;
-                        cmd.Parameters["@golesC"].Value = p.GolesCasa;
-                        cmd.Parameters["@golesV"].Value = p.GolesVisita;
-                        cmd.Parameters["@fase"].Value = p.Fase ?? "REGULAR";
-                        cmd.Parameters["@estado"].Value = p.Estado ?? "PENDIENTE";
-
-                        cont += cmd.ExecuteNonQuery();
-                    }
-                }
-
-                tx.Commit();
-                conex.Desconectar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al insertar partidos: " + ex.Message);
-            }
-            return cont;
-        }
-
-        // (Opcional) Para mostrar desde BD
-        public DataTable ListarPartidosPorTorneo(int idTorneo, string fase)
-        {
-            var dt = new DataTable();
+            List<Partido> lista = new List<Partido>();
             try
             {
                 Conexion conex = new Conexion();
                 string sql = @"
-                    SELECT p.jornada,
-                           (SELECT nombre FROM Equipo WHERE id = p.equipoCasa)  AS Casa,
-                           (SELECT nombre FROM Equipo WHERE id = p.equipoVisita) AS Visita,
-                           p.fechaHora,
-                           p.estado
-                    FROM Partido p
-                    WHERE p.torneo = @t AND p.fase = @f
-                    ORDER BY p.jornada, p.fechaHora";
+            SELECT 
+                p.id, p.torneo, p.jornada, p.fechaHora,
+                p.equipoCasa, p.equipoVisita, p.golesCasa, p.golesVisita,
+                p.fase, p.estado,
+                ec.nombre AS nombreCasa, ev.nombre AS nombreVisita
+            FROM Partido p
+            JOIN Equipo ec ON ec.id = p.equipoCasa
+            JOIN Equipo ev ON ev.id = p.equipoVisita
+            WHERE p.torneo = @t
+              AND (@f IS NULL OR p.fase = @f)
+            ORDER BY p.jornada, p.id";
                 SqlCommand cmd = new SqlCommand(sql, conex.Conectar());
                 cmd.Parameters.AddWithValue("@t", idTorneo);
-                cmd.Parameters.AddWithValue("@f", fase);
-                SqlDataReader r = cmd.ExecuteReader();
-                dt.Load(r);
+                if (string.IsNullOrEmpty(fase))
+                    cmd.Parameters.AddWithValue("@f", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@f", fase);
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Partido p = new Partido();
+                        p.Identificador = Convert.ToInt32(dr["id"]);
+                        p.Torneo = Convert.ToInt32(dr["torneo"]);
+                        p.Jornada = Convert.ToInt32(dr["jornada"]);
+                        p.FechaHora = Convert.ToDateTime(dr["fechaHora"]);
+                        p.EquipoCasa = Convert.ToInt32(dr["equipoCasa"]);
+                        p.EquipoVisita = Convert.ToInt32(dr["equipoVisita"]);
+                        p.GolesCasa = Convert.ToInt32(dr["golesCasa"]);
+                        p.GolesVisita = Convert.ToInt32(dr["golesVisita"]);
+                        p.Fase = dr["fase"].ToString();
+                        p.Estado = dr["estado"].ToString();
+                        p.NombreEquipoCasa = dr["nombreCasa"].ToString();
+                        p.NombreEquipoVisita = dr["nombreVisita"].ToString();
+                        lista.Add(p);
+                    }
+                }
                 conex.Desconectar();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("Error al listar partidos: " + ex.Message);
+                MessageBox.Show("Error listando partidos: " + e.Message);
             }
-            return dt;
+            return lista;
         }
 
         public bool LimpiarPorTorneo(int idTorneo)
@@ -146,7 +146,7 @@ namespace Deportes_SC.Datos
             try
             {
                 Conexion conex = new Conexion();
-                string sql = "DELETE FROM Partido WHERE idTorneo = " + idTorneo;
+                string sql = "DELETE FROM Partido WHERE torneo = " + idTorneo;
                 SqlCommand cmd = new SqlCommand(sql, conex.Conectar());
                 cmd.ExecuteNonQuery();
                 conex.Desconectar();
@@ -186,7 +186,6 @@ namespace Deportes_SC.Datos
 
             try
             {
-                int nextId = ObtenerSiguienteId();
 
                 Conexion conex = new Conexion();
                 SqlConnection con = conex.Conectar();
@@ -200,8 +199,7 @@ namespace Deportes_SC.Datos
                     int visita = p.EquipoVisita;
 
                     string sql = "INSERT INTO Partido " +
-                                 "(id, idTorneo, jornada, fechaHora, idEquipoCasa, idEquipoVisita, golesCasa, golesVisita, fase, estado) VALUES (" +
-                                 nextId + ", " +
+                                 "(torneo, jornada, fechaHora, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado) VALUES (" +
                                  torneo + ", " +
                                  jornada + ", " +
                                  "'1900-01-01', " +
@@ -212,9 +210,6 @@ namespace Deportes_SC.Datos
                     SqlCommand cmd = new SqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
 
-                    // Asignar el id generado al objeto (por si lo necesitas luego)
-                    p.Identificador = nextId;
-                    nextId++;
                 }
 
                 conex.Desconectar();

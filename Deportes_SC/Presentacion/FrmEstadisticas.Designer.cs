@@ -37,7 +37,7 @@
             // 
             // pnl_superior
             // 
-            this.pnl_superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.pnl_superior.Controls.Add(this.volver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);

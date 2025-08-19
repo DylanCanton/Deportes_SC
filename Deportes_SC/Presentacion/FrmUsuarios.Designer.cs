@@ -35,19 +35,19 @@
             this.txt_usr = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.pnl_superior = new System.Windows.Forms.Panel();
-            this.volver = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.dgv_Usuarios = new System.Windows.Forms.DataGridView();
+            this.volver = new System.Windows.Forms.PictureBox();
             this.pnl_superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_tipo
@@ -112,24 +112,13 @@
             // 
             // pnl_superior
             // 
-            this.pnl_superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.pnl_superior.Controls.Add(this.volver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
             this.pnl_superior.Size = new System.Drawing.Size(850, 44);
             this.pnl_superior.TabIndex = 45;
-            // 
-            // volver
-            // 
-            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
-            this.volver.Location = new System.Drawing.Point(3, 3);
-            this.volver.Name = "volver";
-            this.volver.Size = new System.Drawing.Size(60, 38);
-            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.volver.TabIndex = 0;
-            this.volver.TabStop = false;
-            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // pictureBox1
             // 
@@ -161,7 +150,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 48;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox4
             // 
@@ -184,6 +172,18 @@
             this.dgv_Usuarios.Size = new System.Drawing.Size(658, 218);
             this.dgv_Usuarios.TabIndex = 73;
             // 
+            // volver
+            // 
+            this.volver.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
+            this.volver.Location = new System.Drawing.Point(3, 3);
+            this.volver.Name = "volver";
+            this.volver.Size = new System.Drawing.Size(60, 38);
+            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.volver.TabIndex = 111;
+            this.volver.TabStop = false;
+            this.volver.Click += new System.EventHandler(this.volver_Click_1);
+            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -205,12 +205,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRUDusuarios";
             this.pnl_superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,11 +224,11 @@
         private System.Windows.Forms.TextBox txt_usr;
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Panel pnl_superior;
-        private System.Windows.Forms.PictureBox volver;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.DataGridView dgv_Usuarios;
+        private System.Windows.Forms.PictureBox volver;
     }
 }

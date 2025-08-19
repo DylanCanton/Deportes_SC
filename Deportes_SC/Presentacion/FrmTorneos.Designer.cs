@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTorneos));
             this.pnl_superior = new System.Windows.Forms.Panel();
-            this.volver = new System.Windows.Forms.PictureBox();
             this.txt_catEtaria = new System.Windows.Forms.TextBox();
             this.txt_torneo = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
@@ -41,8 +40,6 @@
             this.btnDelete = new System.Windows.Forms.PictureBox();
             this.btnEditar = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
-            this.pnl_superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_torneos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
@@ -52,24 +49,12 @@
             // 
             // pnl_superior
             // 
-            this.pnl_superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pnl_superior.Controls.Add(this.volver);
+            this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
             this.pnl_superior.Size = new System.Drawing.Size(848, 44);
             this.pnl_superior.TabIndex = 46;
-            // 
-            // volver
-            // 
-            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
-            this.volver.Location = new System.Drawing.Point(3, 3);
-            this.volver.Name = "volver";
-            this.volver.Size = new System.Drawing.Size(60, 38);
-            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.volver.TabIndex = 0;
-            this.volver.TabStop = false;
-            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // txt_catEtaria
             // 
@@ -198,8 +183,6 @@
             this.Name = "FrmTorneos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTorneos";
-            this.pnl_superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_torneos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
@@ -213,7 +196,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnl_superior;
-        private System.Windows.Forms.PictureBox volver;
         private System.Windows.Forms.TextBox txt_catEtaria;
         private System.Windows.Forms.TextBox txt_torneo;
         private System.Windows.Forms.TextBox txt_id;

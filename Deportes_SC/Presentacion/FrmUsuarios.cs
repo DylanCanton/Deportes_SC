@@ -63,9 +63,11 @@ namespace Deportes_SC.Presentacion
             MessageBox.Show("Registrado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void volver_Click_1(object sender, EventArgs e)
         {
-
+            FrmPrincipal principal = new FrmPrincipal();
+            principal.Show();
+            this.Hide();
         }
     }
 }
