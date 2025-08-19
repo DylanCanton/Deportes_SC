@@ -136,7 +136,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 40);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(850, 899);
+            this.pictureBox1.Size = new System.Drawing.Size(850, 824);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 46;
             this.pictureBox1.TabStop = false;
@@ -144,7 +144,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(524, 837);
+            this.pictureBox2.Location = new System.Drawing.Point(524, 761);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(196, 76);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -155,7 +155,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(322, 837);
+            this.pictureBox3.Location = new System.Drawing.Point(322, 761);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(196, 76);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -166,7 +166,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(120, 837);
+            this.pictureBox4.Location = new System.Drawing.Point(120, 761);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(196, 76);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -177,18 +177,18 @@
             // 
             this.dgv_Usuarios.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgv_Usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Usuarios.Location = new System.Drawing.Point(23, 505);
+            this.dgv_Usuarios.Location = new System.Drawing.Point(81, 507);
             this.dgv_Usuarios.Name = "dgv_Usuarios";
             this.dgv_Usuarios.RowHeadersWidth = 51;
             this.dgv_Usuarios.RowTemplate.Height = 24;
-            this.dgv_Usuarios.Size = new System.Drawing.Size(793, 292);
+            this.dgv_Usuarios.Size = new System.Drawing.Size(658, 218);
             this.dgv_Usuarios.TabIndex = 73;
             // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 925);
+            this.ClientSize = new System.Drawing.Size(850, 864);
             this.Controls.Add(this.dgv_Usuarios);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
