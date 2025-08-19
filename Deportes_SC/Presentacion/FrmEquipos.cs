@@ -78,45 +78,19 @@ namespace Deportes_SC.Presentacion
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(txt_id.Text);
-            Equipo equipo = new Equipo();
-            equipo.Identificador = ID;
-            equipo.Nombre = txt_equipo.Text;
-            equipo.LugarOrigen = txt_origen.Text;
-            equipo.Encargado = txt_encargado.Text;
-            equipo.Telefono = txt_telefono.Text;
-            equipo.Torneo = Convert.ToInt32(cmb_torneo.SelectedValue);
-
-            equipos.guardarEquipoSQL(equipo);
-            MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarEquipos();
+            
 
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)
         {
    
-            Equipo equipo = new Equipo();
-            equipo.Identificador = int.Parse(txt_id.Text);
-            equipo.Nombre = txt_equipo.Text;
-            equipo.LugarOrigen = txt_origen.Text;
-            equipo.Encargado = txt_encargado.Text;
-            equipo.Telefono = txt_telefono.Text;
-            equipo.Torneo = Convert.ToInt32(cmb_torneo.SelectedValue);
-            equipos.modificarEquipoSQL(equipo);
-            MessageBox.Show("Modificado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarEquipos();
+            
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(txt_id.Text);
-            equipos.eliminarEquipoSQL(ID);
-            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarEquipos();
+            
         }
 
         private void dgv_equipos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -139,6 +113,47 @@ namespace Deportes_SC.Presentacion
                 cmb_torneo.SelectedValue = Convert.ToInt32(fila.Cells["IdTorneo"].Value);
             else
                 cmb_torneo.SelectedIndex = -1;
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(txt_id.Text);
+            Equipo equipo = new Equipo();
+            equipo.Identificador = ID;
+            equipo.Nombre = txt_equipo.Text;
+            equipo.LugarOrigen = txt_origen.Text;
+            equipo.Encargado = txt_encargado.Text;
+            equipo.Telefono = txt_telefono.Text;
+            equipo.Torneo = Convert.ToInt32(cmb_torneo.SelectedValue);
+
+            equipos.guardarEquipoSQL(equipo);
+            MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarEquipos();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Equipo equipo = new Equipo();
+            equipo.Identificador = int.Parse(txt_id.Text);
+            equipo.Nombre = txt_equipo.Text;
+            equipo.LugarOrigen = txt_origen.Text;
+            equipo.Encargado = txt_encargado.Text;
+            equipo.Telefono = txt_telefono.Text;
+            equipo.Torneo = Convert.ToInt32(cmb_torneo.SelectedValue);
+            equipos.modificarEquipoSQL(equipo);
+            MessageBox.Show("Modificado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarEquipos();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(txt_id.Text);
+            equipos.eliminarEquipoSQL(ID);
+            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarEquipos();
         }
     }
 }

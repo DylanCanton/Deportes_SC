@@ -78,6 +78,35 @@ namespace Deportes_SC.Presentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void OcultarColumnasNoNecesarias()
+        {
+            string[] ocultar = new string[]
+            {
+                "Identificador","FechaHora","GolesCasa","GolesVisita",
+                "NombreEquipoCasa","NombreEquipoVisita"
+            };
+
+            foreach (string col in ocultar)
+            {
+                if (dgvEmparejamientos.Columns[col] != null)
+                    dgvEmparejamientos.Columns[col].Visible = false;
+            }
+
+            if (dgvEmparejamientos.Columns["Torneo"] != null)
+                dgvEmparejamientos.Columns["Torneo"].HeaderText = "Id Torneo";
+
+            if (dgvEmparejamientos.Columns["EquipoCasa"] != null)
+                dgvEmparejamientos.Columns["EquipoCasa"].HeaderText = "Casa (Id)";
+
+            if (dgvEmparejamientos.Columns["EquipoVisita"] != null)
+                dgvEmparejamientos.Columns["EquipoVisita"].HeaderText = "Visita (Id)";
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
             if (cmbTorneo.SelectedValue == null)
             {
                 MessageBox.Show("Seleccioná un torneo.");
@@ -123,28 +152,19 @@ namespace Deportes_SC.Presentacion
             }
         }
 
-        private void OcultarColumnasNoNecesarias()
+        private void btnEditar_Click(object sender, EventArgs e)
         {
-            string[] ocultar = new string[]
-            {
-                "Identificador","FechaHora","GolesCasa","GolesVisita",
-                "NombreEquipoCasa","NombreEquipoVisita"
-            };
 
-            foreach (string col in ocultar)
-            {
-                if (dgvEmparejamientos.Columns[col] != null)
-                    dgvEmparejamientos.Columns[col].Visible = false;
-            }
+        }
 
-            if (dgvEmparejamientos.Columns["Torneo"] != null)
-                dgvEmparejamientos.Columns["Torneo"].HeaderText = "Id Torneo";
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
 
-            if (dgvEmparejamientos.Columns["EquipoCasa"] != null)
-                dgvEmparejamientos.Columns["EquipoCasa"].HeaderText = "Casa (Id)";
+        }
 
-            if (dgvEmparejamientos.Columns["EquipoVisita"] != null)
-                dgvEmparejamientos.Columns["EquipoVisita"].HeaderText = "Visita (Id)";
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -50,6 +50,35 @@ namespace Deportes_SC.Presentacion
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private void dgv_torneos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgv_torneos.Rows[e.RowIndex];
+
+                txt_id.Text = fila.Cells["Identificador"].Value.ToString();
+                txt_torneo.Text = fila.Cells["Nombre"].Value.ToString();
+                txt_catEtaria.Text = fila.Cells["CategoriaEtaria"].Value.ToString();
+                cmb_catGenero.Text = fila.Cells["CategoriaGenero"].Value.ToString();
+                dtp_año.Value = Convert.ToDateTime(fila.Cells["Año"].Value);
+            }
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
             // Validacion de campos vacios
             /*if (txt_id.Text == "" || txt_usr.Text == "" || txt_correo.Text == "" ||
                 txt_psw.Text == "" || cmb_genero.Text == "" || cmb_tipo.Text == "" ||
@@ -71,7 +100,7 @@ namespace Deportes_SC.Presentacion
             cargarTorneos();
         }
 
-        private void btn_modificar_Click(object sender, EventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
             int ID = int.Parse(txt_id.Text);
             Torneo torneo = new Torneo();
@@ -87,27 +116,13 @@ namespace Deportes_SC.Presentacion
             cargarTorneos();
         }
 
-        private void btn_eliminar_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             int ID = int.Parse(txt_id.Text);
             torneos.eliminarTorneoSQL(ID);
             MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             limpiar();
             cargarTorneos();
-        }
-
-        private void dgv_torneos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = dgv_torneos.Rows[e.RowIndex];
-
-                txt_id.Text = fila.Cells["Identificador"].Value.ToString();
-                txt_torneo.Text = fila.Cells["Nombre"].Value.ToString();
-                txt_catEtaria.Text = fila.Cells["CategoriaEtaria"].Value.ToString();
-                cmb_catGenero.Text = fila.Cells["CategoriaGenero"].Value.ToString();
-                dtp_año.Value = Convert.ToDateTime(fila.Cells["Año"].Value);
-            }
         }
     }
 }

@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipos));
             this.pnl_superior = new System.Windows.Forms.Panel();
             this.volver = new System.Windows.Forms.PictureBox();
-            this.btn_eliminar = new System.Windows.Forms.Button();
-            this.btn_modificar = new System.Windows.Forms.Button();
-            this.btn_guardar = new System.Windows.Forms.Button();
             this.txt_equipo = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.txt_origen = new System.Windows.Forms.TextBox();
@@ -42,10 +39,16 @@
             this.cmb_torneo = new System.Windows.Forms.ComboBox();
             this.dgv_equipos = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnRegistrar = new System.Windows.Forms.PictureBox();
+            this.btnEditar = new System.Windows.Forms.PictureBox();
+            this.btnDelete = new System.Windows.Forms.PictureBox();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_equipos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
@@ -68,48 +71,6 @@
             this.volver.TabIndex = 0;
             this.volver.TabStop = false;
             this.volver.Click += new System.EventHandler(this.volver_Click);
-            // 
-            // btn_eliminar
-            // 
-            this.btn_eliminar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(350, 728);
-            this.btn_eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.Size = new System.Drawing.Size(166, 83);
-            this.btn_eliminar.TabIndex = 53;
-            this.btn_eliminar.Text = "Eliminar";
-            this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_eliminar.UseVisualStyleBackColor = true;
-            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
-            // 
-            // btn_modificar
-            // 
-            this.btn_modificar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("btn_modificar.Image")));
-            this.btn_modificar.Location = new System.Drawing.Point(560, 728);
-            this.btn_modificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_modificar.Name = "btn_modificar";
-            this.btn_modificar.Size = new System.Drawing.Size(166, 83);
-            this.btn_modificar.TabIndex = 52;
-            this.btn_modificar.Text = "Modificar";
-            this.btn_modificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_modificar.UseVisualStyleBackColor = true;
-            this.btn_modificar.Click += new System.EventHandler(this.btn_modificar_Click);
-            // 
-            // btn_guardar
-            // 
-            this.btn_guardar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
-            this.btn_guardar.Location = new System.Drawing.Point(146, 728);
-            this.btn_guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(166, 83);
-            this.btn_guardar.TabIndex = 51;
-            this.btn_guardar.Text = "Guardar";
-            this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_guardar.UseVisualStyleBackColor = true;
-            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // txt_equipo
             // 
@@ -176,11 +137,11 @@
             // 
             this.dgv_equipos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgv_equipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_equipos.Location = new System.Drawing.Point(51, 452);
+            this.dgv_equipos.Location = new System.Drawing.Point(12, 466);
             this.dgv_equipos.Name = "dgv_equipos";
             this.dgv_equipos.RowHeadersWidth = 51;
             this.dgv_equipos.RowTemplate.Height = 24;
-            this.dgv_equipos.Size = new System.Drawing.Size(718, 238);
+            this.dgv_equipos.Size = new System.Drawing.Size(816, 275);
             this.dgv_equipos.TabIndex = 87;
             this.dgv_equipos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_equipos_CellDoubleClick);
             // 
@@ -194,19 +155,52 @@
             this.pictureBox1.TabIndex = 88;
             this.pictureBox1.TabStop = false;
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.Image")));
+            this.btnRegistrar.Location = new System.Drawing.Point(535, 764);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(204, 65);
+            this.btnRegistrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRegistrar.TabIndex = 89;
+            this.btnRegistrar.TabStop = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.Location = new System.Drawing.Point(324, 764);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(204, 65);
+            this.btnEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnEditar.TabIndex = 90;
+            this.btnEditar.TabStop = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(114, 764);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(204, 65);
+            this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnDelete.TabIndex = 91;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FrmEquipos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 853);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.dgv_equipos);
             this.Controls.Add(this.cmb_torneo);
             this.Controls.Add(this.txt_telefono);
             this.Controls.Add(this.txt_encargado);
             this.Controls.Add(this.txt_origen);
-            this.Controls.Add(this.btn_eliminar);
-            this.Controls.Add(this.btn_modificar);
-            this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.txt_equipo);
             this.Controls.Add(this.txt_id);
             this.Controls.Add(this.pnl_superior);
@@ -219,6 +213,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_equipos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,9 +225,6 @@
 
         private System.Windows.Forms.Panel pnl_superior;
         private System.Windows.Forms.PictureBox volver;
-        private System.Windows.Forms.Button btn_eliminar;
-        private System.Windows.Forms.Button btn_modificar;
-        private System.Windows.Forms.Button btn_guardar;
         private System.Windows.Forms.TextBox txt_equipo;
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.TextBox txt_origen;
@@ -239,5 +233,8 @@
         private System.Windows.Forms.ComboBox cmb_torneo;
         private System.Windows.Forms.DataGridView dgv_equipos;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox btnRegistrar;
+        private System.Windows.Forms.PictureBox btnEditar;
+        private System.Windows.Forms.PictureBox btnDelete;
     }
 }

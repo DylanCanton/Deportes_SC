@@ -78,48 +78,17 @@ namespace Deportes_SC.Presentacion
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            Jugador jugador = new Jugador();
-            jugador.Identificador = int.Parse(txt_id.Text);
-            jugador.Cédula = txt_cedula.Text;
-            jugador.Nombre = txt_nombre.Text;
-            jugador.Genero = cmb_genero.Text;
-            jugador.Posicion = cmb_posicion.Text;
-            jugador.Dorsal = int.Parse(txt_dorsal.Text);
-            jugador.Equipo = Convert.ToInt32(cmb_equipo.SelectedValue);
-            jugador.FechaNacimiento = dtp_fechaNacimiento.Value.Date;
-
-            jugadores.GuardarJugadorSQL(jugador);
-            MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarJugadores();
+            
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)
         {
-            Jugador jugador = new Jugador();
-            jugador.Identificador = int.Parse(txt_id.Text);
-            jugador.Cédula = txt_cedula.Text;
-            jugador.Nombre = txt_nombre.Text;
-            jugador.Genero = cmb_genero.Text;
-            jugador.Posicion = cmb_posicion.Text;
-            jugador.Dorsal = int.Parse(txt_dorsal.Text);
-            jugador.Equipo = Convert.ToInt32(cmb_equipo.SelectedValue);
-            jugador.FechaNacimiento = dtp_fechaNacimiento.Value.Date;
-
-            jugadores.modificarJugadorSQL(jugador);
-            MessageBox.Show("Modificado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarJugadores();
+            
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(txt_id.Text);
-
-            jugadores.eliminarEquipoSQL(ID);
-            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarJugadores();
+            
         }
 
         private void dgv_jugadores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -144,6 +113,52 @@ namespace Deportes_SC.Presentacion
             // Combo de equipo por Id
             if (fila.Cells["IdEquipo"].Value != DBNull.Value)
                 cmb_equipo.SelectedValue = Convert.ToInt32(fila.Cells["IdEquipo"].Value);
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Jugador jugador = new Jugador();
+            jugador.Identificador = int.Parse(txt_id.Text);
+            jugador.Cédula = txt_cedula.Text;
+            jugador.Nombre = txt_nombre.Text;
+            jugador.Genero = cmb_genero.Text;
+            jugador.Posicion = cmb_posicion.Text;
+            jugador.Dorsal = int.Parse(txt_dorsal.Text);
+            jugador.Equipo = Convert.ToInt32(cmb_equipo.SelectedValue);
+            jugador.FechaNacimiento = dtp_fechaNacimiento.Value.Date;
+
+            jugadores.GuardarJugadorSQL(jugador);
+            MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarJugadores();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(txt_id.Text);
+
+            jugadores.eliminarEquipoSQL(ID);
+            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarJugadores();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Jugador jugador = new Jugador();
+            jugador.Identificador = int.Parse(txt_id.Text);
+            jugador.Cédula = txt_cedula.Text;
+            jugador.Nombre = txt_nombre.Text;
+            jugador.Genero = cmb_genero.Text;
+            jugador.Posicion = cmb_posicion.Text;
+            jugador.Dorsal = int.Parse(txt_dorsal.Text);
+            jugador.Equipo = Convert.ToInt32(cmb_equipo.SelectedValue);
+            jugador.FechaNacimiento = dtp_fechaNacimiento.Value.Date;
+
+            jugadores.modificarJugadorSQL(jugador);
+            MessageBox.Show("Modificado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarJugadores();
         }
     }
 }
