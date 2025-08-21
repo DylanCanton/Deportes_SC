@@ -52,7 +52,7 @@
             // 
             // dtp_fechaNacimiento
             // 
-            this.dtp_fechaNacimiento.Location = new System.Drawing.Point(3, 487);
+            this.dtp_fechaNacimiento.Location = new System.Drawing.Point(8, 436);
             this.dtp_fechaNacimiento.Name = "dtp_fechaNacimiento";
             this.dtp_fechaNacimiento.Size = new System.Drawing.Size(201, 22);
             this.dtp_fechaNacimiento.TabIndex = 79;
@@ -72,7 +72,7 @@
             // 
             this.txt_cedula.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_cedula.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_cedula.Location = new System.Drawing.Point(8, 374);
+            this.txt_cedula.Location = new System.Drawing.Point(8, 340);
             this.txt_cedula.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_cedula.Name = "txt_cedula";
             this.txt_cedula.Size = new System.Drawing.Size(196, 28);
@@ -96,7 +96,7 @@
             this.cmb_equipo.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cmb_equipo.Location = new System.Drawing.Point(297, 480);
+            this.cmb_equipo.Location = new System.Drawing.Point(309, 434);
             this.cmb_equipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_equipo.Name = "cmb_equipo";
             this.cmb_equipo.Size = new System.Drawing.Size(197, 29);
@@ -110,7 +110,7 @@
             this.cmb_genero.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cmb_genero.Location = new System.Drawing.Point(593, 374);
+            this.cmb_genero.Location = new System.Drawing.Point(593, 340);
             this.cmb_genero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_genero.Name = "cmb_genero";
             this.cmb_genero.Size = new System.Drawing.Size(196, 29);
@@ -130,11 +130,11 @@
             // 
             this.dgv_jugadores.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgv_jugadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_jugadores.Location = new System.Drawing.Point(31, 570);
+            this.dgv_jugadores.Location = new System.Drawing.Point(12, 468);
             this.dgv_jugadores.Name = "dgv_jugadores";
             this.dgv_jugadores.RowHeadersWidth = 51;
             this.dgv_jugadores.RowTemplate.Height = 24;
-            this.dgv_jugadores.Size = new System.Drawing.Size(758, 287);
+            this.dgv_jugadores.Size = new System.Drawing.Size(829, 287);
             this.dgv_jugadores.TabIndex = 88;
             this.dgv_jugadores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_jugadores_CellDoubleClick);
             // 
@@ -158,7 +158,7 @@
             // 
             this.txt_dorsal.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txt_dorsal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.txt_dorsal.Location = new System.Drawing.Point(295, 374);
+            this.txt_dorsal.Location = new System.Drawing.Point(309, 340);
             this.txt_dorsal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_dorsal.Name = "txt_dorsal";
             this.txt_dorsal.Size = new System.Drawing.Size(196, 28);

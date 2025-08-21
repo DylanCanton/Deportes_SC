@@ -42,7 +42,7 @@ namespace Deportes_SC.Presentacion
 
         private void cargarEquipos()
         {
-            var dt = equipos.ListarEquiposSQL();   // o new BDEquipos().ListarEquiposSQL();
+            var dt = equipos.ListarEquiposSQL();   
             dgv_equipos.AutoGenerateColumns = true;
             dgv_equipos.DataSource = dt;
 
@@ -74,23 +74,6 @@ namespace Deportes_SC.Presentacion
             txt_encargado.Text = "";
             txt_telefono.Text = "";
             cmb_torneo.Text = "";
-        }
-
-        private void btn_guardar_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        private void btn_modificar_Click(object sender, EventArgs e)
-        {
-   
-            
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void dgv_equipos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

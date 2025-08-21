@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,89 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
+        public bool modificarUsuarioSQL(Usuario u)
+        {
+            string sql = "UPDATE Usuario SET " +
+                  "nombre = '" + u.Nusuario + "', " +
+                  "contrasenna = '" + u.Contrasenna + "', " +
+                  "rol = '" + u.Rol + "', " +
+                  "estado = " + u.Estado + " " +
+                  "WHERE id = " + u.Id;
+
+            try
+            {
+                Conexion conex = new Conexion();
+                SqlCommand comando = new SqlCommand(sql, conex.Conectar());
+                int cantidad = comando.ExecuteNonQuery();
+
+                conex.Desconectar();
+
+                return cantidad == 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public bool eliminarUsuarioSQL(int idUsuario)
+        {
+            string sql = "DELETE FROM Usuario WHERE id = " + idUsuario;
+
+            try
+            {
+                Conexion conex = new Conexion();
+                SqlCommand comando = new SqlCommand(sql, conex.Conectar());
+                int cantidad = comando.ExecuteNonQuery();
+
+                conex.Desconectar();
+
+                return cantidad == 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public DataTable ListarUsuariosSQL()
+        {
+            var dt = new DataTable();
+
+            string sql = @"
+            SELECT
+                u.id             AS Id,            -- visible
+                u.nombre       AS Usuario,       -- visible
+                u.rol            AS Rol,           -- visible
+                CASE u.estado                      -- visible (texto para el grid)
+                    WHEN 1 THEN 'Activo'
+                    WHEN 0 THEN 'Inactivo'
+                    ELSE 'Desconocido'
+                END              AS EstadoTexto,
+                u.contrasenna    AS Contrasenna,   -- oculto (para editar)
+                u.estado         AS Estado         -- oculto (int para editar)
+            FROM Usuario u;";
+
+            try
+            {
+                using (SqlConnection conn = new Conexion().Conectar())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    dt.Load(r);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al listar usuarios: " + ex.Message);
+            }
+
+            return dt;
+        }
+
         // Validacion del usuario
         public string ValidarUsuario(string nombreUsuario, string contrasenna)
         {

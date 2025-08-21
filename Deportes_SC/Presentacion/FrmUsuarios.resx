@@ -14434,7 +14434,7 @@
         ULkAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Registrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANAAAABJCAYAAABMzaj/AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
         cQAAEnEB89x6jgAAarJJREFUeF7tvWd4XNd1763EThzfm+TexFZj7x0E0TF9Br1j0HshwE5K7EWkKPYG
@@ -14895,7 +14895,7 @@
         ADQLInEM9ucBRBbIApDwd3y1TGDNCjj8hfX/Ad53BdCXO3NMAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Editar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANAAAABKCAYAAADKWdpRAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
         cQAAEnEB89x6jgAAb9JJREFUeF7NvWV4nNe1953znEJSONQ0aIoZZVksjZhsSSaBZcnMzMxsS2YUM0sD
@@ -15378,7 +15378,7 @@
         7puAkkAiiIp701HSl84wkeje/wtAiQjmidRKoAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="eliminar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAM0AAABOCAYAAACDmJIfAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
         cQAAEnEB89x6jgAAcgZJREFUeF7NvXd4k1e2xpszJVPOzIQawL13WZJ7t7EBY1zoPUAo6aEkIQnpgYTe

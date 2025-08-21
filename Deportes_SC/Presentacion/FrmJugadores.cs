@@ -76,20 +76,6 @@ namespace Deportes_SC.Presentacion
             cmb_equipo.Text = "";
         }
 
-        private void btn_guardar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btn_modificar_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void dgv_jugadores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -117,6 +103,14 @@ namespace Deportes_SC.Presentacion
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            // Validacion de campos vacios
+            if (txt_id.Text == "" || txt_cedula.Text == "" || txt_nombre.Text == "" ||
+                txt_dorsal.Text == "" || cmb_genero.SelectedIndex == -1 || cmb_posicion.SelectedIndex == -1 ||
+                cmb_equipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Jugador jugador = new Jugador();
             jugador.Identificador = int.Parse(txt_id.Text);
             jugador.Cédula = txt_cedula.Text;

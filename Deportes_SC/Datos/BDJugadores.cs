@@ -40,17 +40,17 @@ namespace Deportes_SC.Datos
         {
             string sql;
 
-            // Aqui obtenemos la edad de la categoria (para luego comparar)
+            // 1) Edad permitida por categoría del torneo (igual a tu lógica actual)
             int categoriaEdad = validarEdad(j.Equipo);
 
-            // Validamos la cantidad maxima de jugadores por equipo
+            // 2) Máximo de jugadores por equipo (tu lógica actual)
             if (validarMaximoJugadores(j.Equipo) >= 12)
             {
                 MessageBox.Show("Este equipo ya tiene el máximo de 12 jugadores permitidos.");
                 return false;
             }
 
-            // Aqui validamos la edad del jugador con la edad permitida en la categoria del torneo
+            // 3) Validación de edad concreta del jugador
             int edad = CalcularEdad(j.FechaNacimiento);
             if (categoriaEdad > 0 && edad > categoriaEdad)
             {
@@ -58,9 +58,23 @@ namespace Deportes_SC.Datos
                 return false;
             }
 
+            // 4) ***Nueva*** validación de GÉNERO (JOIN Equipo->Torneo y comparación)
+            string generoTorneo = ObtenerGeneroTorneoPorEquipo(j.Equipo); // "Masculino" o "Femenino"
+            if (string.IsNullOrWhiteSpace(generoTorneo))
+            {
+                MessageBox.Show("No se pudo determinar el género del torneo para este equipo.");
+                return false;
+            }
+
+            if (!GeneroCoincideConTorneo(generoTorneo, j.Genero))
+            {
+                MessageBox.Show($"Género inválido: el torneo es '{generoTorneo}' y el jugador es '{j.Genero}'.");
+                return false;
+            }
+
+            // 5) Si existe -> UPDATE; si no -> INSERT (tu mismo patrón)
             if (BuscarJugadorSQL(j.Identificador) != 0)
             {
-                // UPDATE: dorsal corregido y sin errores de sintaxis
                 sql = "UPDATE Jugador SET " +
                       "cedula = '" + j.Cédula + "', " +
                       "nombre = '" + j.Nombre + "', " +
@@ -73,7 +87,6 @@ namespace Deportes_SC.Datos
             }
             else
             {
-                // INSERT: se incluye la columna dorsal y se respeta el mismo orden en VALUES
                 sql = "INSERT INTO Jugador (id, cedula, nombre, genero, posicion, dorsal, idEquipo, fechaNacimiento) VALUES (" +
                       j.Identificador + ", '" +
                       j.Cédula + "', '" +
@@ -100,6 +113,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
         public bool modificarJugadorSQL(Jugador j)
         {
@@ -264,6 +278,50 @@ namespace Deportes_SC.Datos
                 MessageBox.Show(e.Message);
             }
             return categoria;
+        }
+
+        //-----------------------------------------------
+
+        private string ObtenerGeneroTorneoPorEquipo(int idEquipo)
+        {
+            string genero = "";
+            try
+            {
+                Conexion conex = new Conexion();
+                string sql = @"
+            SELECT t.categoriaGenero
+            FROM Equipo e
+            JOIN Torneo t ON e.idTorneo = t.id
+            WHERE e.id = " + idEquipo;
+
+                SqlCommand comando = new SqlCommand(sql, conex.Conectar());
+                SqlDataReader dr = comando.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    genero = dr["categoriaGenero"]?.ToString() ?? "";
+                }
+
+                dr.Close();
+                conex.Desconectar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener género del torneo: " + ex.Message);
+            }
+            return genero;
+        }
+
+        private bool GeneroCoincideConTorneo(string generoTorneo, string generoJugador)
+        {
+            if (string.IsNullOrWhiteSpace(generoTorneo) || string.IsNullOrWhiteSpace(generoJugador))
+                return false;
+
+            // Compara ignorando mayúsculas/minúsculas y espacios
+            generoTorneo = generoTorneo.Trim();
+            generoJugador = generoJugador.Trim();
+
+            return generoTorneo.Equals(generoJugador, StringComparison.OrdinalIgnoreCase);
         }
 
     }

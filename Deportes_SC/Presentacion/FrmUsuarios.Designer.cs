@@ -35,19 +35,19 @@
             this.txt_usr = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.pnl_superior = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.dgv_Usuarios = new System.Windows.Forms.DataGridView();
             this.volver = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Registrar = new System.Windows.Forms.PictureBox();
+            this.Editar = new System.Windows.Forms.PictureBox();
+            this.eliminar = new System.Windows.Forms.PictureBox();
+            this.dgv_Usuarios = new System.Windows.Forms.DataGridView();
             this.pnl_superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Registrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Editar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_tipo
@@ -120,58 +120,6 @@
             this.pnl_superior.Size = new System.Drawing.Size(850, 44);
             this.pnl_superior.TabIndex = 45;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 40);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(850, 824);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 46;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(524, 761);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(196, 76);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 47;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(322, 761);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(196, 76);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 48;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(120, 761);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(196, 76);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 49;
-            this.pictureBox4.TabStop = false;
-            // 
-            // dgv_Usuarios
-            // 
-            this.dgv_Usuarios.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
-            this.dgv_Usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Usuarios.Location = new System.Drawing.Point(81, 507);
-            this.dgv_Usuarios.Name = "dgv_Usuarios";
-            this.dgv_Usuarios.RowHeadersWidth = 51;
-            this.dgv_Usuarios.RowTemplate.Height = 24;
-            this.dgv_Usuarios.Size = new System.Drawing.Size(658, 218);
-            this.dgv_Usuarios.TabIndex = 73;
-            // 
             // volver
             // 
             this.volver.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -184,15 +132,70 @@
             this.volver.TabStop = false;
             this.volver.Click += new System.EventHandler(this.volver_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 40);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(850, 824);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 46;
+            this.pictureBox1.TabStop = false;
+            // 
+            // Registrar
+            // 
+            this.Registrar.Image = ((System.Drawing.Image)(resources.GetObject("Registrar.Image")));
+            this.Registrar.Location = new System.Drawing.Point(524, 761);
+            this.Registrar.Name = "Registrar";
+            this.Registrar.Size = new System.Drawing.Size(196, 76);
+            this.Registrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Registrar.TabIndex = 47;
+            this.Registrar.TabStop = false;
+            this.Registrar.Click += new System.EventHandler(this.Registrar_Click);
+            // 
+            // Editar
+            // 
+            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
+            this.Editar.Location = new System.Drawing.Point(322, 761);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(196, 76);
+            this.Editar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Editar.TabIndex = 48;
+            this.Editar.TabStop = false;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
+            // 
+            // eliminar
+            // 
+            this.eliminar.Image = ((System.Drawing.Image)(resources.GetObject("eliminar.Image")));
+            this.eliminar.Location = new System.Drawing.Point(120, 761);
+            this.eliminar.Name = "eliminar";
+            this.eliminar.Size = new System.Drawing.Size(196, 76);
+            this.eliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.eliminar.TabIndex = 49;
+            this.eliminar.TabStop = false;
+            this.eliminar.Click += new System.EventHandler(this.eliminar_Click);
+            // 
+            // dgv_Usuarios
+            // 
+            this.dgv_Usuarios.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
+            this.dgv_Usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Usuarios.Location = new System.Drawing.Point(81, 507);
+            this.dgv_Usuarios.Name = "dgv_Usuarios";
+            this.dgv_Usuarios.RowHeadersWidth = 51;
+            this.dgv_Usuarios.RowTemplate.Height = 24;
+            this.dgv_Usuarios.Size = new System.Drawing.Size(658, 218);
+            this.dgv_Usuarios.TabIndex = 73;
+            this.dgv_Usuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Usuarios_CellDoubleClick);
+            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 864);
             this.Controls.Add(this.dgv_Usuarios);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.eliminar);
+            this.Controls.Add(this.Editar);
+            this.Controls.Add(this.Registrar);
             this.Controls.Add(this.pnl_superior);
             this.Controls.Add(this.cmb_tipo);
             this.Controls.Add(this.txt_psw);
@@ -205,12 +208,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRUDusuarios";
             this.pnl_superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Registrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Editar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Usuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,9 +228,9 @@
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Panel pnl_superior;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox Registrar;
+        private System.Windows.Forms.PictureBox Editar;
+        private System.Windows.Forms.PictureBox eliminar;
         private System.Windows.Forms.DataGridView dgv_Usuarios;
         private System.Windows.Forms.PictureBox volver;
     }

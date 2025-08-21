@@ -80,13 +80,12 @@ namespace Deportes_SC.Presentacion
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             // Validacion de campos vacios
-            /*if (txt_id.Text == "" || txt_usr.Text == "" || txt_correo.Text == "" ||
-                txt_psw.Text == "" || cmb_genero.Text == "" || cmb_tipo.Text == "" ||
-                cmb_estado.SelectedIndex == -1)
+            if (txt_id.Text == "" || txt_torneo.Text == "" || txt_catEtaria.Text == "" ||
+                cmb_catGenero.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            } */
+            } 
             Torneo torneo = new Torneo();
             torneo.Identificador = int.Parse(txt_id.Text);
             torneo.Nombre = txt_torneo.Text;
