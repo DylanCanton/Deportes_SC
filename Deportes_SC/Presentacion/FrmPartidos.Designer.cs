@@ -40,6 +40,10 @@
             this.nudGolesVisita = new System.Windows.Forms.NumericUpDown();
             this.btnRefrescar = new System.Windows.Forms.Button();
             this.btnGuardarResultado = new System.Windows.Forms.Button();
+            this.cmb_jugadorCasa = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmb_jugadorVisita = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGolesCasa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGolesVisita)).BeginInit();
@@ -164,11 +168,57 @@
             this.btnGuardarResultado.UseVisualStyleBackColor = false;
             this.btnGuardarResultado.Click += new System.EventHandler(this.btnGuardarResultado_Click);
             // 
+            // cmb_jugadorCasa
+            // 
+            this.cmb_jugadorCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmb_jugadorCasa.FormattingEnabled = true;
+            this.cmb_jugadorCasa.Location = new System.Drawing.Point(236, 582);
+            this.cmb_jugadorCasa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmb_jugadorCasa.Name = "cmb_jugadorCasa";
+            this.cmb_jugadorCasa.Size = new System.Drawing.Size(124, 29);
+            this.cmb_jugadorCasa.TabIndex = 97;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(139, 585);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 21);
+            this.label1.TabIndex = 96;
+            this.label1.Text = "Jugador:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmb_jugadorVisita
+            // 
+            this.cmb_jugadorVisita.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmb_jugadorVisita.FormattingEnabled = true;
+            this.cmb_jugadorVisita.Location = new System.Drawing.Point(489, 582);
+            this.cmb_jugadorVisita.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmb_jugadorVisita.Name = "cmb_jugadorVisita";
+            this.cmb_jugadorVisita.Size = new System.Drawing.Size(124, 29);
+            this.cmb_jugadorVisita.TabIndex = 99;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(395, 585);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 21);
+            this.label2.TabIndex = 100;
+            this.label2.Text = "Jugador:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 900);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmb_jugadorVisita);
+            this.Controls.Add(this.cmb_jugadorCasa);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardarResultado);
             this.Controls.Add(this.btnRefrescar);
             this.Controls.Add(this.nudGolesVisita);
@@ -205,5 +255,9 @@
         private System.Windows.Forms.NumericUpDown nudGolesVisita;
         private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Button btnGuardarResultado;
+        private System.Windows.Forms.ComboBox cmb_jugadorCasa;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmb_jugadorVisita;
+        private System.Windows.Forms.Label label2;
     }
 }
