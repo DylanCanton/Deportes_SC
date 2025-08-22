@@ -34,6 +34,8 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
+            this.cmbFase = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
@@ -44,30 +46,30 @@
             this.cmbTorneo.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmbTorneo.FormattingEnabled = true;
-            this.cmbTorneo.Location = new System.Drawing.Point(294, 150);
+            this.cmbTorneo.Location = new System.Drawing.Point(12, 201);
             this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTorneo.Name = "cmbTorneo";
-            this.cmbTorneo.Size = new System.Drawing.Size(196, 29);
+            this.cmbTorneo.Size = new System.Drawing.Size(239, 29);
             this.cmbTorneo.TabIndex = 89;
             // 
             // dgvEmparejamientos
             // 
             this.dgvEmparejamientos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgvEmparejamientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmparejamientos.Location = new System.Drawing.Point(35, 276);
+            this.dgvEmparejamientos.Location = new System.Drawing.Point(12, 276);
             this.dgvEmparejamientos.Name = "dgvEmparejamientos";
             this.dgvEmparejamientos.RowHeadersWidth = 51;
             this.dgvEmparejamientos.RowTemplate.Height = 24;
-            this.dgvEmparejamientos.Size = new System.Drawing.Size(753, 516);
+            this.dgvEmparejamientos.Size = new System.Drawing.Size(829, 516);
             this.dgvEmparejamientos.TabIndex = 107;
             // 
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(505, 176);
+            this.btnGenerar.Location = new System.Drawing.Point(585, 184);
             this.btnGenerar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(134, 46);
+            this.btnGenerar.Size = new System.Drawing.Size(92, 46);
             this.btnGenerar.TabIndex = 104;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -87,19 +89,47 @@
             // btnRegistrar
             // 
             this.btnRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(645, 176);
+            this.btnRegistrar.Location = new System.Drawing.Point(697, 184);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(168, 46);
+            this.btnRegistrar.Size = new System.Drawing.Size(126, 46);
             this.btnRegistrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnRegistrar.TabIndex = 109;
             this.btnRegistrar.TabStop = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
+            // cmbFase
+            // 
+            this.cmbFase.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cmbFase.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmbFase.FormattingEnabled = true;
+            this.cmbFase.Items.AddRange(new object[] {
+            "Regular",
+            "Final"});
+            this.cmbFase.Location = new System.Drawing.Point(337, 201);
+            this.cmbFase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbFase.Name = "cmbFase";
+            this.cmbFase.Size = new System.Drawing.Size(196, 29);
+            this.cmbFase.TabIndex = 110;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.label1.Location = new System.Drawing.Point(374, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(127, 48);
+            this.label1.TabIndex = 111;
+            this.label1.Text = "Fase:";
             // 
             // FrmEmparejamientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 853);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbFase);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.dgvEmparejamientos);
             this.Controls.Add(this.btnGenerar);
@@ -113,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -123,5 +154,7 @@
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox btnRegistrar;
+        private System.Windows.Forms.ComboBox cmbFase;
+        private System.Windows.Forms.Label label1;
     }
 }
