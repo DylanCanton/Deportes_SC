@@ -47,7 +47,7 @@
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(840, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
             this.pnl_superior.TabIndex = 46;
             // 
             // volver
@@ -71,7 +71,7 @@
             this.tab_Reportes.Location = new System.Drawing.Point(0, 44);
             this.tab_Reportes.Name = "tab_Reportes";
             this.tab_Reportes.SelectedIndex = 0;
-            this.tab_Reportes.Size = new System.Drawing.Size(840, 856);
+            this.tab_Reportes.Size = new System.Drawing.Size(1000, 956);
             this.tab_Reportes.TabIndex = 47;
             // 
             // tab_Equipos
@@ -79,26 +79,26 @@
             this.tab_Equipos.Location = new System.Drawing.Point(4, 30);
             this.tab_Equipos.Name = "tab_Equipos";
             this.tab_Equipos.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Equipos.Size = new System.Drawing.Size(832, 822);
+            this.tab_Equipos.Size = new System.Drawing.Size(992, 922);
             this.tab_Equipos.TabIndex = 0;
             this.tab_Equipos.Text = "Posiciones";
             this.tab_Equipos.UseVisualStyleBackColor = true;
             // 
             // tab_Goleadores
             // 
-            this.tab_Goleadores.Location = new System.Drawing.Point(4, 25);
+            this.tab_Goleadores.Location = new System.Drawing.Point(4, 30);
             this.tab_Goleadores.Name = "tab_Goleadores";
             this.tab_Goleadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Goleadores.Size = new System.Drawing.Size(832, 827);
+            this.tab_Goleadores.Size = new System.Drawing.Size(832, 822);
             this.tab_Goleadores.TabIndex = 1;
             this.tab_Goleadores.Text = "Goleadores";
             this.tab_Goleadores.UseVisualStyleBackColor = true;
             // 
             // tab_Sanciones
             // 
-            this.tab_Sanciones.Location = new System.Drawing.Point(4, 25);
+            this.tab_Sanciones.Location = new System.Drawing.Point(4, 30);
             this.tab_Sanciones.Name = "tab_Sanciones";
-            this.tab_Sanciones.Size = new System.Drawing.Size(832, 827);
+            this.tab_Sanciones.Size = new System.Drawing.Size(832, 822);
             this.tab_Sanciones.TabIndex = 2;
             this.tab_Sanciones.Text = "Sanciones";
             this.tab_Sanciones.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 900);
+            this.ClientSize = new System.Drawing.Size(1000, 1000);
             this.Controls.Add(this.tab_Reportes);
             this.Controls.Add(this.pnl_superior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

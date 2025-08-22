@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPartidos));
             this.pnl_superior = new System.Windows.Forms.Panel();
+            this.volver = new System.Windows.Forms.PictureBox();
             this.lblTorneo = new System.Windows.Forms.Label();
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.dgvPartidos = new System.Windows.Forms.DataGridView();
@@ -38,37 +39,50 @@
             this.btnGuardarResultado = new System.Windows.Forms.Button();
             this.cmb_jugadorCasa = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmb_jugadorVisita = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
+            this.nudMinuto1 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.cmbFase = new System.Windows.Forms.ComboBox();
+            this.lbl_Fase = new System.Windows.Forms.Label();
+            this.rbCasa = new System.Windows.Forms.RadioButton();
+            this.rbVisita = new System.Windows.Forms.RadioButton();
+            this.lblEquipoCasa = new System.Windows.Forms.Label();
+            this.lblEquipoVisita = new System.Windows.Forms.Label();
+            this.btnAgregarSancion = new System.Windows.Forms.Button();
+            this.pnl_superior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinuto1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pnl_superior.Controls.Add(this.volver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(840, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
             this.pnl_superior.TabIndex = 46;
+            // 
+            // volver
+            // 
+            this.volver.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
+            this.volver.Location = new System.Drawing.Point(3, 3);
+            this.volver.Name = "volver";
+            this.volver.Size = new System.Drawing.Size(60, 38);
+            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.volver.TabIndex = 112;
+            this.volver.TabStop = false;
+            this.volver.Click += new System.EventHandler(this.volver_Click_1);
             // 
             // lblTorneo
             // 
             this.lblTorneo.AutoSize = true;
             this.lblTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTorneo.Location = new System.Drawing.Point(222, 82);
+            this.lblTorneo.Location = new System.Drawing.Point(61, 67);
             this.lblTorneo.Name = "lblTorneo";
             this.lblTorneo.Size = new System.Drawing.Size(76, 21);
             this.lblTorneo.TabIndex = 48;
@@ -79,7 +93,7 @@
             // 
             this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmbTorneo.FormattingEnabled = true;
-            this.cmbTorneo.Location = new System.Drawing.Point(304, 82);
+            this.cmbTorneo.Location = new System.Drawing.Point(143, 67);
             this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTorneo.Name = "cmbTorneo";
             this.cmbTorneo.Size = new System.Drawing.Size(196, 29);
@@ -89,21 +103,21 @@
             // dgvPartidos
             // 
             this.dgvPartidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPartidos.Location = new System.Drawing.Point(71, 163);
+            this.dgvPartidos.Location = new System.Drawing.Point(12, 152);
             this.dgvPartidos.Name = "dgvPartidos";
             this.dgvPartidos.RowHeadersWidth = 51;
             this.dgvPartidos.RowTemplate.Height = 24;
-            this.dgvPartidos.Size = new System.Drawing.Size(646, 336);
+            this.dgvPartidos.Size = new System.Drawing.Size(976, 368);
             this.dgvPartidos.TabIndex = 88;
             this.dgvPartidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidos_CellDoubleClick);
             // 
             // lblPartidoSel
             // 
             this.lblPartidoSel.AutoSize = true;
-            this.lblPartidoSel.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartidoSel.Location = new System.Drawing.Point(251, 549);
+            this.lblPartidoSel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartidoSel.Location = new System.Drawing.Point(323, 112);
             this.lblPartidoSel.Name = "lblPartidoSel";
-            this.lblPartidoSel.Size = new System.Drawing.Size(290, 21);
+            this.lblPartidoSel.Size = new System.Drawing.Size(338, 24);
             this.lblPartidoSel.TabIndex = 91;
             this.lblPartidoSel.Text = "Partido Seleccionado: (Ninguno)";
             this.lblPartidoSel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -114,9 +128,9 @@
             this.btnRefrescar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnRefrescar.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Image")));
-            this.btnRefrescar.Location = new System.Drawing.Point(521, 65);
+            this.btnRefrescar.Location = new System.Drawing.Point(795, 56);
             this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(163, 58);
+            this.btnRefrescar.Size = new System.Drawing.Size(193, 46);
             this.btnRefrescar.TabIndex = 94;
             this.btnRefrescar.Text = "Refrescar";
             this.btnRefrescar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -129,9 +143,9 @@
             this.btnGuardarResultado.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardarResultado.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnGuardarResultado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarResultado.Image")));
-            this.btnGuardarResultado.Location = new System.Drawing.Point(279, 826);
+            this.btnGuardarResultado.Location = new System.Drawing.Point(327, 822);
             this.btnGuardarResultado.Name = "btnGuardarResultado";
-            this.btnGuardarResultado.Size = new System.Drawing.Size(242, 62);
+            this.btnGuardarResultado.Size = new System.Drawing.Size(304, 62);
             this.btnGuardarResultado.TabIndex = 95;
             this.btnGuardarResultado.Text = "Guardar Resultado";
             this.btnGuardarResultado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -142,7 +156,7 @@
             // 
             this.cmb_jugadorCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmb_jugadorCasa.FormattingEnabled = true;
-            this.cmb_jugadorCasa.Location = new System.Drawing.Point(236, 582);
+            this.cmb_jugadorCasa.Location = new System.Drawing.Point(446, 614);
             this.cmb_jugadorCasa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_jugadorCasa.Name = "cmb_jugadorCasa";
             this.cmb_jugadorCasa.Size = new System.Drawing.Size(124, 29);
@@ -152,155 +166,154 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(139, 585);
+            this.label1.Location = new System.Drawing.Point(349, 617);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 21);
             this.label1.TabIndex = 96;
             this.label1.Text = "Jugador:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cmb_jugadorVisita
-            // 
-            this.cmb_jugadorVisita.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.cmb_jugadorVisita.FormattingEnabled = true;
-            this.cmb_jugadorVisita.Location = new System.Drawing.Point(489, 582);
-            this.cmb_jugadorVisita.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmb_jugadorVisita.Name = "cmb_jugadorVisita";
-            this.cmb_jugadorVisita.Size = new System.Drawing.Size(124, 29);
-            this.cmb_jugadorVisita.TabIndex = 99;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(395, 585);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 21);
-            this.label2.TabIndex = 100;
-            this.label2.Text = "Jugador:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(203, 762);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 101;
-            this.button1.Text = "Aplicar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(521, 762);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 102;
-            this.button2.Text = "Aplicar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(139, 648);
+            this.label3.Location = new System.Drawing.Point(349, 680);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 21);
             this.label3.TabIndex = 103;
             this.label3.Text = "Tipo:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // cmbTipo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(395, 648);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 21);
-            this.label4.TabIndex = 104;
-            this.label4.Text = "Tipo:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbTipo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Items.AddRange(new object[] {
             "Gol",
             "Tarjeta Amarilla",
             "Tarjeta Roja"});
-            this.comboBox1.Location = new System.Drawing.Point(489, 640);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(124, 29);
-            this.comboBox1.TabIndex = 106;
+            this.cmbTipo.Location = new System.Drawing.Point(446, 672);
+            this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.Size = new System.Drawing.Size(124, 29);
+            this.cmbTipo.TabIndex = 105;
             // 
-            // comboBox2
+            // nudMinuto1
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Gol",
-            "Tarjeta Amarilla",
-            "Tarjeta Roja"});
-            this.comboBox2.Location = new System.Drawing.Point(236, 640);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(124, 29);
-            this.comboBox2.TabIndex = 105;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(493, 706);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown1.TabIndex = 110;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(236, 706);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown2.TabIndex = 109;
+            this.nudMinuto1.Location = new System.Drawing.Point(446, 738);
+            this.nudMinuto1.Name = "nudMinuto1";
+            this.nudMinuto1.Size = new System.Drawing.Size(120, 22);
+            this.nudMinuto1.TabIndex = 109;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(136, 706);
+            this.label5.Location = new System.Drawing.Point(346, 738);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 21);
             this.label5.TabIndex = 108;
             this.label5.Text = "Minuto:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // cmbFase
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(395, 707);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 21);
-            this.label6.TabIndex = 111;
-            this.label6.Text = "Minuto:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cmbFase.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmbFase.FormattingEnabled = true;
+            this.cmbFase.Items.AddRange(new object[] {
+            "Regular",
+            "Final"});
+            this.cmbFase.Location = new System.Drawing.Point(465, 67);
+            this.cmbFase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbFase.Name = "cmbFase";
+            this.cmbFase.Size = new System.Drawing.Size(196, 29);
+            this.cmbFase.TabIndex = 113;
+            // 
+            // lbl_Fase
+            // 
+            this.lbl_Fase.AutoSize = true;
+            this.lbl_Fase.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Fase.Location = new System.Drawing.Point(383, 67);
+            this.lbl_Fase.Name = "lbl_Fase";
+            this.lbl_Fase.Size = new System.Drawing.Size(55, 21);
+            this.lbl_Fase.TabIndex = 112;
+            this.lbl_Fase.Text = "Fase:";
+            this.lbl_Fase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rbCasa
+            // 
+            this.rbCasa.AutoSize = true;
+            this.rbCasa.Location = new System.Drawing.Point(279, 579);
+            this.rbCasa.Name = "rbCasa";
+            this.rbCasa.Size = new System.Drawing.Size(60, 20);
+            this.rbCasa.TabIndex = 114;
+            this.rbCasa.TabStop = true;
+            this.rbCasa.Text = "Casa";
+            this.rbCasa.UseVisualStyleBackColor = true;
+            this.rbCasa.CheckedChanged += new System.EventHandler(this.rbCasa_CheckedChanged);
+            // 
+            // rbVisita
+            // 
+            this.rbVisita.AutoSize = true;
+            this.rbVisita.Location = new System.Drawing.Point(570, 579);
+            this.rbVisita.Name = "rbVisita";
+            this.rbVisita.Size = new System.Drawing.Size(61, 20);
+            this.rbVisita.TabIndex = 115;
+            this.rbVisita.TabStop = true;
+            this.rbVisita.Text = "Visita";
+            this.rbVisita.UseVisualStyleBackColor = true;
+            this.rbVisita.CheckedChanged += new System.EventHandler(this.rbVisita_CheckedChanged);
+            // 
+            // lblEquipoCasa
+            // 
+            this.lblEquipoCasa.AutoSize = true;
+            this.lblEquipoCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEquipoCasa.Location = new System.Drawing.Point(253, 535);
+            this.lblEquipoCasa.Name = "lblEquipoCasa";
+            this.lblEquipoCasa.Size = new System.Drawing.Size(0, 21);
+            this.lblEquipoCasa.TabIndex = 116;
+            this.lblEquipoCasa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblEquipoVisita
+            // 
+            this.lblEquipoVisita.AutoSize = true;
+            this.lblEquipoVisita.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEquipoVisita.Location = new System.Drawing.Point(575, 535);
+            this.lblEquipoVisita.Name = "lblEquipoVisita";
+            this.lblEquipoVisita.Size = new System.Drawing.Size(0, 21);
+            this.lblEquipoVisita.TabIndex = 117;
+            this.lblEquipoVisita.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAgregarSancion
+            // 
+            this.btnAgregarSancion.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.btnAgregarSancion.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarSancion.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAgregarSancion.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarSancion.Image")));
+            this.btnAgregarSancion.Location = new System.Drawing.Point(465, 766);
+            this.btnAgregarSancion.Name = "btnAgregarSancion";
+            this.btnAgregarSancion.Size = new System.Drawing.Size(69, 50);
+            this.btnAgregarSancion.TabIndex = 118;
+            this.btnAgregarSancion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregarSancion.UseVisualStyleBackColor = false;
+            this.btnAgregarSancion.Click += new System.EventHandler(this.btnAgregarSancion_Click);
             // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 900);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.numericUpDown2);
+            this.ClientSize = new System.Drawing.Size(1000, 1000);
+            this.Controls.Add(this.btnAgregarSancion);
+            this.Controls.Add(this.lblEquipoVisita);
+            this.Controls.Add(this.lblEquipoCasa);
+            this.Controls.Add(this.rbVisita);
+            this.Controls.Add(this.rbCasa);
+            this.Controls.Add(this.cmbFase);
+            this.Controls.Add(this.lbl_Fase);
+            this.Controls.Add(this.nudMinuto1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmb_jugadorVisita);
             this.Controls.Add(this.cmb_jugadorCasa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardarResultado);
@@ -314,9 +327,10 @@
             this.Name = "FrmPartidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPartidos";
+            this.pnl_superior.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinuto1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,17 +347,17 @@
         private System.Windows.Forms.Button btnGuardarResultado;
         private System.Windows.Forms.ComboBox cmb_jugadorCasa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmb_jugadorVisita;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.ComboBox cmbTipo;
+        private System.Windows.Forms.NumericUpDown nudMinuto1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbFase;
+        private System.Windows.Forms.Label lbl_Fase;
+        private System.Windows.Forms.PictureBox volver;
+        private System.Windows.Forms.RadioButton rbCasa;
+        private System.Windows.Forms.RadioButton rbVisita;
+        private System.Windows.Forms.Label lblEquipoCasa;
+        private System.Windows.Forms.Label lblEquipoVisita;
+        private System.Windows.Forms.Button btnAgregarSancion;
     }
 }

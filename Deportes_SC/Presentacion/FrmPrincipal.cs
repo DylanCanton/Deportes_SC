@@ -71,21 +71,20 @@ namespace Deportes_SC.Presentacion
 
         private void btn_Partidos_Click(object sender, EventArgs e)
         {
-            Abrir_formhijo(new FrmPartidos());
+            FrmPartidos frmPartidos = new FrmPartidos();
+            frmPartidos.Show();
+
         }
 
         private void btn_Estadisticas_Click(object sender, EventArgs e)
         {
             FrmEstadisticas frmEstadisticas = new FrmEstadisticas();
             frmEstadisticas.Show();
-            this.Hide();
         }
 
         private void btn_Usuarios_Click(object sender, EventArgs e)
         {
-            FrmUsuarios frmUsuarios = new FrmUsuarios();
-            frmUsuarios.Show();
-            this.Hide();
+            Abrir_formhijo(new FrmUsuarios());
         }
 
         private void btn_CargarDatos_Click(object sender, EventArgs e)

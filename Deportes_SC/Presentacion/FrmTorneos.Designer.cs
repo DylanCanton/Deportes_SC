@@ -125,7 +125,7 @@
             this.pic_fondo.Image = ((System.Drawing.Image)(resources.GetObject("pic_fondo.Image")));
             this.pic_fondo.Location = new System.Drawing.Point(0, 37);
             this.pic_fondo.Name = "pic_fondo";
-            this.pic_fondo.Size = new System.Drawing.Size(845, 829);
+            this.pic_fondo.Size = new System.Drawing.Size(853, 831);
             this.pic_fondo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_fondo.TabIndex = 73;
             this.pic_fondo.TabStop = false;
@@ -133,7 +133,7 @@
             // btnDelete
             // 
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(124, 783);
+            this.btnDelete.Location = new System.Drawing.Point(136, 785);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(187, 59);
             this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -144,7 +144,7 @@
             // btnEditar
             // 
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(326, 783);
+            this.btnEditar.Location = new System.Drawing.Point(338, 785);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(187, 59);
             this.btnEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -155,7 +155,7 @@
             // btnRegistrar
             // 
             this.btnRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(519, 783);
+            this.btnRegistrar.Location = new System.Drawing.Point(531, 785);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(192, 59);
             this.btnRegistrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

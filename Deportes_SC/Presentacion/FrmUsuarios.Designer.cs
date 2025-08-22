@@ -35,14 +35,11 @@
             this.txt_usr = new System.Windows.Forms.TextBox();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.pnl_superior = new System.Windows.Forms.Panel();
-            this.volver = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Registrar = new System.Windows.Forms.PictureBox();
             this.Editar = new System.Windows.Forms.PictureBox();
             this.eliminar = new System.Windows.Forms.PictureBox();
             this.dgv_Usuarios = new System.Windows.Forms.DataGridView();
-            this.pnl_superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Registrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Editar)).BeginInit();
@@ -113,31 +110,18 @@
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.pnl_superior.Controls.Add(this.volver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(850, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(853, 44);
             this.pnl_superior.TabIndex = 45;
-            // 
-            // volver
-            // 
-            this.volver.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.volver.Image = ((System.Drawing.Image)(resources.GetObject("volver.Image")));
-            this.volver.Location = new System.Drawing.Point(3, 3);
-            this.volver.Name = "volver";
-            this.volver.Size = new System.Drawing.Size(60, 38);
-            this.volver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.volver.TabIndex = 111;
-            this.volver.TabStop = false;
-            this.volver.Click += new System.EventHandler(this.volver_Click_1);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 40);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(850, 824);
+            this.pictureBox1.Size = new System.Drawing.Size(853, 816);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 46;
             this.pictureBox1.TabStop = false;
@@ -191,7 +175,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 864);
+            this.ClientSize = new System.Drawing.Size(853, 853);
             this.Controls.Add(this.dgv_Usuarios);
             this.Controls.Add(this.eliminar);
             this.Controls.Add(this.Editar);
@@ -207,8 +191,6 @@
             this.Name = "FrmUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRUDusuarios";
-            this.pnl_superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Registrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Editar)).EndInit();
@@ -232,6 +214,5 @@
         private System.Windows.Forms.PictureBox Editar;
         private System.Windows.Forms.PictureBox eliminar;
         private System.Windows.Forms.DataGridView dgv_Usuarios;
-        private System.Windows.Forms.PictureBox volver;
     }
 }
