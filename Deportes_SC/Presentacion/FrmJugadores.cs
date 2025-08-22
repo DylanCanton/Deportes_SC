@@ -74,6 +74,7 @@ namespace Deportes_SC.Presentacion
             txt_nombre.Text = "";
             cmb_genero.Text = "";
             cmb_equipo.Text = "";
+            txt_dorsal.Text = "";
         }
 
 
@@ -101,7 +102,7 @@ namespace Deportes_SC.Presentacion
                 cmb_equipo.SelectedValue = Convert.ToInt32(fila.Cells["IdEquipo"].Value);
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void Registrar_Click(object sender, EventArgs e)
         {
             // Validacion de campos vacios
             if (txt_id.Text == "" || txt_cedula.Text == "" || txt_nombre.Text == "" ||
@@ -127,17 +128,7 @@ namespace Deportes_SC.Presentacion
             cargarJugadores();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            int ID = int.Parse(txt_id.Text);
-
-            jugadores.eliminarEquipoSQL(ID);
-            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarJugadores();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void Editar_Click(object sender, EventArgs e)
         {
             Jugador jugador = new Jugador();
             jugador.Identificador = int.Parse(txt_id.Text);
@@ -151,6 +142,16 @@ namespace Deportes_SC.Presentacion
 
             jugadores.modificarJugadorSQL(jugador);
             MessageBox.Show("Modificado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            limpiar();
+            cargarJugadores();
+        }
+
+        private void Eliminar_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(txt_id.Text);
+
+            jugadores.eliminarEquipoSQL(ID);
+            MessageBox.Show("Eliminado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             limpiar();
             cargarJugadores();
         }

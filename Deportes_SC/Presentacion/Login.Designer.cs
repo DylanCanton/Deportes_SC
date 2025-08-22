@@ -90,7 +90,6 @@
             this.txt_usr.Name = "txt_usr";
             this.txt_usr.Size = new System.Drawing.Size(285, 28);
             this.txt_usr.TabIndex = 12;
-            this.txt_usr.TextChanged += new System.EventHandler(this.txt_usr_TextChanged);
             // 
             // pictureBox2
             // 

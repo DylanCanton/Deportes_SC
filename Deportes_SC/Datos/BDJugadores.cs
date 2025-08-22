@@ -40,35 +40,30 @@ namespace Deportes_SC.Datos
         {
             string sql;
 
-            // 1) Edad permitida por categoría del torneo (igual a tu lógica actual)
+            // Edad permitida por categoría del torneo
             int categoriaEdad = validarEdad(j.Equipo);
 
-            // 2) Máximo de jugadores por equipo (tu lógica actual)
+            // Validacion de máximo de jugadores por equipo
             if (validarMaximoJugadores(j.Equipo) >= 12)
             {
                 MessageBox.Show("Este equipo ya tiene el máximo de 12 jugadores permitidos.");
                 return false;
             }
 
-            // 3) Validación de edad concreta del jugador
+            // Validación de edad concreta del jugador
             int edad = CalcularEdad(j.FechaNacimiento);
             if (categoriaEdad > 0 && edad > categoriaEdad)
             {
-                MessageBox.Show($"El jugador tiene {edad} años y supera la edad permitida ({categoriaEdad} años).");
+                MessageBox.Show($"El jugador tiene {edad} años y supera la edad permitida en el torneo inscrito ({categoriaEdad} años).");
                 return false;
             }
 
-            // 4) ***Nueva*** validación de GÉNERO (JOIN Equipo->Torneo y comparación)
+            // Validacion para el genero del torneo 
             string generoTorneo = ObtenerGeneroTorneoPorEquipo(j.Equipo); // "Masculino" o "Femenino"
-            if (string.IsNullOrWhiteSpace(generoTorneo))
-            {
-                MessageBox.Show("No se pudo determinar el género del torneo para este equipo.");
-                return false;
-            }
 
             if (!GeneroCoincideConTorneo(generoTorneo, j.Genero))
             {
-                MessageBox.Show($"Género inválido: el torneo es '{generoTorneo}' y el jugador es '{j.Genero}'.");
+                MessageBox.Show($"Jugador no permitido, el genero del torneo al que pertenece el equipo es {generoTorneo} y el jugador es {j.Genero}.");
                 return false;
             }
 

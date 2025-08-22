@@ -39,15 +39,15 @@
             this.dgv_jugadores = new System.Windows.Forms.DataGridView();
             this.cmb_posicion = new System.Windows.Forms.ComboBox();
             this.txt_dorsal = new System.Windows.Forms.TextBox();
-            this.btnDelete = new System.Windows.Forms.PictureBox();
-            this.btnEditar = new System.Windows.Forms.PictureBox();
-            this.btnRegistrar = new System.Windows.Forms.PictureBox();
             this.pnl_superior = new System.Windows.Forms.Panel();
+            this.Eliminar = new System.Windows.Forms.PictureBox();
+            this.Editar = new System.Windows.Forms.PictureBox();
+            this.Registrar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_jugadores)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Eliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Editar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Registrar)).BeginInit();
             this.SuspendLayout();
             // 
             // dtp_fechaNacimiento
@@ -164,39 +164,6 @@
             this.txt_dorsal.Size = new System.Drawing.Size(196, 28);
             this.txt_dorsal.TabIndex = 92;
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(104, 878);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(196, 64);
-            this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnDelete.TabIndex = 95;
-            this.btnDelete.TabStop = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(309, 878);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(196, 64);
-            this.btnEditar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnEditar.TabIndex = 94;
-            this.btnEditar.TabStop = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(511, 878);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(196, 64);
-            this.btnRegistrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnRegistrar.TabIndex = 93;
-            this.btnRegistrar.TabStop = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -206,14 +173,47 @@
             this.pnl_superior.Size = new System.Drawing.Size(853, 44);
             this.pnl_superior.TabIndex = 46;
             // 
+            // Eliminar
+            // 
+            this.Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Eliminar.Image")));
+            this.Eliminar.Location = new System.Drawing.Point(113, 776);
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Size = new System.Drawing.Size(204, 65);
+            this.Eliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Eliminar.TabIndex = 98;
+            this.Eliminar.TabStop = false;
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
+            // 
+            // Editar
+            // 
+            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
+            this.Editar.Location = new System.Drawing.Point(323, 776);
+            this.Editar.Name = "Editar";
+            this.Editar.Size = new System.Drawing.Size(204, 65);
+            this.Editar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Editar.TabIndex = 97;
+            this.Editar.TabStop = false;
+            this.Editar.Click += new System.EventHandler(this.Editar_Click);
+            // 
+            // Registrar
+            // 
+            this.Registrar.Image = ((System.Drawing.Image)(resources.GetObject("Registrar.Image")));
+            this.Registrar.Location = new System.Drawing.Point(534, 776);
+            this.Registrar.Name = "Registrar";
+            this.Registrar.Size = new System.Drawing.Size(204, 65);
+            this.Registrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Registrar.TabIndex = 96;
+            this.Registrar.TabStop = false;
+            this.Registrar.Click += new System.EventHandler(this.Registrar_Click);
+            // 
             // FrmJugadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 853);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.Eliminar);
+            this.Controls.Add(this.Editar);
+            this.Controls.Add(this.Registrar);
             this.Controls.Add(this.txt_dorsal);
             this.Controls.Add(this.cmb_posicion);
             this.Controls.Add(this.dgv_jugadores);
@@ -231,9 +231,9 @@
             this.Text = "FrmJugadores";
             ((System.ComponentModel.ISupportInitialize)(this.pic_fondo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_jugadores)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Eliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Editar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Registrar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,9 +250,9 @@
         private System.Windows.Forms.DataGridView dgv_jugadores;
         private System.Windows.Forms.ComboBox cmb_posicion;
         private System.Windows.Forms.TextBox txt_dorsal;
-        private System.Windows.Forms.PictureBox btnDelete;
-        private System.Windows.Forms.PictureBox btnEditar;
-        private System.Windows.Forms.PictureBox btnRegistrar;
         private System.Windows.Forms.Panel pnl_superior;
+        private System.Windows.Forms.PictureBox Eliminar;
+        private System.Windows.Forms.PictureBox Editar;
+        private System.Windows.Forms.PictureBox Registrar;
     }
 }
