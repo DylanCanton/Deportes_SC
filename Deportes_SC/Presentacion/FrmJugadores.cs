@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -122,10 +123,13 @@ namespace Deportes_SC.Presentacion
             jugador.Equipo = Convert.ToInt32(cmb_equipo.SelectedValue);
             jugador.FechaNacimiento = dtp_fechaNacimiento.Value.Date;
 
-            jugadores.GuardarJugadorSQL(jugador);
-            MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            limpiar();
-            cargarJugadores();
+            if (jugadores.GuardarJugadorSQL(jugador))
+            {
+                MessageBox.Show("Agregado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                limpiar();
+                cargarJugadores();
+            }
+            
         }
 
         private void Editar_Click(object sender, EventArgs e)

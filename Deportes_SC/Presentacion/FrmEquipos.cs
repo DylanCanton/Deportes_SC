@@ -100,6 +100,14 @@ namespace Deportes_SC.Presentacion
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            // Validacion de campos vacios
+           if (txt_id.Text == "" || txt_equipo.Text == "" || txt_origen.Text == "" ||
+                txt_encargado.Text == "" || txt_telefono.Text == "" ||
+                cmb_torneo.SelectedIndex == -1 )
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int ID = int.Parse(txt_id.Text);
             Equipo equipo = new Equipo();
             equipo.Identificador = ID;

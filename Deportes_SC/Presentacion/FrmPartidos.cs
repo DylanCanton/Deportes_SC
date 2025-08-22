@@ -20,11 +20,7 @@ namespace Deportes_SC.Presentacion
         private Partido partidoSeleccionado = null;
         public FrmPartidos()
         {
-            InitializeComponent(); // si usaste diseñador
-            this.Text = "Partidos (Árbitro)";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.MinimumSize = new Size(1000, 640);
-
+            InitializeComponent();
             CargarTorneos();
 
         }
@@ -42,17 +38,15 @@ namespace Deportes_SC.Presentacion
         {
             try
             {
-                var lista = bdTorneos.mostrarTorneosSQL(); // List<Torneo> con props: Identificador, Nombre
+                var lista = bdTorneos.mostrarTorneosSQL(); 
 
-                // temporalmente quitar el handler para que no se dispare durante el binding
+                
                 cmbTorneo.SelectedIndexChanged -= cmbTorneo_SelectedIndexChanged;
 
                 cmbTorneo.DropDownStyle = ComboBoxStyle.DropDownList;
                 cmbTorneo.DisplayMember = "Nombre";
-                cmbTorneo.ValueMember = "Identificador";  // <- MUY IMPORTANTE
+                cmbTorneo.ValueMember = "Identificador";  
                 cmbTorneo.DataSource = lista;
-
-                // re-enganchar el handler
                 cmbTorneo.SelectedIndexChanged += cmbTorneo_SelectedIndexChanged;
             }
             catch (Exception ex)
@@ -65,8 +59,6 @@ namespace Deportes_SC.Presentacion
         {
             partidoSeleccionado = null;
             lblPartidoSel.Text = "Partido seleccionado: (ninguno)";
-            nudGolesCasa.Value = 0;
-            nudGolesVisita.Value = 0;
         }
 
         private void cmbTorneo_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,10 +125,7 @@ namespace Deportes_SC.Presentacion
 
             string casa = item.NombreEquipoCasa ?? ("Equipo " + item.EquipoCasa);
             string visita = item.NombreEquipoVisita ?? ("Equipo " + item.EquipoVisita);
-            lblPartidoSel.Text = $"Partido seleccionado: Jornada {item.Jornada} — {casa} vs {visita}";
-
-            nudGolesCasa.Value = item.GolesCasa < 0 ? 0 : item.GolesCasa;
-            nudGolesVisita.Value = item.GolesVisita < 0 ? 0 : item.GolesVisita;
+            lblPartidoSel.Text = $"  {casa} vs {visita}";
         }
 
         private void btnGuardarResultado_Click(object sender, EventArgs e)
@@ -146,9 +135,6 @@ namespace Deportes_SC.Presentacion
                 MessageBox.Show("Seleccioná un partido de la lista.");
                 return;
             }
-
-            partidoSeleccionado.GolesCasa = Convert.ToInt32(nudGolesCasa.Value);
-            partidoSeleccionado.GolesVisita = Convert.ToInt32(nudGolesVisita.Value);
             partidoSeleccionado.Estado = "Finalizado";
 
             bool ok = bdPartidos.GuardarPartidoSQL(partidoSeleccionado);

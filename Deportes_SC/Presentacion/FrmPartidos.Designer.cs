@@ -33,20 +33,26 @@
             this.lblTorneo = new System.Windows.Forms.Label();
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.dgvPartidos = new System.Windows.Forms.DataGridView();
-            this.lblVisita = new System.Windows.Forms.Label();
-            this.lblCasa = new System.Windows.Forms.Label();
             this.lblPartidoSel = new System.Windows.Forms.Label();
-            this.nudGolesCasa = new System.Windows.Forms.NumericUpDown();
-            this.nudGolesVisita = new System.Windows.Forms.NumericUpDown();
             this.btnRefrescar = new System.Windows.Forms.Button();
             this.btnGuardarResultado = new System.Windows.Forms.Button();
             this.cmb_jugadorCasa = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmb_jugadorVisita = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGolesCasa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGolesVisita)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
@@ -91,28 +97,6 @@
             this.dgvPartidos.TabIndex = 88;
             this.dgvPartidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidos_CellDoubleClick);
             // 
-            // lblVisita
-            // 
-            this.lblVisita.AutoSize = true;
-            this.lblVisita.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVisita.Location = new System.Drawing.Point(418, 626);
-            this.lblVisita.Name = "lblVisita";
-            this.lblVisita.Size = new System.Drawing.Size(63, 21);
-            this.lblVisita.TabIndex = 89;
-            this.lblVisita.Text = "Visita:";
-            this.lblVisita.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblCasa
-            // 
-            this.lblCasa.AutoSize = true;
-            this.lblCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCasa.Location = new System.Drawing.Point(169, 626);
-            this.lblCasa.Name = "lblCasa";
-            this.lblCasa.Size = new System.Drawing.Size(56, 21);
-            this.lblCasa.TabIndex = 90;
-            this.lblCasa.Text = "Casa:";
-            this.lblCasa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblPartidoSel
             // 
             this.lblPartidoSel.AutoSize = true;
@@ -123,20 +107,6 @@
             this.lblPartidoSel.TabIndex = 91;
             this.lblPartidoSel.Text = "Partido Seleccionado: (Ninguno)";
             this.lblPartidoSel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // nudGolesCasa
-            // 
-            this.nudGolesCasa.Location = new System.Drawing.Point(240, 626);
-            this.nudGolesCasa.Name = "nudGolesCasa";
-            this.nudGolesCasa.Size = new System.Drawing.Size(120, 22);
-            this.nudGolesCasa.TabIndex = 92;
-            // 
-            // nudGolesVisita
-            // 
-            this.nudGolesVisita.Location = new System.Drawing.Point(493, 628);
-            this.nudGolesVisita.Name = "nudGolesVisita";
-            this.nudGolesVisita.Size = new System.Drawing.Size(120, 22);
-            this.nudGolesVisita.TabIndex = 93;
             // 
             // btnRefrescar
             // 
@@ -159,7 +129,7 @@
             this.btnGuardarResultado.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardarResultado.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnGuardarResultado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarResultado.Image")));
-            this.btnGuardarResultado.Location = new System.Drawing.Point(273, 682);
+            this.btnGuardarResultado.Location = new System.Drawing.Point(279, 826);
             this.btnGuardarResultado.Name = "btnGuardarResultado";
             this.btnGuardarResultado.Size = new System.Drawing.Size(242, 62);
             this.btnGuardarResultado.TabIndex = 95;
@@ -210,22 +180,132 @@
             this.label2.Text = "Jugador:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(203, 762);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 101;
+            this.button1.Text = "Aplicar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(521, 762);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 102;
+            this.button2.Text = "Aplicar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(139, 648);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 21);
+            this.label3.TabIndex = 103;
+            this.label3.Text = "Tipo:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(395, 648);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 21);
+            this.label4.TabIndex = 104;
+            this.label4.Text = "Tipo:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Gol",
+            "Tarjeta Amarilla",
+            "Tarjeta Roja"});
+            this.comboBox1.Location = new System.Drawing.Point(489, 640);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(124, 29);
+            this.comboBox1.TabIndex = 106;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Gol",
+            "Tarjeta Amarilla",
+            "Tarjeta Roja"});
+            this.comboBox2.Location = new System.Drawing.Point(236, 640);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(124, 29);
+            this.comboBox2.TabIndex = 105;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(493, 706);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.TabIndex = 110;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(236, 706);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown2.TabIndex = 109;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(136, 706);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 21);
+            this.label5.TabIndex = 108;
+            this.label5.Text = "Minuto:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(395, 707);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 21);
+            this.label6.TabIndex = 111;
+            this.label6.Text = "Minuto:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 900);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmb_jugadorVisita);
             this.Controls.Add(this.cmb_jugadorCasa);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardarResultado);
             this.Controls.Add(this.btnRefrescar);
-            this.Controls.Add(this.nudGolesVisita);
-            this.Controls.Add(this.nudGolesCasa);
             this.Controls.Add(this.lblPartidoSel);
-            this.Controls.Add(this.lblCasa);
-            this.Controls.Add(this.lblVisita);
             this.Controls.Add(this.dgvPartidos);
             this.Controls.Add(this.cmbTorneo);
             this.Controls.Add(this.lblTorneo);
@@ -235,8 +315,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPartidos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGolesCasa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGolesVisita)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,16 +328,22 @@
         private System.Windows.Forms.Label lblTorneo;
         private System.Windows.Forms.ComboBox cmbTorneo;
         private System.Windows.Forms.DataGridView dgvPartidos;
-        private System.Windows.Forms.Label lblVisita;
-        private System.Windows.Forms.Label lblCasa;
         private System.Windows.Forms.Label lblPartidoSel;
-        private System.Windows.Forms.NumericUpDown nudGolesCasa;
-        private System.Windows.Forms.NumericUpDown nudGolesVisita;
         private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Button btnGuardarResultado;
         private System.Windows.Forms.ComboBox cmb_jugadorCasa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmb_jugadorVisita;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

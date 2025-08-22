@@ -56,6 +56,7 @@
     <Compile Include="Objetos\Jugador.cs" />
     <Compile Include="Objetos\Equipo.cs" />
     <Compile Include="Objetos\Partido.cs" />
+    <Compile Include="Objetos\Sancion.cs" />
     <Compile Include="Objetos\Torneo.cs" />
     <Compile Include="Objetos\Usuario.cs" />
     <Compile Include="Presentacion\FrmEmparejamientos.cs">
