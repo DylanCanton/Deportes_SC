@@ -35,15 +35,14 @@
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.dgvPartidos = new System.Windows.Forms.DataGridView();
             this.lblPartidoSel = new System.Windows.Forms.Label();
-            this.btnRefrescar = new System.Windows.Forms.Button();
             this.btnGuardarResultado = new System.Windows.Forms.Button();
-            this.cmb_jugadorCasa = new System.Windows.Forms.ComboBox();
+            this.cmb_jugador = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.nudMinuto1 = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbFase = new System.Windows.Forms.ComboBox();
+            this.cmbFases = new System.Windows.Forms.ComboBox();
             this.lbl_Fase = new System.Windows.Forms.Label();
             this.rbCasa = new System.Windows.Forms.RadioButton();
             this.rbVisita = new System.Windows.Forms.RadioButton();
@@ -103,11 +102,11 @@
             // dgvPartidos
             // 
             this.dgvPartidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPartidos.Location = new System.Drawing.Point(12, 152);
+            this.dgvPartidos.Location = new System.Drawing.Point(65, 153);
             this.dgvPartidos.Name = "dgvPartidos";
             this.dgvPartidos.RowHeadersWidth = 51;
             this.dgvPartidos.RowTemplate.Height = 24;
-            this.dgvPartidos.Size = new System.Drawing.Size(976, 368);
+            this.dgvPartidos.Size = new System.Drawing.Size(867, 368);
             this.dgvPartidos.TabIndex = 88;
             this.dgvPartidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidos_CellDoubleClick);
             // 
@@ -121,21 +120,6 @@
             this.lblPartidoSel.TabIndex = 91;
             this.lblPartidoSel.Text = "Partido Seleccionado: (Ninguno)";
             this.lblPartidoSel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRefrescar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnRefrescar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnRefrescar.Image = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Image")));
-            this.btnRefrescar.Location = new System.Drawing.Point(795, 56);
-            this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.Size = new System.Drawing.Size(193, 46);
-            this.btnRefrescar.TabIndex = 94;
-            this.btnRefrescar.Text = "Refrescar";
-            this.btnRefrescar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRefrescar.UseVisualStyleBackColor = false;
-            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
             // 
             // btnGuardarResultado
             // 
@@ -152,15 +136,15 @@
             this.btnGuardarResultado.UseVisualStyleBackColor = false;
             this.btnGuardarResultado.Click += new System.EventHandler(this.btnGuardarResultado_Click);
             // 
-            // cmb_jugadorCasa
+            // cmb_jugador
             // 
-            this.cmb_jugadorCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.cmb_jugadorCasa.FormattingEnabled = true;
-            this.cmb_jugadorCasa.Location = new System.Drawing.Point(446, 614);
-            this.cmb_jugadorCasa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmb_jugadorCasa.Name = "cmb_jugadorCasa";
-            this.cmb_jugadorCasa.Size = new System.Drawing.Size(124, 29);
-            this.cmb_jugadorCasa.TabIndex = 97;
+            this.cmb_jugador.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmb_jugador.FormattingEnabled = true;
+            this.cmb_jugador.Location = new System.Drawing.Point(446, 614);
+            this.cmb_jugador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmb_jugador.Name = "cmb_jugador";
+            this.cmb_jugador.Size = new System.Drawing.Size(124, 29);
+            this.cmb_jugador.TabIndex = 97;
             // 
             // label1
             // 
@@ -216,18 +200,19 @@
             this.label5.Text = "Minuto:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cmbFase
+            // cmbFases
             // 
-            this.cmbFase.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.cmbFase.FormattingEnabled = true;
-            this.cmbFase.Items.AddRange(new object[] {
+            this.cmbFases.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmbFases.FormattingEnabled = true;
+            this.cmbFases.Items.AddRange(new object[] {
             "Regular",
             "Final"});
-            this.cmbFase.Location = new System.Drawing.Point(465, 67);
-            this.cmbFase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbFase.Name = "cmbFase";
-            this.cmbFase.Size = new System.Drawing.Size(196, 29);
-            this.cmbFase.TabIndex = 113;
+            this.cmbFases.Location = new System.Drawing.Point(465, 67);
+            this.cmbFases.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbFases.Name = "cmbFases";
+            this.cmbFases.Size = new System.Drawing.Size(196, 29);
+            this.cmbFases.TabIndex = 113;
+            this.cmbFases.SelectedIndexChanged += new System.EventHandler(this.cmbFases_SelectedIndexChanged);
             // 
             // lbl_Fase
             // 
@@ -308,16 +293,15 @@
             this.Controls.Add(this.lblEquipoCasa);
             this.Controls.Add(this.rbVisita);
             this.Controls.Add(this.rbCasa);
-            this.Controls.Add(this.cmbFase);
+            this.Controls.Add(this.cmbFases);
             this.Controls.Add(this.lbl_Fase);
             this.Controls.Add(this.nudMinuto1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmb_jugadorCasa);
+            this.Controls.Add(this.cmb_jugador);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGuardarResultado);
-            this.Controls.Add(this.btnRefrescar);
             this.Controls.Add(this.lblPartidoSel);
             this.Controls.Add(this.dgvPartidos);
             this.Controls.Add(this.cmbTorneo);
@@ -343,15 +327,14 @@
         private System.Windows.Forms.ComboBox cmbTorneo;
         private System.Windows.Forms.DataGridView dgvPartidos;
         private System.Windows.Forms.Label lblPartidoSel;
-        private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Button btnGuardarResultado;
-        private System.Windows.Forms.ComboBox cmb_jugadorCasa;
+        private System.Windows.Forms.ComboBox cmb_jugador;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.NumericUpDown nudMinuto1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbFase;
+        private System.Windows.Forms.ComboBox cmbFases;
         private System.Windows.Forms.Label lbl_Fase;
         private System.Windows.Forms.PictureBox volver;
         private System.Windows.Forms.RadioButton rbCasa;

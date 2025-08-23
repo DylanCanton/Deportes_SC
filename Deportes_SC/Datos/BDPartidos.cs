@@ -3,16 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Deportes_SC.Datos
 {
     public class BDPartidos
     {
-        // ¿Ya hay partidos de esa Fase para ese Torneo?
+        // Verificar partidos
         public bool ExistenPartidosDelTorneo(int idTorneo, string fase)
         {
             bool existe = false;
@@ -26,7 +23,7 @@ namespace Deportes_SC.Datos
                 var o = cmd.ExecuteScalar();
                 existe = (o != null);
                 conex.Desconectar();
-            }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show("Error al verificar partidos: " + ex.Message);
@@ -37,11 +34,11 @@ namespace Deportes_SC.Datos
         public bool GuardarPartidoSQL(Partido p)
         {
             string sql = @"
-        UPDATE Partido
-        SET golesCasa = @gc,
-            golesVisita = @gv,
-            estado = @est
-        WHERE id = @id";
+                UPDATE Partido
+                SET golesCasa = @gc,
+                    golesVisita = @gv,
+                    estado = @est
+                WHERE id = @id";
 
             try
             {
@@ -65,28 +62,6 @@ namespace Deportes_SC.Datos
             }
         }
 
-
-        // Borra todos los partidos de una Fase/Torneo (útil para regenerar calendario)
-        public bool EliminarPartidosDelTorneo(int idTorneo, string fase)
-        {
-            try
-            {
-                Conexion conex = new Conexion();
-                string sql = "DELETE FROM Partido WHERE torneo=@t AND fase=@f";
-                SqlCommand cmd = new SqlCommand(sql, conex.Conectar());
-                cmd.Parameters.AddWithValue("@t", idTorneo);
-                cmd.Parameters.AddWithValue("@f", fase);
-                cmd.ExecuteNonQuery();
-                conex.Desconectar();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al eliminar partidos: " + ex.Message);
-                return false;
-            }
-        }
-
         public List<Partido> MostrarPartidosPorTorneoSQL(int idTorneo, string fase = null)
         {
             List<Partido> lista = new List<Partido>();
@@ -94,17 +69,17 @@ namespace Deportes_SC.Datos
             {
                 Conexion conex = new Conexion();
                 string sql = @"
-        SELECT 
-            p.id, p.torneo,
-            p.equipoCasa, p.equipoVisita, p.golesCasa, p.golesVisita,
-            p.fase, p.estado,
-            ec.nombre AS nombreCasa, ev.nombre AS nombreVisita
-        FROM Partido p
-        JOIN Equipo ec ON ec.id = p.equipoCasa
-        JOIN Equipo ev ON ev.id = p.equipoVisita
-        WHERE p.torneo = @t
-          AND (@f IS NULL OR p.fase = @f)
-        ORDER BY p.id";  // <-- Se quitó p.jornada
+                    SELECT 
+                        p.id, p.torneo,
+                        p.equipoCasa, p.equipoVisita, p.golesCasa, p.golesVisita,
+                        p.fase, p.estado,
+                        ec.nombre AS nombreCasa, ev.nombre AS nombreVisita
+                    FROM Partido p
+                    JOIN Equipo ec ON ec.id = p.equipoCasa
+                    JOIN Equipo ev ON ev.id = p.equipoVisita
+                    WHERE p.torneo = @t
+                      AND (@f IS NULL OR p.fase = @f)
+                    ORDER BY p.id"; 
 
                 SqlCommand cmd = new SqlCommand(sql, conex.Conectar());
                 cmd.Parameters.AddWithValue("@t", idTorneo);
@@ -140,8 +115,103 @@ namespace Deportes_SC.Datos
             return lista;
         }
 
+        public bool FinalizarPartidoSQL(
+            int idPartido,
+            List<(int idEquipo, int idJugador, int minuto, string tipo)> sanciones,
+            int golesCasaFinal,
+            int golesVisitaFinal)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                using (SqlConnection con = cx.Conectar())
+                using (SqlTransaction tx = con.BeginTransaction())
+                {
+                    string sqlSancion = @"INSERT INTO Sancion (partido, equipo, jugador, minuto, tipo)
+                                  VALUES (@p,@e,@j,@m,@t)";
+                    foreach (var s in sanciones)
+                    {
+                        using (var c1 = new SqlCommand(sqlSancion, con, tx))
+                        {
+                            c1.Parameters.AddWithValue("@p", idPartido);
+                            c1.Parameters.AddWithValue("@e", s.idEquipo);
+                            c1.Parameters.AddWithValue("@j", s.idJugador);
+                            c1.Parameters.AddWithValue("@m", s.minuto);
+                            c1.Parameters.AddWithValue("@t", s.tipo);
+                            c1.ExecuteNonQuery();
+                        }
+                    }
 
-        // Pruebas con sanciones y nuevas funciones
+                    string sqlPartido = @"UPDATE Partido
+                                  SET golesCasa=@gc, golesVisita=@gv, estado='FINALIZADO'
+                                  WHERE id=@id";
+                    using (var c2 = new SqlCommand(sqlPartido, con, tx))
+                    {
+                        c2.Parameters.AddWithValue("@gc", golesCasaFinal);
+                        c2.Parameters.AddWithValue("@gv", golesVisitaFinal);
+                        c2.Parameters.AddWithValue("@id", idPartido);
+                        c2.ExecuteNonQuery();
+                    }
+
+                    tx.Commit();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al finalizar partido: " + ex.Message);
+                return false;
+            }
+        }
+
+        // Actualizar luego de terminar el partido
+        public bool ActualizarMarcadorPartidoSQL(int idPartido, int golesCasa, int golesVisita)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = "UPDATE Partido SET golesCasa=@gc, golesVisita=@gv WHERE id=@id";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@gc", golesCasa);
+                    cmd.Parameters.AddWithValue("@gv", golesVisita);
+                    cmd.Parameters.AddWithValue("@id", idPartido);
+                    int c = cmd.ExecuteNonQuery();
+                    cx.Desconectar();
+                    return c == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error actualizando marcador: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool ActualizarEstadoPartidoSQL(int idPartido, string estado)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = "UPDATE Partido SET estado=@est WHERE id=@id";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@est", estado.ToUpperInvariant()); // PENDIENTE / EN JUEGO / FINALIZADO
+                    cmd.Parameters.AddWithValue("@id", idPartido);
+                    int c = cmd.ExecuteNonQuery();
+                    cx.Desconectar();
+                    return c == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error actualizando estado: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        // -------------------------- Codigo para agregar sanciones --------------------------------//
 
         public DataTable ListarJugadoresPorEquipoSQL(int idEquipo)
         {
@@ -208,56 +278,6 @@ namespace Deportes_SC.Datos
             catch (Exception ex) { MessageBox.Show("Error insertando sanción: " + ex.Message); return false; }
         }
 
-        public bool FinalizarPartidoConSancionesSQL(
-            int idPartido,
-            List<(int idEquipo, int idJugador, int minuto, string tipo)> sanciones,
-            int golesCasaFinal,
-            int golesVisitaFinal)
-        {
-            try
-            {
-                Conexion cx = new Conexion();
-                using (SqlConnection con = cx.Conectar())
-                using (SqlTransaction tx = con.BeginTransaction())
-                {
-                    string sqlSancion = @"INSERT INTO Sancion (partido, equipo, jugador, minuto, tipo)
-                                  VALUES (@p,@e,@j,@m,@t)";
-                    foreach (var s in sanciones)
-                    {
-                        // (opcional) valida pertenencia aquí también si no lo hiciste en UI
-                        using (var c1 = new SqlCommand(sqlSancion, con, tx))
-                        {
-                            c1.Parameters.AddWithValue("@p", idPartido);
-                            c1.Parameters.AddWithValue("@e", s.idEquipo);
-                            c1.Parameters.AddWithValue("@j", s.idJugador);
-                            c1.Parameters.AddWithValue("@m", s.minuto);
-                            c1.Parameters.AddWithValue("@t", s.tipo);
-                            c1.ExecuteNonQuery();
-                        }
-                    }
-
-                    string sqlPartido = @"UPDATE Partido
-                                  SET golesCasa=@gc, golesVisita=@gv, estado='FINALIZADO'
-                                  WHERE id=@id";
-                    using (var c2 = new SqlCommand(sqlPartido, con, tx))
-                    {
-                        c2.Parameters.AddWithValue("@gc", golesCasaFinal);
-                        c2.Parameters.AddWithValue("@gv", golesVisitaFinal);
-                        c2.Parameters.AddWithValue("@id", idPartido);
-                        c2.ExecuteNonQuery();
-                    }
-
-                    tx.Commit();
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al finalizar partido: " + ex.Message);
-                return false;
-            }
-        }
-
 
         public DataTable ListarSancionesPorPartidoSQL(int idPartido)
         {
@@ -283,53 +303,6 @@ namespace Deportes_SC.Datos
             catch (Exception ex) { MessageBox.Show("Error listando sanciones: " + ex.Message); }
             return dt;
         }
-
-        public bool ActualizarMarcadorPartidoSQL(int idPartido, int golesCasa, int golesVisita)
-        {
-            try
-            {
-                Conexion cx = new Conexion();
-                string sql = "UPDATE Partido SET golesCasa=@gc, golesVisita=@gv WHERE id=@id";
-                using (var cmd = new SqlCommand(sql, cx.Conectar()))
-                {
-                    cmd.Parameters.AddWithValue("@gc", golesCasa);
-                    cmd.Parameters.AddWithValue("@gv", golesVisita);
-                    cmd.Parameters.AddWithValue("@id", idPartido);
-                    int c = cmd.ExecuteNonQuery();
-                    cx.Desconectar();
-                    return c == 1;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error actualizando marcador: " + ex.Message);
-                return false;
-            }
-        }
-
-        public bool ActualizarEstadoPartidoSQL(int idPartido, string estado)
-        {
-            try
-            {
-                Conexion cx = new Conexion();
-                string sql = "UPDATE Partido SET estado=@est WHERE id=@id";
-                using (var cmd = new SqlCommand(sql, cx.Conectar()))
-                {
-                    cmd.Parameters.AddWithValue("@est", estado.ToUpperInvariant()); // PENDIENTE / EN_JUEGO / FINALIZADO
-                    cmd.Parameters.AddWithValue("@id", idPartido);
-                    int c = cmd.ExecuteNonQuery();
-                    cx.Desconectar();
-                    return c == 1;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error actualizando estado: " + ex.Message);
-                return false;
-            }
-        }
-
-
 
         // Estas funciones se utilizan en la parte de emparejamientos
         public bool LimpiarPorTorneo(int idTorneo)

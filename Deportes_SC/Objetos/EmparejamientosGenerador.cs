@@ -35,8 +35,6 @@ namespace Deportes_SC.Objetos
             {
                 Identificador = 0,     // lo asignará la BD si luego decides guardar
                 Torneo = idTorneo,
-                Jornada = 0,           // sin uso aquí
-                FechaHora = DateTime.MinValue, // placeholder, NO se usa
                 EquipoCasa = casa,
                 EquipoVisita = visita,
                 GolesCasa = 0,
