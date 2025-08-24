@@ -143,7 +143,7 @@
             this.cmb_jugador.Location = new System.Drawing.Point(446, 614);
             this.cmb_jugador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_jugador.Name = "cmb_jugador";
-            this.cmb_jugador.Size = new System.Drawing.Size(124, 29);
+            this.cmb_jugador.Size = new System.Drawing.Size(185, 29);
             this.cmb_jugador.TabIndex = 97;
             // 
             // label1
@@ -179,7 +179,7 @@
             this.cmbTipo.Location = new System.Drawing.Point(446, 672);
             this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(124, 29);
+            this.cmbTipo.Size = new System.Drawing.Size(185, 29);
             this.cmbTipo.TabIndex = 105;
             // 
             // nudMinuto1

@@ -113,21 +113,6 @@ namespace Deportes_SC.Presentacion
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void volver_Click(object sender, EventArgs e)
         {
             FrmPrincipal principal = new FrmPrincipal();
