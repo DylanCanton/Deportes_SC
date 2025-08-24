@@ -359,6 +359,138 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
+        // ELIMINAR SOLO UNA FASE
+        public bool EliminarFase(int idTorneo, string fase)
+        {
+            try
+            {
+                Conexion conex = new Conexion();
+                const string sql = "DELETE FROM Partido WHERE torneo = @t AND fase = @f";
+                using (var cmd = new SqlCommand(sql, conex.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    cmd.Parameters.AddWithValue("@f", fase);
+                    cmd.ExecuteNonQuery();
+                }
+                conex.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error eliminando fase: " + ex.Message);
+                return false;
+            }
+        }
+
+        // ¿TODOS LOS PARTIDOS DE LA FASE TERMINADOS?
+        // (no hay ninguno con estado <> 'Finalizado')
+        public bool FaseTerminada(int idTorneo, string fase)
+        {
+            try
+            {
+                Conexion conex = new Conexion();
+                const string sql = "SELECT COUNT(*) FROM Partido WHERE torneo=@t AND fase=@f AND estado <> 'Finalizado'";
+                int pendientes;
+                using (var cmd = new SqlCommand(sql, conex.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    cmd.Parameters.AddWithValue("@f", fase);
+                    pendientes = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                conex.Desconectar();
+                return pendientes == 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error validando fase: " + ex.Message);
+                return false;
+            }
+        }
+
+        private DataTable TablaPosicionesPorFaseSQL_Priv(int idTorneo, string fase)
+        {
+            var dt = new DataTable();
+            try
+            {
+                Conexion cx = new Conexion();
+                const string sql = @"
+                WITH J AS (
+                    SELECT 
+                        e.id     AS IdEquipo,
+                        e.nombre AS Equipo,
+                        CASE WHEN p.equipoCasa = e.id THEN p.golesCasa ELSE p.golesVisita END AS GF,
+                        CASE WHEN p.equipoCasa = e.id THEN p.golesVisita ELSE p.golesCasa END AS GC,
+                        CASE 
+                            WHEN (p.equipoCasa = e.id AND p.golesCasa > p.golesVisita) 
+                              OR (p.equipoVisita = e.id AND p.golesVisita > p.golesCasa) 
+                            THEN 1 ELSE 0 END AS Win,
+                        CASE WHEN p.golesCasa = p.golesVisita THEN 1 ELSE 0 END AS Draw,
+                        CASE 
+                            WHEN (p.equipoCasa = e.id AND p.golesCasa < p.golesVisita) 
+                              OR (p.equipoVisita = e.id AND p.golesVisita < p.golesCasa) 
+                            THEN 1 ELSE 0 END AS Loss
+                    FROM Equipo e
+                    JOIN Partido p 
+                      ON p.torneo = @t
+                     AND p.fase   = @f
+                     AND p.estado = 'Finalizado'
+                     AND (p.equipoCasa = e.id OR p.equipoVisita = e.id)
+                )
+                SELECT
+                    IdEquipo,
+                    Equipo,
+                    COUNT(*)               AS PJ,
+                    SUM(Win)               AS PG,
+                    SUM(Draw)              AS PE,
+                    SUM(Loss)              AS PP,
+                    SUM(GF)                AS GF,
+                    SUM(GC)                AS GC,
+                    SUM(GF) - SUM(GC)      AS DG,
+                    SUM(Win)*3 + SUM(Draw) AS Pts
+                FROM J
+                GROUP BY IdEquipo, Equipo
+                ORDER BY Pts DESC, (SUM(GF)-SUM(GC)) DESC, SUM(GF) DESC, Equipo ASC";
+
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    cmd.Parameters.AddWithValue("@f", fase);
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        dt.Load(r);
+                    }
+                }
+                cx.Desconectar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error calculando tabla de posiciones: " + ex.Message);
+            }
+            return dt;
+        }
+
+        // TOP K CLASIFICADOS
+        public List<int> TopKClasificados(int idTorneo, int kDeseado)
+        {
+            var ids = new List<int>();
+            try
+            {
+                var tabla = TablaPosicionesPorFaseSQL_Priv(idTorneo, "REGULAR");
+                if (tabla.Rows.Count == 0) return ids;
+
+                int k = Math.Min(kDeseado, tabla.Rows.Count);
+                for (int i = 0; i < k; i++)
+                    ids.Add(Convert.ToInt32(tabla.Rows[i]["IdEquipo"]));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error obteniendo TopK: " + ex.Message);
+            }
+            return ids;
+        }
+
+        
     }
 }
 

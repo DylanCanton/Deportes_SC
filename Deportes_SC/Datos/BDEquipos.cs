@@ -183,8 +183,35 @@ namespace Deportes_SC.Datos
             return ids;
         }
 
-        
+        public Dictionary<int, string> DiccionarioNombresPorTorneo(int idTorneo)
+        {
+            var map = new Dictionary<int, string>();
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = "SELECT id, nombre FROM Equipo WHERE idTorneo = @t ORDER BY nombre";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            int id = Convert.ToInt32(dr["id"]);
+                            string nom = dr["nombre"].ToString();
+                            map[id] = nom;
+                        }
+                    }
+                }
+                cx.Desconectar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cargando nombres de equipos: " + ex.Message);
+            }
+            return map;
+        }
     }
-
 }
+        
 

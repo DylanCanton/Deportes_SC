@@ -30,6 +30,20 @@ namespace Deportes_SC.Presentacion
             CargarTorneos();
         }
 
+        private void CargarTorneos()
+        {
+            try
+            {
+                var lista = bdTorneos.mostrarTorneosSQL();
+                cmbTorneo.DataSource = lista;
+                cmbTorneo.DisplayMember = "Nombre";
+                cmbTorneo.ValueMember = "Identificador";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cargando torneos: " + ex.Message);
+            }
+        }
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             if (cmbTorneo.SelectedValue == null)
@@ -56,19 +70,123 @@ namespace Deportes_SC.Presentacion
             OcultarColumnasNoNecesarias();
         }
 
-        private void CargarTorneos()
+        
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (cmbTorneo.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccioná un torneo.");
+                return;
+            }
+            if (partidosGenerados == null || partidosGenerados.Count == 0)
+            {
+                MessageBox.Show("Primero generá los emparejamientos.");
+                return;
+            }
+
+            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
+            string faseActual = string.IsNullOrEmpty(partidosGenerados.First().Fase) ? "REGULAR" : partidosGenerados.First().Fase;
+
+            btnRegistrar.Enabled = false;
+            btnGenerar.Enabled = false;
+            btnFasefinal.Enabled = false;
             try
             {
-                var lista = bdTorneos.mostrarTorneosSQL();
-                cmbTorneo.DataSource = lista;
-                cmbTorneo.DisplayMember = "Nombre";
-                cmbTorneo.ValueMember = "Identificador";
+                // Borrar SOLO la fase que voy a registrar
+                if (!bdPartidos.EliminarFase(idTorneo, faseActual))
+                {
+                    MessageBox.Show($"No se pudo limpiar la fase previa: {faseActual}");
+                    return;
+                }
+
+                bool ok = bdPartidos.GuardarLista(partidosGenerados);
+                MessageBox.Show(ok
+                    ? $"Emparejamientos de {faseActual} guardados correctamente."
+                    : "Ocurrió un error al guardar los emparejamientos.");
             }
-            catch (Exception ex)
+            finally
             {
-                MessageBox.Show("Error cargando torneos: " + ex.Message);
+                btnRegistrar.Enabled = true;
+                btnGenerar.Enabled = true;
+                btnFasefinal.Enabled = true;
             }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void volver_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal principal = new FrmPrincipal();
+            principal.Show();
+            this.Hide();
+        }
+
+        private void dgvEmparejamientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnFasefinal_Click(object sender, EventArgs e)
+        {
+            if (cmbTorneo.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccioná un torneo.");
+                return;
+            }
+            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
+
+            // 1) Validar que REGULAR esté finalizada
+            if (!bdPartidos.FaseTerminada(idTorneo, "REGULAR"))
+            {
+                MessageBox.Show("Aún hay partidos PENDIENTE en la fase REGULAR.");
+                return;
+            }
+
+            // 2) Obtener Top 4 clasificados
+            var top4 = bdPartidos.TopKClasificados(idTorneo, 4);
+            if (top4 == null || top4.Count < 2)
+            {
+                MessageBox.Show("No hay suficientes equipos para la FASE FINAL.");
+                return;
+            }
+
+            // 3) Generar FINAL (todos contra todos, UNA vuelta)
+            var listaFinal = EmparejamientosGenerador.Generar(idTorneo, top4, false); // false = solo ida
+            foreach (var p in listaFinal)
+            {
+                p.Fase = "FINAL";
+                p.Estado = "PENDIENTE";
+            }
+
+            // Completar nombres
+            var nombres = bdEquipos.DiccionarioNombresPorTorneo(idTorneo);
+            foreach (var p in listaFinal)
+            {
+                if (nombres.TryGetValue(p.EquipoCasa, out var nomC)) p.NombreEquipoCasa = nomC;
+                if (nombres.TryGetValue(p.EquipoVisita, out var nomV)) p.NombreEquipoVisita = nomV;
+            }
+
+            // 4) Mostrar en el grid (y luego Registrar para guardar)
+            partidosGenerados = listaFinal;
+            dgvEmparejamientos.DataSource = null;
+            dgvEmparejamientos.DataSource = partidosGenerados;
+            AjustarColumnas();
+
+            MessageBox.Show("FASE FINAL (Top 4) generada. Revisá y presioná REGISTRAR para guardar.");
         }
 
         private void OcultarColumnasNoNecesarias()
@@ -95,73 +213,28 @@ namespace Deportes_SC.Presentacion
                 dgvEmparejamientos.Columns["EquipoVisita"].HeaderText = "Visita (Id)";
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void AjustarColumnas()
         {
-            if (cmbTorneo.SelectedValue == null)
-            {
-                MessageBox.Show("Seleccioná un torneo.");
-                return;
-            }
-            if (partidosGenerados == null || partidosGenerados.Count == 0)
-            {
-                MessageBox.Show("Primero generá los emparejamientos.");
-                return;
-            }
+            // Mostrar nombres si están
+            if (dgvEmparejamientos.Columns["NombreEquipoCasa"] != null)
+                dgvEmparejamientos.Columns["NombreEquipoCasa"].HeaderText = "Casa";
+            if (dgvEmparejamientos.Columns["NombreEquipoVisita"] != null)
+                dgvEmparejamientos.Columns["NombreEquipoVisita"].HeaderText = "Visita";
 
-            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
+            // Ocultar campos internos
+            string[] ocultar = { "Identificador", "FechaHora", "GolesCasa", "GolesVisita", "EquipoCasa", "EquipoVisita" };
+            foreach (var c in ocultar)
+                if (dgvEmparejamientos.Columns[c] != null)
+                    dgvEmparejamientos.Columns[c].Visible = false;
 
-            // Evitar doble clic durante el guardado
-            btnRegistrar.Enabled = false;
-            btnGenerar.Enabled = false;
-            try
-            {
-                // Limpia partidos previos del torneo para evitar duplicados
-                if (!bdPartidos.LimpiarPorTorneo(idTorneo))
-                {
-                    MessageBox.Show("No se pudieron limpiar partidos anteriores del torneo.");
-                    return;
-                }
-
-                // Guarda la lista generada
-                bool ok = bdPartidos.GuardarLista(partidosGenerados);
-                if (ok)
-                {
-                    MessageBox.Show("Emparejamientos guardados correctamente.");
-                    // Opcionalmente, limpiar el grid o volver a generar/recargar
-                    // dgvEmparejamientos.DataSource = null;
-                }
-                else
-                {
-                    MessageBox.Show("Ocurrió un error al guardar los emparejamientos.");
-                }
-            }
-            finally
-            {
-                btnRegistrar.Enabled = true;
-                btnGenerar.Enabled = true;
-            }
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_eliminar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void volver_Click(object sender, EventArgs e)
-        {
-            FrmPrincipal principal = new FrmPrincipal();
-            principal.Show();
-            this.Hide();
+            if (dgvEmparejamientos.Columns["Torneo"] != null)
+                dgvEmparejamientos.Columns["Torneo"].HeaderText = "Id Torneo";
+            if (dgvEmparejamientos.Columns["Jornada"] != null)
+                dgvEmparejamientos.Columns["Jornada"].HeaderText = "Jornada";
+            if (dgvEmparejamientos.Columns["Fase"] != null)
+                dgvEmparejamientos.Columns["Fase"].HeaderText = "Fase";
+            if (dgvEmparejamientos.Columns["Estado"] != null)
+                dgvEmparejamientos.Columns["Estado"].HeaderText = "Estado";
         }
     }
 }
