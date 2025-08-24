@@ -34,8 +34,6 @@
             this.btnGenerar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
-            this.cmbFase = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnl_superior = new System.Windows.Forms.Panel();
             this.btnFasefinal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).BeginInit();
@@ -100,32 +98,6 @@
             this.btnRegistrar.TabStop = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
-            // cmbFase
-            // 
-            this.cmbFase.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.cmbFase.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.cmbFase.FormattingEnabled = true;
-            this.cmbFase.Items.AddRange(new object[] {
-            "Regular",
-            "Final"});
-            this.cmbFase.Location = new System.Drawing.Point(316, 231);
-            this.cmbFase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbFase.Name = "cmbFase";
-            this.cmbFase.Size = new System.Drawing.Size(196, 29);
-            this.cmbFase.TabIndex = 110;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.label1.Location = new System.Drawing.Point(356, 164);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 48);
-            this.label1.TabIndex = 111;
-            this.label1.Text = "Fase:";
-            // 
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -155,8 +127,6 @@
             this.ClientSize = new System.Drawing.Size(853, 853);
             this.Controls.Add(this.btnFasefinal);
             this.Controls.Add(this.pnl_superior);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbFase);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.dgvEmparejamientos);
             this.Controls.Add(this.btnGenerar);
@@ -170,7 +140,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -181,8 +150,6 @@
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox btnRegistrar;
-        private System.Windows.Forms.ComboBox cmbFase;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnl_superior;
         private System.Windows.Forms.Button btnFasefinal;
     }

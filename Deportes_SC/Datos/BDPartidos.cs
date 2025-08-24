@@ -330,26 +330,43 @@ namespace Deportes_SC.Datos
             try
             {
                 Conexion conex = new Conexion();
-                SqlConnection con = conex.Conectar();
-
-                foreach (var p in lista)
+                using (SqlConnection con = conex.Conectar())
+                using (SqlTransaction tx = con.BeginTransaction())
                 {
-                    // Aseguramos valores por si vienen nulos
-                    int torneo = p.Torneo;
-                    int casa = p.EquipoCasa;
-                    int visita = p.EquipoVisita;
+                    // Ajusta columnas según tu tabla real (incluí 'jornada' si la usás)
+                    string sql = @"
+                INSERT INTO Partido
+                (torneo, jornada, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado)
+                VALUES
+                (@t, @j, @casa, @visita, @gc, @gv, @fase, @est)";
 
-                    string sql = "INSERT INTO Partido " +
-                                 "(torneo, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado) VALUES (" +
-                                 torneo + ", " +
-                                 casa + ", " +
-                                 visita + ", " +
-                                 "0, 0, 'REGULAR', 'PENDIENTE')";
+                    using (var cmd = new SqlCommand(sql, con, tx))
+                    {
+                        cmd.Parameters.Add("@t", SqlDbType.Int);
+                        cmd.Parameters.Add("@j", SqlDbType.Int);
+                        cmd.Parameters.Add("@casa", SqlDbType.Int);
+                        cmd.Parameters.Add("@visita", SqlDbType.Int);
+                        cmd.Parameters.Add("@gc", SqlDbType.Int);
+                        cmd.Parameters.Add("@gv", SqlDbType.Int);
+                        cmd.Parameters.Add("@fase", SqlDbType.VarChar, 20);
+                        cmd.Parameters.Add("@est", SqlDbType.VarChar, 20);
 
-                    SqlCommand cmd = new SqlCommand(sql, con);
-                    cmd.ExecuteNonQuery();
+                        foreach (var p in lista)
+                        {
+                            cmd.Parameters["@t"].Value = p.Torneo;
+                            cmd.Parameters["@casa"].Value = p.EquipoCasa;
+                            cmd.Parameters["@visita"].Value = p.EquipoVisita;
+                            cmd.Parameters["@gc"].Value = p.GolesCasa;
+                            cmd.Parameters["@gv"].Value = p.GolesVisita;
+                            cmd.Parameters["@fase"].Value = string.IsNullOrWhiteSpace(p.Fase) ? "REGULAR" : p.Fase.ToUpperInvariant();
+                            cmd.Parameters["@est"].Value = string.IsNullOrWhiteSpace(p.Estado) ? "PENDIENTE" : p.Estado.ToUpperInvariant();
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    tx.Commit();
                 }
-
                 conex.Desconectar();
                 return true;
             }
@@ -359,6 +376,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
         // ELIMINAR SOLO UNA FASE
         public bool EliminarFase(int idTorneo, string fase)
@@ -390,12 +408,15 @@ namespace Deportes_SC.Datos
             try
             {
                 Conexion conex = new Conexion();
-                const string sql = "SELECT COUNT(*) FROM Partido WHERE torneo=@t AND fase=@f AND estado <> 'Finalizado'";
+                const string sql = @"
+            SELECT COUNT(*) 
+            FROM Partido 
+            WHERE torneo=@t AND fase=@f AND UPPER(estado) <> 'FINALIZADO'";
                 int pendientes;
                 using (var cmd = new SqlCommand(sql, conex.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@t", idTorneo);
-                    cmd.Parameters.AddWithValue("@f", fase);
+                    cmd.Parameters.AddWithValue("@f", fase.ToUpperInvariant());
                     pendientes = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 conex.Desconectar();
@@ -407,6 +428,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
         private DataTable TablaPosicionesPorFaseSQL_Priv(int idTorneo, string fase)
         {
