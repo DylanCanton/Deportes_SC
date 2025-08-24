@@ -16,12 +16,19 @@ namespace Deportes_SC.Presentacion
         public FrmEstadisticas()
         {
             InitializeComponent();
+
+            // Cargar torneos y setear eventos de una vez
             CargarTorneos();
 
-            // Cargar eventos
+            cmbTorneo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTorneo.SelectedIndexChanged += cmbTorneo_SelectedIndexChanged;
             tab_Reportes.SelectedIndexChanged += tab_Reportes_SelectedIndexChanged;
-            // Refrescar los tabControl
+
+            // Forzar selección inicial si hiciera falta
+            if (cmbTorneo.Items.Count > 0 && cmbTorneo.SelectedIndex < 0)
+                cmbTorneo.SelectedIndex = 0;
+
+            // Carga inicial según tab (por defecto, goleadores)
             RefrescarTab();
         }
 
@@ -32,10 +39,7 @@ namespace Deportes_SC.Presentacion
             this.Hide();
         }
 
-        // ------------------------- TOP Posiciones -------------------------//
-
-
-        // ------------------------ Datos Goleadores ------------------------//
+        // ------------------------ Carga de Torneos ------------------------//
 
         private void CargarTorneos()
         {
@@ -73,28 +77,26 @@ namespace Deportes_SC.Presentacion
                 return t.Identificador;
             }
 
-            return 0;
+            return 0; // 0 => todos los torneos / sin selección
         }
 
         // ------------------------ TOP Goleadores ------------------------//
 
         private void RefrescarTopGoleadores()
         {
-            int idTorneo = ObtenerTorneoSeleccionado(); 
-            var dt = estadistica.TopGoleadoresSQL(idTorneo, 10); // Saca top 10
+            int idTorneo = ObtenerTorneoSeleccionado(); // 0 = todos
+            var dt = estadistica.TopGoleadoresSQL(idTorneo, 10);
 
-            // Limpiar columnas
+            // limpiar columnas "de diseño" si las hubiera
             dgvGoleadores.AutoGenerateColumns = true;
             dgvGoleadores.Columns.Clear();
 
             BindTopGoleadores(dt);
-            BindChartTop(dt);
         }
 
-        // Funcion para mejorar el estilo del dgv
         private void BindTopGoleadores(DataTable dt)
         {
-            // Agrega columna de posición (medallas)
+            // Agrega columna de posición con medallas
             if (!dt.Columns.Contains("Pos")) dt.Columns.Add("Pos", typeof(string));
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -103,7 +105,6 @@ namespace Deportes_SC.Presentacion
                 else if (i == 1) medalla = "🥈";
                 else if (i == 2) medalla = "🥉";
                 else medalla = (i + 1).ToString();
-
                 dt.Rows[i]["Pos"] = medalla;
             }
             dt.Columns["Pos"].SetOrdinal(0);
@@ -145,37 +146,89 @@ namespace Deportes_SC.Presentacion
                 dgv.Columns["Cantidad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
-        // Funcion para mostrar los graficos
-        private void BindChartTop(DataTable dt)
+        // ------------------------ Tabla de Posiciones ------------------------//
+
+        private void RefrescarTablaPosiciones()
         {
-            chartTop.Series.Clear();
-            chartTop.ChartAreas.Clear();
-            chartTop.Legends.Clear();
-
-            ChartArea area = new ChartArea("area");
-            area.AxisX.MajorGrid.Enabled = false;
-            area.AxisY.MajorGrid.Enabled = false;
-            area.AxisX.Title = "Goles";
-            area.AxisY.Title = "";
-            chartTop.ChartAreas.Add(area);
-
-            Series s = new Series("Goleadores");
-            s.ChartType = SeriesChartType.Bar; // barras horizontales
-            s.IsValueShownAsLabel = true;
-
-            foreach (DataRow r in dt.Rows)
+            int idTorneo = ObtenerTorneoSeleccionado();
+            if (idTorneo <= 0)
             {
-                string nombre = Convert.ToString(r["Nombre"]);
-                string equipo = Convert.ToString(r["NombreEquipo"]);
-                string label = nombre + " (" + equipo + ")";
-
-                int goles = Convert.ToInt32(r["Cantidad"]);
-                int idx = s.Points.AddXY(label, goles); // categoría, valor
-                s.Points[idx].ToolTip = label + ": " + goles;
+                // Si tienes una opción "Todos", puedes decidir dejar vacío o forzar seleccionar.
+                dgvPosiciones.DataSource = null;
+                return;
             }
 
-            chartTop.Series.Add(s);
+            var dt = estadistica.TablaPosicionesPorTorneoSQL(idTorneo);
+
+            // Agregar columna de posición (medallas) como en goleadores
+            if (!dt.Columns.Contains("Pos")) dt.Columns.Add("Pos", typeof(string));
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string medalla;
+                if (i == 0) medalla = "🥇";
+                else if (i == 1) medalla = "🥈";
+                else if (i == 2) medalla = "🥉";
+                else medalla = (i + 1).ToString();
+                dt.Rows[i]["Pos"] = medalla;
+            }
+            dt.Columns["Pos"].SetOrdinal(0);
+
+            // Limpiar columnas “de diseñador” y bind
+            dgvPosiciones.AutoGenerateColumns = true;
+            dgvPosiciones.Columns.Clear();
+            dgvPosiciones.DataSource = dt;
+
+            // Encabezados
+            if (dgvPosiciones.Columns["Pos"] != null) dgvPosiciones.Columns["Pos"].HeaderText = "#";
+            if (dgvPosiciones.Columns["Equipo"] != null) dgvPosiciones.Columns["Equipo"].HeaderText = "Equipo";
+            if (dgvPosiciones.Columns["PJ"] != null) dgvPosiciones.Columns["PJ"].HeaderText = "PJ";
+            if (dgvPosiciones.Columns["PG"] != null) dgvPosiciones.Columns["PG"].HeaderText = "PG";
+            if (dgvPosiciones.Columns["PE"] != null) dgvPosiciones.Columns["PE"].HeaderText = "PE";
+            if (dgvPosiciones.Columns["PP"] != null) dgvPosiciones.Columns["PP"].HeaderText = "PP";
+            if (dgvPosiciones.Columns["GF"] != null) dgvPosiciones.Columns["GF"].HeaderText = "GF";
+            if (dgvPosiciones.Columns["GC"] != null) dgvPosiciones.Columns["GC"].HeaderText = "GC";
+            if (dgvPosiciones.Columns["DG"] != null) dgvPosiciones.Columns["DG"].HeaderText = "DG";
+            if (dgvPosiciones.Columns["Pts"] != null) dgvPosiciones.Columns["Pts"].HeaderText = "Pts";
+
+            // Ocultar Id técnico si está
+            if (dgvPosiciones.Columns["IdEquipo"] != null) dgvPosiciones.Columns["IdEquipo"].Visible = false;
+
+            // Estilos
+            EstilarDgvPosiciones(dgvPosiciones);
         }
+
+        private void EstilarDgvPosiciones(DataGridView dgv)
+        {
+            dgv.ReadOnly = true;
+            dgv.MultiSelect = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.BackgroundColor = SystemColors.Window;
+            dgv.BorderStyle = BorderStyle.None;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 248, 255);
+            dgv.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(235, 239, 250);
+            dgv.EnableHeadersVisualStyles = false;
+
+            // Alineaciones
+            if (dgv.Columns["PJ"] != null) dgv.Columns["PJ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["PG"] != null) dgv.Columns["PG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["PE"] != null) dgv.Columns["PE"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["PP"] != null) dgv.Columns["PP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["GF"] != null) dgv.Columns["GF"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["GC"] != null) dgv.Columns["GC"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["DG"] != null) dgv.Columns["DG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (dgv.Columns["Pts"] != null) dgv.Columns["Pts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        // ------------------------ Eventos y refresco general ------------------------//
 
         private void cmbTorneo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -187,28 +240,34 @@ namespace Deportes_SC.Presentacion
             RefrescarTab();
         }
 
-        // Funcion para refrescar a la hora de cambiar de tab
         private void RefrescarTab()
         {
-            
+            if (tab_Reportes.SelectedTab == null)
+            {
+                RefrescarTopGoleadores();
+                return;
+            }
+
             if (tab_Reportes.SelectedTab == tab_Goleadores)
             {
                 RefrescarTopGoleadores();
                 return;
             }
+
             if (tab_Reportes.SelectedTab == tab_Equipos)
             {
-                // Refrescar Tabla de posiciones;
+                RefrescarTablaPosiciones();
                 return;
             }
+
             if (tab_Reportes.SelectedTab == tab_Sanciones)
             {
-                // Refrescar Tabla de Sanciones;
+                // Aquí podrías cargar tu reporte de sanciones
                 return;
             }
+
+            // Por defecto, carga goleadores
             RefrescarTopGoleadores();
         }
-
-        // ------------------------- TOP Sanciones -------------------------//
     }
 }

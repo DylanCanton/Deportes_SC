@@ -25,6 +25,7 @@ namespace Deportes_SC.Presentacion
 
         // Variable para validacion
         bool partidoFinalizado;
+
         public FrmPartidos()
         {
             InitializeComponent();
@@ -38,9 +39,13 @@ namespace Deportes_SC.Presentacion
             this.Hide();
         }
 
-    //----------------------------- Funciones -----------------------------------//
+        //----------------------------- Funciones -----------------------------------//
 
-        //Funciones para el funcionamiento
+        private void limpiarSancion()
+        {
+            cmbTipo.SelectedIndex = -1;   // sin selección
+            nudMinuto1.Value = nudMinuto1.Minimum;
+        }
 
         // Se cargan los torneos en el combobox
         private void CargarTorneos()
@@ -65,13 +70,20 @@ namespace Deportes_SC.Presentacion
         // Funcion para obtener el torneo que se seleccione en el combobox
         private int ObtenerTorneoSeleccionado()
         {
-            if (cmbTorneo.SelectedValue is int id) return id;
+            if (cmbTorneo.SelectedValue is int) return (int)cmbTorneo.SelectedValue;
 
-            if (cmbTorneo.SelectedValue is string s && int.TryParse(s, out var idStr))
-                return idStr;
+            if (cmbTorneo.SelectedValue is string)
+            {
+                int idOut;
+                string s = (string)cmbTorneo.SelectedValue;
+                if (int.TryParse(s, out idOut)) return idOut;
+            }
 
-            if (cmbTorneo.SelectedItem is Torneo t)
+            if (cmbTorneo.SelectedItem is Torneo)
+            {
+                Torneo t = (Torneo)cmbTorneo.SelectedItem;
                 return t.Identificador;
+            }
 
             return 0; // En caso de que no se seleccione nada
         }
@@ -80,7 +92,7 @@ namespace Deportes_SC.Presentacion
         private string ObtenerFaseSeleccionada()
         {
             if (cmbFases.SelectedIndex < 0 || cmbFases.SelectedItem == null) return null;
-            var txt = cmbFases.SelectedItem.ToString().Trim().ToUpperInvariant();
+            string txt = cmbFases.SelectedItem.ToString().Trim().ToUpperInvariant();
             if (txt == "REGULAR" || txt == "FINAL") return txt;
             return null;
         }
@@ -146,8 +158,8 @@ namespace Deportes_SC.Presentacion
         // Funcion para el marcador
         private void PintarMarcador()
         {
-            lblEquipoCasa.Text = $"{nombreCasaSel} ({golesCasaUI})";
-            lblEquipoVisita.Text = $"{nombreVisitaSel} ({golesVisitaUI})";
+            lblEquipoCasa.Text = nombreCasaSel + " (" + golesCasaUI + ")";
+            lblEquipoVisita.Text = nombreVisitaSel + " (" + golesVisitaUI + ")";
         }
 
         // Funciones esteticas
@@ -197,9 +209,8 @@ namespace Deportes_SC.Presentacion
 
             // Mostrar el marcador
             PintarMarcador();
-            lblPartidoSel.Text = $"  {nombreCasaSel} vs {nombreVisitaSel}";
+            lblPartidoSel.Text = "  " + nombreCasaSel + " vs " + nombreVisitaSel;
         }
-
 
         // Lee goles y estado de la tabla Partido
         private (int golesCasa, int golesVisita, string estado) ObtenerMarcadorYEstadoPartidoSQL(int idPartido)
@@ -254,6 +265,7 @@ namespace Deportes_SC.Presentacion
             try
             {
                 bool ok = partidos.InsertarSancionSQL(idPartidoSel, idEquipo, idJugador, minuto, tipoDb);
+                limpiarSancion();
                 if (!ok) return;
 
                 if (tipoDb == "GOL")
@@ -283,10 +295,34 @@ namespace Deportes_SC.Presentacion
 
             if (idPartidoSel == 0) { MessageBox.Show("Seleccione un partido."); return; }
 
+            // >>> NUEVO: calcular ganador/empate y puntos ANTES de persistir
+            int puntosCasa = 0;
+            int puntosVisita = 0;
+            string resumen = "";
+
+            if (golesCasaUI > golesVisitaUI)
+            {
+                puntosCasa = 3;
+                puntosVisita = 0;
+                resumen = "Ganador: " + nombreCasaSel + " (" + puntosCasa + " pts)";
+            }
+            else if (golesCasaUI < golesVisitaUI)
+            {
+                puntosCasa = 0;
+                puntosVisita = 3;
+                resumen = "Ganador: " + nombreVisitaSel + " (" + puntosVisita + " pts)";
+            }
+            else
+            {
+                puntosCasa = 1;
+                puntosVisita = 1;
+                resumen = "Empate";
+            }
+
             btnGuardarResultado.Enabled = false;
             try
-                //Actualizamos el marcador
             {
+                // Actualizamos el marcador
                 if (!partidos.ActualizarMarcadorPartidoSQL(idPartidoSel, golesCasaUI, golesVisitaUI))
                 {
                     MessageBox.Show("No se pudo guardar el marcador final.");
@@ -298,6 +334,15 @@ namespace Deportes_SC.Presentacion
                     MessageBox.Show("No se pudo actualizar el estado del partido.");
                     return;
                 }
+
+                // >>> NUEVO: mostrar mensaje con ganador/empate y reparto de puntos
+                string marcadorTxt = nombreCasaSel + " " + golesCasaUI + " - " + golesVisitaUI + " " + nombreVisitaSel;
+                MessageBox.Show(
+                    "Resultado final\n\n" + marcadorTxt + "\n\n" + resumen,
+                    "Final del partido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
                 // Luego de finalizar, bloqueamos la edicion del partido
                 partidoFinalizado = true;
@@ -322,15 +367,12 @@ namespace Deportes_SC.Presentacion
                     RenombrarColumna("GolesCasa", "G. Casa");
                     RenombrarColumna("GolesVisita", "G. Visita");
                 }
-
-                MessageBox.Show("Partido finalizado.");
             }
             finally
             {
                 btnGuardarResultado.Enabled = true;
             }
         }
-
 
         private void cmbFases_SelectedIndexChanged(object sender, EventArgs e)
         {
