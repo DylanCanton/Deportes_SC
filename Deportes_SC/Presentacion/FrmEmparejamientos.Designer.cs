@@ -58,11 +58,11 @@
             // 
             this.dgvEmparejamientos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgvEmparejamientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmparejamientos.Location = new System.Drawing.Point(12, 448);
+            this.dgvEmparejamientos.Location = new System.Drawing.Point(27, 453);
             this.dgvEmparejamientos.Name = "dgvEmparejamientos";
             this.dgvEmparejamientos.RowHeadersWidth = 51;
             this.dgvEmparejamientos.RowTemplate.Height = 24;
-            this.dgvEmparejamientos.Size = new System.Drawing.Size(829, 324);
+            this.dgvEmparejamientos.Size = new System.Drawing.Size(814, 317);
             this.dgvEmparejamientos.TabIndex = 107;
             this.dgvEmparejamientos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmparejamientos_CellContentClick);
             // 
