@@ -333,17 +333,15 @@ namespace Deportes_SC.Datos
                 using (SqlConnection con = conex.Conectar())
                 using (SqlTransaction tx = con.BeginTransaction())
                 {
-                    // Ajusta columnas según tu tabla real (incluí 'jornada' si la usás)
                     string sql = @"
                 INSERT INTO Partido
-                (torneo, jornada, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado)
+                (torneo, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado)
                 VALUES
-                (@t, @j, @casa, @visita, @gc, @gv, @fase, @est)";
+                (@t, @casa, @visita, @gc, @gv, @fase, @est)";
 
                     using (var cmd = new SqlCommand(sql, con, tx))
                     {
                         cmd.Parameters.Add("@t", SqlDbType.Int);
-                        cmd.Parameters.Add("@j", SqlDbType.Int);
                         cmd.Parameters.Add("@casa", SqlDbType.Int);
                         cmd.Parameters.Add("@visita", SqlDbType.Int);
                         cmd.Parameters.Add("@gc", SqlDbType.Int);
@@ -376,6 +374,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
 
         // ELIMINAR SOLO UNA FASE
