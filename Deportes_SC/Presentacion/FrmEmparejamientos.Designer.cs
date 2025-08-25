@@ -31,14 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmparejamientos));
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.dgvEmparejamientos = new System.Windows.Forms.DataGridView();
-            this.btnGenerar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.PictureBox();
             this.pnl_superior = new System.Windows.Forms.Panel();
-            this.btnFasefinal = new System.Windows.Forms.Button();
+            this.btnGenerarFase = new System.Windows.Forms.PictureBox();
+            this.btnGenerarFinal = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFinal)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTorneo
@@ -46,36 +48,23 @@
             this.cmbTorneo.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmbTorneo.FormattingEnabled = true;
-            this.cmbTorneo.Location = new System.Drawing.Point(15, 231);
+            this.cmbTorneo.Location = new System.Drawing.Point(300, 138);
             this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTorneo.Name = "cmbTorneo";
-            this.cmbTorneo.Size = new System.Drawing.Size(239, 29);
+            this.cmbTorneo.Size = new System.Drawing.Size(362, 29);
             this.cmbTorneo.TabIndex = 89;
             // 
             // dgvEmparejamientos
             // 
             this.dgvEmparejamientos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgvEmparejamientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmparejamientos.Location = new System.Drawing.Point(12, 361);
+            this.dgvEmparejamientos.Location = new System.Drawing.Point(12, 448);
             this.dgvEmparejamientos.Name = "dgvEmparejamientos";
             this.dgvEmparejamientos.RowHeadersWidth = 51;
             this.dgvEmparejamientos.RowTemplate.Height = 24;
-            this.dgvEmparejamientos.Size = new System.Drawing.Size(829, 356);
+            this.dgvEmparejamientos.Size = new System.Drawing.Size(829, 324);
             this.dgvEmparejamientos.TabIndex = 107;
             this.dgvEmparejamientos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmparejamientos_CellContentClick);
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(452, 310);
-            this.btnGenerar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(120, 46);
-            this.btnGenerar.TabIndex = 104;
-            this.btnGenerar.Text = "Generar fase";
-            this.btnGenerar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnGenerar.UseVisualStyleBackColor = true;
-            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // pictureBox1
             // 
@@ -90,9 +79,9 @@
             // btnRegistrar
             // 
             this.btnRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.Image")));
-            this.btnRegistrar.Location = new System.Drawing.Point(715, 310);
+            this.btnRegistrar.Location = new System.Drawing.Point(515, 359);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(126, 46);
+            this.btnRegistrar.Size = new System.Drawing.Size(162, 50);
             this.btnRegistrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnRegistrar.TabIndex = 109;
             this.btnRegistrar.TabStop = false;
@@ -107,29 +96,38 @@
             this.pnl_superior.Size = new System.Drawing.Size(853, 44);
             this.pnl_superior.TabIndex = 112;
             // 
-            // btnFasefinal
+            // btnGenerarFase
             // 
-            this.btnFasefinal.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFasefinal.Location = new System.Drawing.Point(578, 310);
-            this.btnFasefinal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnFasefinal.Name = "btnFasefinal";
-            this.btnFasefinal.Size = new System.Drawing.Size(131, 46);
-            this.btnFasefinal.TabIndex = 113;
-            this.btnFasefinal.Text = "Generar fase final";
-            this.btnFasefinal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFasefinal.UseVisualStyleBackColor = true;
-            this.btnFasefinal.Click += new System.EventHandler(this.btnFasefinal_Click);
+            this.btnGenerarFase.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarFase.Image")));
+            this.btnGenerarFase.Location = new System.Drawing.Point(333, 359);
+            this.btnGenerarFase.Name = "btnGenerarFase";
+            this.btnGenerarFase.Size = new System.Drawing.Size(165, 50);
+            this.btnGenerarFase.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnGenerarFase.TabIndex = 114;
+            this.btnGenerarFase.TabStop = false;
+            this.btnGenerarFase.Click += new System.EventHandler(this.btnGenerarFase_Click);
+            // 
+            // btnGenerarFinal
+            // 
+            this.btnGenerarFinal.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarFinal.Image")));
+            this.btnGenerarFinal.Location = new System.Drawing.Point(146, 359);
+            this.btnGenerarFinal.Name = "btnGenerarFinal";
+            this.btnGenerarFinal.Size = new System.Drawing.Size(162, 50);
+            this.btnGenerarFinal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnGenerarFinal.TabIndex = 115;
+            this.btnGenerarFinal.TabStop = false;
+            this.btnGenerarFinal.Click += new System.EventHandler(this.btnGenerarFinal_Click);
             // 
             // FrmEmparejamientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 853);
-            this.Controls.Add(this.btnFasefinal);
+            this.Controls.Add(this.btnGenerarFinal);
+            this.Controls.Add(this.btnGenerarFase);
             this.Controls.Add(this.pnl_superior);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.dgvEmparejamientos);
-            this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.cmbTorneo);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -139,6 +137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFinal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -147,10 +147,10 @@
 
         private System.Windows.Forms.ComboBox cmbTorneo;
         private System.Windows.Forms.DataGridView dgvEmparejamientos;
-        private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox btnRegistrar;
         private System.Windows.Forms.Panel pnl_superior;
-        private System.Windows.Forms.Button btnFasefinal;
+        private System.Windows.Forms.PictureBox btnGenerarFase;
+        private System.Windows.Forms.PictureBox btnGenerarFinal;
     }
 }

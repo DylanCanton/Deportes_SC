@@ -456,7 +456,7 @@ namespace Deportes_SC.Datos
                     JOIN Partido p 
                       ON p.torneo = @t
                      AND p.fase   = @f
-                     AND p.estado = 'Finalizado'
+                     AND UPPER(p.estado) = 'FINALIZADO'
                      AND (p.equipoCasa = e.id OR p.equipoVisita = e.id)
                 )
                 SELECT
@@ -512,7 +512,106 @@ namespace Deportes_SC.Datos
             return ids;
         }
 
-        
+        public List<int> TopKClasificadosPorFase(int idTorneo, string fase, int kDeseado)
+        {
+            var ids = new List<int>();
+            try
+            {
+                var tabla = TablaPosicionesPorFaseSQL_Priv(idTorneo, fase?.ToUpperInvariant());
+                if (tabla.Rows.Count == 0) return ids;
+                int k = Math.Min(kDeseado, tabla.Rows.Count);
+                for (int i = 0; i < k; i++)
+                    ids.Add(Convert.ToInt32(tabla.Rows[i]["IdEquipo"]));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error obteniendo TopK por fase: " + ex.Message);
+            }
+            return ids;
+        }
+
+        public bool ExisteGranFinal(int idTorneo)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = "SELECT TOP 1 1 FROM Partido WHERE torneo=@t AND UPPER(fase)='GRAN_FINAL'";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    var o = cmd.ExecuteScalar();
+                    cx.Desconectar();
+                    return o != null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error verificando gran final: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        public bool GenerarGranFinalSQL(int idTorneo, int idEquipo1, int idEquipo2)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = @"
+            INSERT INTO Partido (torneo, equipoCasa, equipoVisita, golesCasa, golesVisita, fase, estado)
+            VALUES (@t, @casa, @visita, 0, 0, 'GRAN_FINAL', 'PENDIENTE')";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    cmd.Parameters.AddWithValue("@casa", idEquipo1);
+                    cmd.Parameters.AddWithValue("@visita", idEquipo2);
+                    int c = cmd.ExecuteNonQuery();
+                    cx.Desconectar();
+                    return c == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error creando Gran Final: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        public (int idEquipo, string nombre) ObtenerCampeonSQL(int idTorneo)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = @"
+            SELECT TOP 1 p.equipoCasa, p.equipoVisita, p.golesCasa, p.golesVisita,
+                         ec.nombre AS nombreCasa, ev.nombre AS nombreVisita
+            FROM Partido p
+            JOIN Equipo ec ON ec.id = p.equipoCasa
+            JOIN Equipo ev ON ev.id = p.equipoVisita
+            WHERE p.torneo=@t AND UPPER(p.fase)='GRAN_FINAL' AND UPPER(p.estado)='FINALIZADO'
+            ORDER BY p.id DESC";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    using (var r = cmd.ExecuteReader())
+                    {
+                        if (!r.Read()) return (0, null);
+                        int c = Convert.ToInt32(r["equipoCasa"]);
+                        int v = Convert.ToInt32(r["equipoVisita"]);
+                        int gc = Convert.ToInt32(r["golesCasa"]);
+                        int gv = Convert.ToInt32(r["golesVisita"]);
+                        string nc = Convert.ToString(r["nombreCasa"]);
+                        string nv = Convert.ToString(r["nombreVisita"]);
+                        if (gc == gv) return (0, "Empate en Gran Final");
+                        return (gc > gv) ? (c, nc) : (v, nv);
+                    }
+                }
+            }
+            catch { return (0, null); }
+        }
+
+
     }
 }
 

@@ -46,28 +46,7 @@ namespace Deportes_SC.Presentacion
         }
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            if (cmbTorneo.SelectedValue == null)
-            {
-                MessageBox.Show("Seleccioná un torneo.");
-                return;
-            }
-
-            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
-            var equipoIds = bdEquipos.ListarIdsPorTorneo(idTorneo);
-
-            if (equipoIds == null || equipoIds.Count < 2)
-            {
-                MessageBox.Show("Se requieren al menos 2 equipos para generar emparejamientos.");
-                return;
-            }
-
-            // Siempre ida y vuelta
-            partidosGenerados = EmparejamientosGenerador.Generar(idTorneo, equipoIds, true);
-
-            dgvEmparejamientos.DataSource = null;
-            dgvEmparejamientos.DataSource = partidosGenerados;
-
-            OcultarColumnasNoNecesarias();
+            
         }
 
         
@@ -89,8 +68,8 @@ namespace Deportes_SC.Presentacion
             string faseActual = string.IsNullOrEmpty(partidosGenerados.First().Fase) ? "REGULAR" : partidosGenerados.First().Fase;
 
             btnRegistrar.Enabled = false;
-            btnGenerar.Enabled = false;
-            btnFasefinal.Enabled = false;
+            btnGenerarFase.Enabled = false;
+            btnGenerarFinal.Enabled = false;
             try
             {
                 // Borrar SOLO la fase que voy a registrar
@@ -108,8 +87,8 @@ namespace Deportes_SC.Presentacion
             finally
             {
                 btnRegistrar.Enabled = true;
-                btnGenerar.Enabled = true;
-                btnFasefinal.Enabled = true;
+                btnGenerarFase.Enabled = true;
+                btnGenerarFinal.Enabled = true;
             }
         }
 
@@ -122,56 +101,10 @@ namespace Deportes_SC.Presentacion
 
         private void dgvEmparejamientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void btnFasefinal_Click(object sender, EventArgs e)
         {
-            if (cmbTorneo.SelectedValue == null)
-            {
-                MessageBox.Show("Seleccioná un torneo.");
-                return;
-            }
-            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
-
-            // 1) Validar que REGULAR esté finalizada
-            if (!bdPartidos.FaseTerminada(idTorneo, "REGULAR"))
-            {
-                MessageBox.Show("Aún hay partidos PENDIENTE en la fase REGULAR.");
-                return;
-            }
-
-            // 2) Obtener Top 4 clasificados
-            var top4 = bdPartidos.TopKClasificados(idTorneo, 4);
-            if (top4 == null || top4.Count < 2)
-            {
-                MessageBox.Show("No hay suficientes equipos para la FASE FINAL.");
-                return;
-            }
-
-            // 3) Generar FINAL (todos contra todos, UNA vuelta)
-            var listaFinal = EmparejamientosGenerador.Generar(idTorneo, top4, false); // false = solo ida
-            foreach (var p in listaFinal)
-            {
-                p.Fase = "FINAL";
-                p.Estado = "PENDIENTE";
-            }
-
-            // Completar nombres
-            var nombres = bdEquipos.DiccionarioNombresPorTorneo(idTorneo);
-            foreach (var p in listaFinal)
-            {
-                if (nombres.TryGetValue(p.EquipoCasa, out var nomC)) p.NombreEquipoCasa = nomC;
-                if (nombres.TryGetValue(p.EquipoVisita, out var nomV)) p.NombreEquipoVisita = nomV;
-            }
-
-            // 4) Mostrar en el grid (y luego Registrar para guardar)
-            partidosGenerados = listaFinal;
-            dgvEmparejamientos.DataSource = null;
-            dgvEmparejamientos.DataSource = partidosGenerados;
-            AjustarColumnas();
-
-            MessageBox.Show("FASE FINAL (Top 4) generada. Revisá y presioná REGISTRAR para guardar.");
         }
 
         private void OcultarColumnasNoNecesarias()
@@ -220,6 +153,81 @@ namespace Deportes_SC.Presentacion
                 dgvEmparejamientos.Columns["Fase"].HeaderText = "Fase";
             if (dgvEmparejamientos.Columns["Estado"] != null)
                 dgvEmparejamientos.Columns["Estado"].HeaderText = "Estado";
+        }
+
+        private void btnGenerarFase_Click(object sender, EventArgs e)
+        {
+            if (cmbTorneo.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccioná un torneo.");
+                return;
+            }
+
+            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
+            var equipoIds = bdEquipos.ListarIdsPorTorneo(idTorneo);
+
+            if (equipoIds == null || equipoIds.Count < 2)
+            {
+                MessageBox.Show("Se requieren al menos 2 equipos para generar emparejamientos.");
+                return;
+            }
+
+            // Siempre ida y vuelta
+            partidosGenerados = EmparejamientosGenerador.Generar(idTorneo, equipoIds, true);
+
+            dgvEmparejamientos.DataSource = null;
+            dgvEmparejamientos.DataSource = partidosGenerados;
+
+            OcultarColumnasNoNecesarias();
+        }
+
+        private void btnGenerarFinal_Click(object sender, EventArgs e)
+        {
+            if (cmbTorneo.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccioná un torneo.");
+                return;
+            }
+            int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
+
+            // 1) Validar que REGULAR esté finalizada
+            if (!bdPartidos.FaseTerminada(idTorneo, "REGULAR"))
+            {
+                MessageBox.Show("Aún hay partidos PENDIENTE en la fase REGULAR.");
+                return;
+            }
+
+            // 2) Obtener Top 4 clasificados
+            var top4 = bdPartidos.TopKClasificados(idTorneo, 4);
+            if (top4 == null || top4.Count < 2)
+            {
+                MessageBox.Show("No hay suficientes equipos para la FASE FINAL.");
+                return;
+            }
+
+            // 3) Generar FINAL (todos contra todos, UNA vuelta)
+            var listaFinal = EmparejamientosGenerador.Generar(idTorneo, top4, false); // false = solo ida
+            foreach (var p in listaFinal)
+            {
+                p.Fase = "FINAL";
+                p.Estado = "PENDIENTE";
+            }
+
+            // Completar nombres
+            var nombres = bdEquipos.DiccionarioNombresPorTorneo(idTorneo);
+            foreach (var p in listaFinal)
+            {
+                if (nombres.TryGetValue(p.EquipoCasa, out var nomC)) p.NombreEquipoCasa = nomC;
+                if (nombres.TryGetValue(p.EquipoVisita, out var nomV)) p.NombreEquipoVisita = nomV;
+            }
+
+            // 4) Mostrar en el grid (y luego Registrar para guardar)
+            partidosGenerados = listaFinal;
+            dgvEmparejamientos.DataSource = null;
+            dgvEmparejamientos.DataSource = partidosGenerados;
+            AjustarColumnas();
+
+            MessageBox.Show("FASE FINAL (Top 4) generada. Revisá y presioná REGISTRAR para guardar.");
         }
     }
 }
