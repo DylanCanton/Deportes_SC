@@ -198,7 +198,7 @@
             // btnGenerarGranFinal
             // 
             this.btnGenerarGranFinal.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarGranFinal.Image")));
-            this.btnGenerarGranFinal.Location = new System.Drawing.Point(501, 900);
+            this.btnGenerarGranFinal.Location = new System.Drawing.Point(629, 637);
             this.btnGenerarGranFinal.Name = "btnGenerarGranFinal";
             this.btnGenerarGranFinal.Size = new System.Drawing.Size(285, 88);
             this.btnGenerarGranFinal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -219,7 +219,7 @@
             // btnGuardaResultado
             // 
             this.btnGuardaResultado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardaResultado.Image")));
-            this.btnGuardaResultado.Location = new System.Drawing.Point(191, 900);
+            this.btnGuardaResultado.Location = new System.Drawing.Point(642, 731);
             this.btnGuardaResultado.Name = "btnGuardaResultado";
             this.btnGuardaResultado.Size = new System.Drawing.Size(285, 88);
             this.btnGuardaResultado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
