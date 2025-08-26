@@ -45,6 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnGuardaResultado = new System.Windows.Forms.PictureBox();
             this.btnAgregaSancion = new System.Windows.Forms.PictureBox();
+            this.btnSalir = new System.Windows.Forms.PictureBox();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).BeginInit();
@@ -53,16 +54,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardaResultado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregaSancion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pnl_superior.Controls.Add(this.btnSalir);
             this.pnl_superior.Controls.Add(this.volver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
-            this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
+            this.pnl_superior.Size = new System.Drawing.Size(995, 44);
             this.pnl_superior.TabIndex = 46;
             // 
             // volver
@@ -82,7 +85,7 @@
             this.cmbTorneo.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmbTorneo.FormattingEnabled = true;
-            this.cmbTorneo.Location = new System.Drawing.Point(145, 162);
+            this.cmbTorneo.Location = new System.Drawing.Point(144, 157);
             this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTorneo.Name = "cmbTorneo";
             this.cmbTorneo.Size = new System.Drawing.Size(331, 29);
@@ -93,11 +96,11 @@
             // 
             this.dgvPartidos.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dgvPartidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPartidos.Location = new System.Drawing.Point(60, 219);
+            this.dgvPartidos.Location = new System.Drawing.Point(12, 191);
             this.dgvPartidos.Name = "dgvPartidos";
             this.dgvPartidos.RowHeadersWidth = 51;
             this.dgvPartidos.RowTemplate.Height = 24;
-            this.dgvPartidos.Size = new System.Drawing.Size(867, 368);
+            this.dgvPartidos.Size = new System.Drawing.Size(971, 291);
             this.dgvPartidos.TabIndex = 88;
             this.dgvPartidos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidos_CellContentClick);
             this.dgvPartidos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidos_CellDoubleClick);
@@ -108,7 +111,7 @@
             this.lblPartidoSel.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.lblPartidoSel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPartidoSel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPartidoSel.Location = new System.Drawing.Point(575, 162);
+            this.lblPartidoSel.Location = new System.Drawing.Point(645, 164);
             this.lblPartidoSel.Name = "lblPartidoSel";
             this.lblPartidoSel.Size = new System.Drawing.Size(338, 24);
             this.lblPartidoSel.TabIndex = 91;
@@ -120,7 +123,7 @@
             this.cmb_jugador.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.cmb_jugador.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
             this.cmb_jugador.FormattingEnabled = true;
-            this.cmb_jugador.Location = new System.Drawing.Point(327, 611);
+            this.cmb_jugador.Location = new System.Drawing.Point(315, 549);
             this.cmb_jugador.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_jugador.Name = "cmb_jugador";
             this.cmb_jugador.Size = new System.Drawing.Size(272, 29);
@@ -135,7 +138,7 @@
             "Gol",
             "Tarjeta Amarilla",
             "Tarjeta Roja"});
-            this.cmbTipo.Location = new System.Drawing.Point(327, 688);
+            this.cmbTipo.Location = new System.Drawing.Point(315, 627);
             this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(272, 29);
@@ -144,7 +147,7 @@
             // nudMinuto1
             // 
             this.nudMinuto1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.nudMinuto1.Location = new System.Drawing.Point(327, 781);
+            this.nudMinuto1.Location = new System.Drawing.Point(315, 706);
             this.nudMinuto1.Name = "nudMinuto1";
             this.nudMinuto1.Size = new System.Drawing.Size(272, 22);
             this.nudMinuto1.TabIndex = 109;
@@ -153,7 +156,7 @@
             // 
             this.rbCasa.AutoSize = true;
             this.rbCasa.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.rbCasa.Location = new System.Drawing.Point(629, 611);
+            this.rbCasa.Location = new System.Drawing.Point(315, 509);
             this.rbCasa.Name = "rbCasa";
             this.rbCasa.Size = new System.Drawing.Size(60, 20);
             this.rbCasa.TabIndex = 114;
@@ -166,7 +169,7 @@
             // 
             this.rbVisita.AutoSize = true;
             this.rbVisita.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.rbVisita.Location = new System.Drawing.Point(725, 611);
+            this.rbVisita.Location = new System.Drawing.Point(591, 509);
             this.rbVisita.Name = "rbVisita";
             this.rbVisita.Size = new System.Drawing.Size(61, 20);
             this.rbVisita.TabIndex = 115;
@@ -179,7 +182,7 @@
             // 
             this.lblEquipoCasa.AutoSize = true;
             this.lblEquipoCasa.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEquipoCasa.Location = new System.Drawing.Point(253, 535);
+            this.lblEquipoCasa.Location = new System.Drawing.Point(311, 485);
             this.lblEquipoCasa.Name = "lblEquipoCasa";
             this.lblEquipoCasa.Size = new System.Drawing.Size(0, 21);
             this.lblEquipoCasa.TabIndex = 116;
@@ -189,7 +192,7 @@
             // 
             this.lblEquipoVisita.AutoSize = true;
             this.lblEquipoVisita.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEquipoVisita.Location = new System.Drawing.Point(575, 535);
+            this.lblEquipoVisita.Location = new System.Drawing.Point(587, 485);
             this.lblEquipoVisita.Name = "lblEquipoVisita";
             this.lblEquipoVisita.Size = new System.Drawing.Size(0, 21);
             this.lblEquipoVisita.TabIndex = 117;
@@ -198,9 +201,9 @@
             // btnGenerarGranFinal
             // 
             this.btnGenerarGranFinal.Image = ((System.Drawing.Image)(resources.GetObject("btnGenerarGranFinal.Image")));
-            this.btnGenerarGranFinal.Location = new System.Drawing.Point(629, 637);
+            this.btnGenerarGranFinal.Location = new System.Drawing.Point(193, 811);
             this.btnGenerarGranFinal.Name = "btnGenerarGranFinal";
-            this.btnGenerarGranFinal.Size = new System.Drawing.Size(285, 88);
+            this.btnGenerarGranFinal.Size = new System.Drawing.Size(282, 75);
             this.btnGenerarGranFinal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnGenerarGranFinal.TabIndex = 119;
             this.btnGenerarGranFinal.TabStop = false;
@@ -211,7 +214,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 39);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1000, 962);
+            this.pictureBox1.Size = new System.Drawing.Size(995, 863);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 120;
             this.pictureBox1.TabStop = false;
@@ -219,9 +222,9 @@
             // btnGuardaResultado
             // 
             this.btnGuardaResultado.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardaResultado.Image")));
-            this.btnGuardaResultado.Location = new System.Drawing.Point(642, 731);
+            this.btnGuardaResultado.Location = new System.Drawing.Point(497, 811);
             this.btnGuardaResultado.Name = "btnGuardaResultado";
-            this.btnGuardaResultado.Size = new System.Drawing.Size(285, 88);
+            this.btnGuardaResultado.Size = new System.Drawing.Size(282, 67);
             this.btnGuardaResultado.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnGuardaResultado.TabIndex = 121;
             this.btnGuardaResultado.TabStop = false;
@@ -230,19 +233,30 @@
             // btnAgregaSancion
             // 
             this.btnAgregaSancion.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregaSancion.Image")));
-            this.btnAgregaSancion.Location = new System.Drawing.Point(451, 809);
+            this.btnAgregaSancion.Location = new System.Drawing.Point(448, 734);
             this.btnAgregaSancion.Name = "btnAgregaSancion";
-            this.btnAgregaSancion.Size = new System.Drawing.Size(75, 85);
+            this.btnAgregaSancion.Size = new System.Drawing.Size(75, 71);
             this.btnAgregaSancion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnAgregaSancion.TabIndex = 122;
             this.btnAgregaSancion.TabStop = false;
             this.btnAgregaSancion.Click += new System.EventHandler(this.btnAgregaSancion_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(946, 0);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(51, 44);
+            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSalir.TabIndex = 114;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 1000);
+            this.ClientSize = new System.Drawing.Size(995, 898);
             this.Controls.Add(this.btnAgregaSancion);
             this.Controls.Add(this.btnGuardaResultado);
             this.Controls.Add(this.btnGenerarGranFinal);
@@ -270,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardaResultado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregaSancion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +308,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox btnGuardaResultado;
         private System.Windows.Forms.PictureBox btnAgregaSancion;
+        private System.Windows.Forms.PictureBox btnSalir;
     }
 }

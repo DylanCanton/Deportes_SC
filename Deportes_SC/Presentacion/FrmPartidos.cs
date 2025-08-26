@@ -37,8 +37,8 @@ namespace Deportes_SC.Presentacion
 
         private void volver_Click_1(object sender, EventArgs e)
         {
-            FrmPrincipal principal = new FrmPrincipal();
-            principal.Show();
+            Login login = new Login();
+            login.Show();
             this.Hide();
         }
 
@@ -447,6 +447,11 @@ namespace Deportes_SC.Presentacion
         private void cmbTorneo_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarPartidosDelTorneo();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         // Cambia de jugadores de acuerdo al equipo que se selecciono en el rd

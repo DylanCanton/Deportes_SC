@@ -436,51 +436,49 @@ namespace Deportes_SC.Datos
             {
                 Conexion cx = new Conexion();
                 const string sql = @"
-                WITH J AS (
-                    SELECT 
-                        e.id     AS IdEquipo,
-                        e.nombre AS Equipo,
-                        CASE WHEN p.equipoCasa = e.id THEN p.golesCasa ELSE p.golesVisita END AS GF,
-                        CASE WHEN p.equipoCasa = e.id THEN p.golesVisita ELSE p.golesCasa END AS GC,
-                        CASE 
-                            WHEN (p.equipoCasa = e.id AND p.golesCasa > p.golesVisita) 
-                              OR (p.equipoVisita = e.id AND p.golesVisita > p.golesCasa) 
-                            THEN 1 ELSE 0 END AS Win,
-                        CASE WHEN p.golesCasa = p.golesVisita THEN 1 ELSE 0 END AS Draw,
-                        CASE 
-                            WHEN (p.equipoCasa = e.id AND p.golesCasa < p.golesVisita) 
-                              OR (p.equipoVisita = e.id AND p.golesVisita < p.golesCasa) 
-                            THEN 1 ELSE 0 END AS Loss
-                    FROM Equipo e
-                    JOIN Partido p 
-                      ON p.torneo = @t
-                     AND p.fase   = @f
-                     AND UPPER(p.estado) = 'FINALIZADO'
-                     AND (p.equipoCasa = e.id OR p.equipoVisita = e.id)
-                )
-                SELECT
-                    IdEquipo,
-                    Equipo,
-                    COUNT(*)               AS PJ,
-                    SUM(Win)               AS PG,
-                    SUM(Draw)              AS PE,
-                    SUM(Loss)              AS PP,
-                    SUM(GF)                AS GF,
-                    SUM(GC)                AS GC,
-                    SUM(GF) - SUM(GC)      AS DG,
-                    SUM(Win)*3 + SUM(Draw) AS Pts
-                FROM J
-                GROUP BY IdEquipo, Equipo
-                ORDER BY Pts DESC, (SUM(GF)-SUM(GC)) DESC, SUM(GF) DESC, Equipo ASC";
+        WITH J AS (
+            SELECT 
+                e.id     AS IdEquipo,
+                e.nombre AS Equipo,
+                CASE WHEN p.equipoCasa = e.id THEN p.golesCasa ELSE p.golesVisita END AS GF,
+                CASE WHEN p.equipoCasa = e.id THEN p.golesVisita ELSE p.golesCasa END AS GC,
+                CASE 
+                    WHEN (p.equipoCasa = e.id AND p.golesCasa > p.golesVisita) 
+                      OR (p.equipoVisita = e.id AND p.golesVisita > p.golesCasa) 
+                    THEN 1 ELSE 0 END AS Win,
+                CASE WHEN p.golesCasa = p.golesVisita THEN 1 ELSE 0 END AS Draw,
+                CASE 
+                    WHEN (p.equipoCasa = e.id AND p.golesCasa < p.golesVisita) 
+                      OR (p.equipoVisita = e.id AND p.golesVisita < p.golesCasa) 
+                    THEN 1 ELSE 0 END AS Loss
+            FROM Equipo e
+            JOIN Partido p 
+              ON p.torneo = @t
+             AND UPPER(p.fase) = @f
+             AND UPPER(p.estado) = 'FINALIZADO'
+             AND (p.equipoCasa = e.id OR p.equipoVisita = e.id)
+        )
+        SELECT
+            IdEquipo,
+            Equipo,
+            COUNT(*)               AS PJ,
+            SUM(Win)               AS PG,
+            SUM(Draw)              AS PE,
+            SUM(Loss)              AS PP,
+            SUM(GF)                AS GF,
+            SUM(GC)                AS GC,
+            SUM(GF) - SUM(GC)      AS DG,
+            SUM(Win)*3 + SUM(Draw) AS Pts
+        FROM J
+        GROUP BY IdEquipo, Equipo
+        -- ORDEN correcto según enunciado: Puntos, luego MÁS GOLES a favor, luego alfabético
+        ORDER BY Pts DESC, GF DESC, Equipo ASC";
 
                 using (var cmd = new SqlCommand(sql, cx.Conectar()))
                 {
                     cmd.Parameters.AddWithValue("@t", idTorneo);
                     cmd.Parameters.AddWithValue("@f", fase);
-                    using (var r = cmd.ExecuteReader())
-                    {
-                        dt.Load(r);
-                    }
+                    using (var r = cmd.ExecuteReader()) dt.Load(r);
                 }
                 cx.Desconectar();
             }
@@ -491,26 +489,8 @@ namespace Deportes_SC.Datos
             return dt;
         }
 
+
         // TOP K CLASIFICADOS
-        public List<int> TopKClasificados(int idTorneo, int kDeseado)
-        {
-            var ids = new List<int>();
-            try
-            {
-                var tabla = TablaPosicionesPorFaseSQL_Priv(idTorneo, "REGULAR");
-                if (tabla.Rows.Count == 0) return ids;
-
-                int k = Math.Min(kDeseado, tabla.Rows.Count);
-                for (int i = 0; i < k; i++)
-                    ids.Add(Convert.ToInt32(tabla.Rows[i]["IdEquipo"]));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error obteniendo TopK: " + ex.Message);
-            }
-            return ids;
-        }
-
         public List<int> TopKClasificadosPorFase(int idTorneo, string fase, int kDeseado)
         {
             var ids = new List<int>();
@@ -518,6 +498,7 @@ namespace Deportes_SC.Datos
             {
                 var tabla = TablaPosicionesPorFaseSQL_Priv(idTorneo, fase?.ToUpperInvariant());
                 if (tabla.Rows.Count == 0) return ids;
+
                 int k = Math.Min(kDeseado, tabla.Rows.Count);
                 for (int i = 0; i < k; i++)
                     ids.Add(Convert.ToInt32(tabla.Rows[i]["IdEquipo"]));
@@ -527,6 +508,12 @@ namespace Deportes_SC.Datos
                 MessageBox.Show("Error obteniendo TopK por fase: " + ex.Message);
             }
             return ids;
+        }
+
+        public List<int> TopKClasificados(int idTorneo, int kDeseado)
+        {
+            // Top por PUNTOS de la fase REGULAR
+            return TopKClasificadosPorFase(idTorneo, "REGULAR", kDeseado);
         }
 
         public bool ExisteGranFinal(int idTorneo)

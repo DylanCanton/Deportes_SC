@@ -30,27 +30,30 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEstadisticas));
             this.pnl_superior = new System.Windows.Forms.Panel();
+            this.cmbTorneo = new System.Windows.Forms.ComboBox();
+            this.lblTorneo = new System.Windows.Forms.Label();
             this.volver = new System.Windows.Forms.PictureBox();
             this.tab_Reportes = new System.Windows.Forms.TabControl();
             this.tab_Equipos = new System.Windows.Forms.TabPage();
-            this.tab_Goleadores = new System.Windows.Forms.TabPage();
-            this.cmbTorneo = new System.Windows.Forms.ComboBox();
-            this.lblTorneo = new System.Windows.Forms.Label();
-            this.tab_Sanciones = new System.Windows.Forms.TabPage();
             this.dgvPosiciones = new System.Windows.Forms.DataGridView();
+            this.tab_Goleadores = new System.Windows.Forms.TabPage();
             this.dgvGoleadores = new System.Windows.Forms.DataGridView();
+            this.tab_Sanciones = new System.Windows.Forms.TabPage();
+            this.btnSalir = new System.Windows.Forms.PictureBox();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             this.tab_Reportes.SuspendLayout();
             this.tab_Equipos.SuspendLayout();
-            this.tab_Goleadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPosiciones)).BeginInit();
+            this.tab_Goleadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGoleadores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pnl_superior.Controls.Add(this.btnSalir);
             this.pnl_superior.Controls.Add(this.cmbTorneo);
             this.pnl_superior.Controls.Add(this.lblTorneo);
             this.pnl_superior.Controls.Add(this.volver);
@@ -59,6 +62,28 @@
             this.pnl_superior.Name = "pnl_superior";
             this.pnl_superior.Size = new System.Drawing.Size(1000, 44);
             this.pnl_superior.TabIndex = 46;
+            // 
+            // cmbTorneo
+            // 
+            this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
+            this.cmbTorneo.FormattingEnabled = true;
+            this.cmbTorneo.Location = new System.Drawing.Point(396, 10);
+            this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbTorneo.Name = "cmbTorneo";
+            this.cmbTorneo.Size = new System.Drawing.Size(261, 29);
+            this.cmbTorneo.TabIndex = 89;
+            this.cmbTorneo.SelectedIndexChanged += new System.EventHandler(this.cmbTorneo_SelectedIndexChanged);
+            // 
+            // lblTorneo
+            // 
+            this.lblTorneo.AutoSize = true;
+            this.lblTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTorneo.Location = new System.Drawing.Point(314, 10);
+            this.lblTorneo.Name = "lblTorneo";
+            this.lblTorneo.Size = new System.Drawing.Size(76, 21);
+            this.lblTorneo.TabIndex = 88;
+            this.lblTorneo.Text = "Torneo:";
+            this.lblTorneo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // volver
             // 
@@ -96,48 +121,6 @@
             this.tab_Equipos.Text = "Posiciones";
             this.tab_Equipos.UseVisualStyleBackColor = true;
             // 
-            // tab_Goleadores
-            // 
-            this.tab_Goleadores.Controls.Add(this.dgvGoleadores);
-            this.tab_Goleadores.Location = new System.Drawing.Point(4, 30);
-            this.tab_Goleadores.Name = "tab_Goleadores";
-            this.tab_Goleadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Goleadores.Size = new System.Drawing.Size(992, 922);
-            this.tab_Goleadores.TabIndex = 1;
-            this.tab_Goleadores.Text = "Goleadores";
-            this.tab_Goleadores.UseVisualStyleBackColor = true;
-            // 
-            // cmbTorneo
-            // 
-            this.cmbTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold);
-            this.cmbTorneo.FormattingEnabled = true;
-            this.cmbTorneo.Location = new System.Drawing.Point(396, 10);
-            this.cmbTorneo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbTorneo.Name = "cmbTorneo";
-            this.cmbTorneo.Size = new System.Drawing.Size(261, 29);
-            this.cmbTorneo.TabIndex = 89;
-            this.cmbTorneo.SelectedIndexChanged += new System.EventHandler(this.cmbTorneo_SelectedIndexChanged);
-            // 
-            // lblTorneo
-            // 
-            this.lblTorneo.AutoSize = true;
-            this.lblTorneo.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTorneo.Location = new System.Drawing.Point(314, 10);
-            this.lblTorneo.Name = "lblTorneo";
-            this.lblTorneo.Size = new System.Drawing.Size(76, 21);
-            this.lblTorneo.TabIndex = 88;
-            this.lblTorneo.Text = "Torneo:";
-            this.lblTorneo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tab_Sanciones
-            // 
-            this.tab_Sanciones.Location = new System.Drawing.Point(4, 30);
-            this.tab_Sanciones.Name = "tab_Sanciones";
-            this.tab_Sanciones.Size = new System.Drawing.Size(992, 922);
-            this.tab_Sanciones.TabIndex = 2;
-            this.tab_Sanciones.Text = "Sanciones";
-            this.tab_Sanciones.UseVisualStyleBackColor = true;
-            // 
             // dgvPosiciones
             // 
             this.dgvPosiciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -149,6 +132,17 @@
             this.dgvPosiciones.Size = new System.Drawing.Size(986, 916);
             this.dgvPosiciones.TabIndex = 90;
             // 
+            // tab_Goleadores
+            // 
+            this.tab_Goleadores.Controls.Add(this.dgvGoleadores);
+            this.tab_Goleadores.Location = new System.Drawing.Point(4, 30);
+            this.tab_Goleadores.Name = "tab_Goleadores";
+            this.tab_Goleadores.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Goleadores.Size = new System.Drawing.Size(992, 922);
+            this.tab_Goleadores.TabIndex = 1;
+            this.tab_Goleadores.Text = "Goleadores";
+            this.tab_Goleadores.UseVisualStyleBackColor = true;
+            // 
             // dgvGoleadores
             // 
             this.dgvGoleadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -159,6 +153,26 @@
             this.dgvGoleadores.RowTemplate.Height = 24;
             this.dgvGoleadores.Size = new System.Drawing.Size(986, 916);
             this.dgvGoleadores.TabIndex = 1;
+            // 
+            // tab_Sanciones
+            // 
+            this.tab_Sanciones.Location = new System.Drawing.Point(4, 30);
+            this.tab_Sanciones.Name = "tab_Sanciones";
+            this.tab_Sanciones.Size = new System.Drawing.Size(992, 922);
+            this.tab_Sanciones.TabIndex = 2;
+            this.tab_Sanciones.Text = "Sanciones";
+            this.tab_Sanciones.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(949, 0);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(51, 44);
+            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSalir.TabIndex = 91;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // FrmEstadisticas
             // 
@@ -176,9 +190,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             this.tab_Reportes.ResumeLayout(false);
             this.tab_Equipos.ResumeLayout(false);
-            this.tab_Goleadores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPosiciones)).EndInit();
+            this.tab_Goleadores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGoleadores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -195,5 +210,6 @@
         private System.Windows.Forms.Label lblTorneo;
         private System.Windows.Forms.DataGridView dgvPosiciones;
         private System.Windows.Forms.DataGridView dgvGoleadores;
+        private System.Windows.Forms.PictureBox btnSalir;
     }
 }

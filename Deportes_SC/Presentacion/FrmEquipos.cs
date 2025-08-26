@@ -146,5 +146,17 @@ namespace Deportes_SC.Presentacion
             limpiar();
             cargarEquipos();
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

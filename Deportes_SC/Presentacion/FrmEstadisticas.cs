@@ -34,7 +34,7 @@ namespace Deportes_SC.Presentacion
 
         private void volver_Click(object sender, EventArgs e)
         {
-            FrmPrincipal principal = new FrmPrincipal();
+            Login principal = new Login();
             principal.Show();
             this.Hide();
         }
@@ -268,6 +268,11 @@ namespace Deportes_SC.Presentacion
 
             // Por defecto, carga goleadores
             RefrescarTopGoleadores();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

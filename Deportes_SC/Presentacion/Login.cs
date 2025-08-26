@@ -51,10 +51,16 @@ namespace Deportes_SC
                 else if (rol == "SubAdministrador")
                 {
                     MessageBox.Show("Bienvenido, SubAdministrador: " + usuario);
+                    MenuSubAdmin menuSubAdmin = new MenuSubAdmin();
+                    menuSubAdmin.Show();
+                    this.Hide();
                 }
                 else if (rol == "Arbitro")
                 {
                     MessageBox.Show("Bienvenido, Arbitro: " + usuario);
+                    FrmPartidos frmPartidos = new FrmPartidos();
+                    frmPartidos.Show();
+                    this.Hide();
                 }
             }
             else

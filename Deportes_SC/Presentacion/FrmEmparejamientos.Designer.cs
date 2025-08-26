@@ -36,11 +36,16 @@
             this.pnl_superior = new System.Windows.Forms.Panel();
             this.btnGenerarFase = new System.Windows.Forms.PictureBox();
             this.btnGenerarFinal = new System.Windows.Forms.PictureBox();
+            this.btnSalir = new System.Windows.Forms.PictureBox();
+            this.btnVolver = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).BeginInit();
+            this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFinal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVolver)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbTorneo
@@ -90,6 +95,8 @@
             // pnl_superior
             // 
             this.pnl_superior.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.pnl_superior.Controls.Add(this.btnSalir);
+            this.pnl_superior.Controls.Add(this.btnVolver);
             this.pnl_superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_superior.Location = new System.Drawing.Point(0, 0);
             this.pnl_superior.Name = "pnl_superior";
@@ -118,6 +125,28 @@
             this.btnGenerarFinal.TabStop = false;
             this.btnGenerarFinal.Click += new System.EventHandler(this.btnGenerarFinal_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(802, 0);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(51, 44);
+            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSalir.TabIndex = 11;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Image")));
+            this.btnVolver.Location = new System.Drawing.Point(0, 0);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(43, 41);
+            this.btnVolver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnVolver.TabIndex = 10;
+            this.btnVolver.TabStop = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // FrmEmparejamientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -137,8 +166,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmparejamientos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegistrar)).EndInit();
+            this.pnl_superior.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerarFinal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVolver)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -152,5 +184,7 @@
         private System.Windows.Forms.Panel pnl_superior;
         private System.Windows.Forms.PictureBox btnGenerarFase;
         private System.Windows.Forms.PictureBox btnGenerarFinal;
+        private System.Windows.Forms.PictureBox btnSalir;
+        private System.Windows.Forms.PictureBox btnVolver;
     }
 }
