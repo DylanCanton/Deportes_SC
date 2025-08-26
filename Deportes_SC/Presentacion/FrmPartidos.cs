@@ -10,7 +10,7 @@ namespace Deportes_SC.Presentacion
 {
     public partial class FrmPartidos : Form
     {
-        string faseActualSel;   // fase que se está mostrando (REGULAR/FINAL/GRAN_FINAL)
+        string faseActualSel;   // fase que se está mostrando
         string fasePartidoSel;  // fase del partido seleccionado en el grid
 
         private readonly BDTorneos torneos = new BDTorneos();
@@ -108,7 +108,7 @@ namespace Deportes_SC.Presentacion
             faseActualSel = DeterminarFaseActual(idTorneo);
             ActualizarBotonGranFinal(idTorneo);
 
-            // Cargar lista según fase (si null, carga todo)
+            // Cargar lista según fase 
             var lista = partidos.MostrarPartidosPorTorneoSQL(idTorneo, faseActualSel);
             dgvPartidos.AutoGenerateColumns = true;
             dgvPartidos.DataSource = lista;
@@ -124,7 +124,7 @@ namespace Deportes_SC.Presentacion
             RenombrarColumna("GolesCasa", "G. Casa");
             RenombrarColumna("GolesVisita", "G. Visita");
 
-            // Reset UI
+            // Reset label
             lblPartidoSel.Text = "Partido seleccionado: (ninguno)";
             lblEquipoCasa.Text = "Casa (0)";
             lblEquipoVisita.Text = "Visita (0)";
@@ -261,7 +261,7 @@ namespace Deportes_SC.Presentacion
                 return;
             }
 
-            // Top-2 de la Fase Final
+            // Top 2 de la Fase Final
             var top2 = partidos.TopKClasificadosPorFase(idTorneo, "FINAL", 2);
             if (top2 == null || top2.Count < 2)
             {
@@ -269,7 +269,7 @@ namespace Deportes_SC.Presentacion
                 return;
             }
 
-            // Crear partido único
+            // Crear partido 
             if (!partidos.GenerarGranFinalSQL(idTorneo, top2[0], top2[1]))
             {
                 MessageBox.Show("No se pudo crear el partido de GRAN FINAL.");
@@ -291,7 +291,7 @@ namespace Deportes_SC.Presentacion
 
             if (idPartidoSel == 0) { MessageBox.Show("Seleccione un partido."); return; }
 
-            // Calcular ganador/empate (solo para mensaje informativo)
+            // Calcular ganador/empate 
             int puntosCasa = 0;
             int puntosVisita = 0;
             string resumen = "";
@@ -318,21 +318,21 @@ namespace Deportes_SC.Presentacion
             btnGuardaResultado.Enabled = false;
             try
             {
-                // 1) Actualizamos el marcador
+                // Actualizamos el marcador
                 if (!partidos.ActualizarMarcadorPartidoSQL(idPartidoSel, golesCasaUI, golesVisitaUI))
                 {
                     MessageBox.Show("No se pudo guardar el marcador final.");
                     return;
                 }
 
-                // 2) Actualizamos el estado a FINALIZADO (en mayúsculas)
+                //Actualizamos el estado a FINALIZADO
                 if (!partidos.ActualizarEstadoPartidoSQL(idPartidoSel, "FINALIZADO"))
                 {
                     MessageBox.Show("No se pudo actualizar el estado del partido.");
                     return;
                 }
 
-                // 3) Mostrar mensaje de resultado
+                // Mostrar mensaje de resultado
                 string marcadorTxt = nombreCasaSel + " " + golesCasaUI + " - " + golesVisitaUI + " " + nombreVisitaSel;
                 MessageBox.Show(
                     "Resultado final\n\n" + marcadorTxt + "\n\n" + resumen,
@@ -341,7 +341,7 @@ namespace Deportes_SC.Presentacion
                     MessageBoxIcon.Information
                 );
 
-                // 4) Si este partido es la GRAN FINAL, anunciar campeón
+                // Si este partido es la GRAN FINAL, anunciar campeón
                 if (string.Equals(fasePartidoSel, "GRAN_FINAL", StringComparison.OrdinalIgnoreCase))
                 {
                     var (idCampeon, nombre) = partidos.ObtenerCampeonSQL(ObtenerTorneoSeleccionado());
@@ -355,11 +355,11 @@ namespace Deportes_SC.Presentacion
                     }
                 }
 
-                // 5) Bloquear edición y recargar usando la detección automática de fase
+                // Bloquear edición 
                 partidoFinalizado = true;
                 SetEdicionHabilitada(false);
 
-                CargarPartidosDelTorneo(); // <- centraliza el refresco según la fase actual del torneo
+                CargarPartidosDelTorneo(); 
             }
             finally
             {
@@ -369,7 +369,7 @@ namespace Deportes_SC.Presentacion
 
         private void btnAgregaSancion_Click(object sender, EventArgs e)
         {
-            // 1) Partido finalizado -> no permitir
+            // 1) Partido finalizado 
             if (partidoFinalizado)
             {
                 MessageBox.Show("Este partido ya está FINALIZADO. No se pueden agregar sanciones.");
@@ -399,12 +399,12 @@ namespace Deportes_SC.Presentacion
                 int idTorneo = ObtenerTorneoSeleccionado();
                 int totalAmarillas = partidos.ContarAmarillasJugadorEnTorneo(idJugador, idTorneo);
 
-                // ¿Llegó a múltiplo de 5? Muestra aviso del cargo extra (el cálculo real se hace en estadísticas)
+                // Validacion de monto extra 
                 if (totalAmarillas % 5 == 0)
                     MessageBox.Show("El jugador acumula " + totalAmarillas + " amarillas. Se aplica un cargo extra de ₡30 000.");
             }
 
-            // 4) Insertar sanción y reflejar en UI si corresponde
+            
             btnAgregaSancion.Enabled = false;
             try
             {
@@ -421,7 +421,7 @@ namespace Deportes_SC.Presentacion
 
                 limpiarSancion();
 
-                // Avanzar minuto sugerido
+                // Avanzar siguiente minuto
                 if (minuto < 130) nudMinuto1.Value = minuto + 1;
             }
             finally
@@ -472,30 +472,25 @@ namespace Deportes_SC.Presentacion
             // Verificar si existe
             if (partidos.ExistenPartidosDelTorneo(idTorneo, "GRAN_FINAL"))
             {
-                // Si hay GRAN_FINAL y está pendiente, la fase actual es GRAN_FINAL
-                // (o finalizada, igual la mostramos)
                 return "GRAN_FINAL";
             }
 
-            // 2) ¿Existe FINAL?
+            // Validacion de si existe Final
             if (partidos.ExistenPartidosDelTorneo(idTorneo, "FINAL"))
             {
-                // Si FINAL tiene pendientes, fase=FINAL
-                // Si FINAL terminó, igual mostramos FINAL, y habilitamos el botón para crear GRAN_FINAL
                 return "FINAL";
             }
 
-            // 3) Si no hay final, mostrar REGULAR si existe
+            // En caso de que no haya
             if (partidos.ExistenPartidosDelTorneo(idTorneo, "REGULAR"))
                 return "REGULAR";
 
-            // 4) Sin partidos aún
-            return null;
+
+            return null; // Retornamos null si no hay
         }
 
         private void ActualizarBotonGranFinal(int idTorneo)
         {
-            // Visible si existe FINAL, NO existe GRAN_FINAL y FINAL está terminada
             bool existeFinal = partidos.ExistenPartidosDelTorneo(idTorneo, "FINAL");
             bool existeGranFinal = partidos.ExisteGranFinal(idTorneo);
             bool finalTerminada = existeFinal && partidos.FaseTerminada(idTorneo, "FINAL");

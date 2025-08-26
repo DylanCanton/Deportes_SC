@@ -46,7 +46,7 @@ namespace Deportes_SC.Presentacion
             dgv_equipos.AutoGenerateColumns = true;
             dgv_equipos.DataSource = dt;
 
-            // Encabezados bonitos (coinciden con los alias del SELECT)
+            // Muestra un texto mas lindo jeje
             if (dgv_equipos.Columns.Contains("Id"))
                 dgv_equipos.Columns["Id"].HeaderText = "ID";
             if (dgv_equipos.Columns.Contains("Nombre"))
@@ -56,7 +56,7 @@ namespace Deportes_SC.Presentacion
             if (dgv_equipos.Columns.Contains("NombreTorneo"))
                 dgv_equipos.Columns["NombreTorneo"].HeaderText = "Torneo";
 
-            // Ocultar columnas usadas solo para edición
+            // Ocultar columnas no necesarias de mostrar
             if (dgv_equipos.Columns.Contains("Encargado"))
                 dgv_equipos.Columns["Encargado"].Visible = false;
             if (dgv_equipos.Columns.Contains("Telefono"))
@@ -82,16 +82,15 @@ namespace Deportes_SC.Presentacion
 
             var fila = dgv_equipos.Rows[e.RowIndex];
 
-            // Visibles (coinciden con los alias de ListarEquiposSQL)
+            // Visibles 
             txt_id.Text = fila.Cells["Id"].Value?.ToString();
             txt_equipo.Text = fila.Cells["Nombre"].Value?.ToString();
             txt_origen.Text = fila.Cells["LugarOrigen"].Value?.ToString();
 
-            // Ocultos para edición (mismo patrón que en jugadores)
+            // Ocultos para edición 
             txt_encargado.Text = fila.Cells["Encargado"].Value?.ToString();
             txt_telefono.Text = fila.Cells["Telefono"].Value?.ToString();
 
-            // Combo de torneo por Id oculto (equivalente al IdEquipo en jugadores)
             if (fila.Cells["IdTorneo"].Value != null && fila.Cells["IdTorneo"].Value != DBNull.Value)
                 cmb_torneo.SelectedValue = Convert.ToInt32(fila.Cells["IdTorneo"].Value);
             else

@@ -36,6 +36,7 @@ namespace Deportes_SC.Datos
             return encontrado;
         }
 
+        // Guardar Equipos 
         public bool guardarEquipoSQL(Equipo e)
         {
             string sql;
@@ -78,6 +79,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Modificar
         public bool modificarEquipoSQL(Equipo e)
         {
             string sql = "UPDATE Equipo SET " +
@@ -105,6 +107,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Eliminar
         public bool eliminarEquipoSQL(int idEquipo)
         {
             string sql = "DELETE FROM Equipo WHERE id = " + idEquipo;
@@ -125,6 +128,7 @@ namespace Deportes_SC.Datos
                 return false;
             }
         }
+
 
         public DataTable ListarEquiposSQL()
         {

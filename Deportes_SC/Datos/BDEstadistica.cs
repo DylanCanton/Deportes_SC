@@ -9,7 +9,7 @@ namespace Deportes_SC.Datos
     {
         // ------------------------ Datos Goleadores ------------------------//
 
-        // Top goleadores (si idTorneo = 0, trae de todos los torneos)
+        // Sacar el top
         public DataTable TopGoleadoresSQL(int idTorneo, int topN = 10)
         {
             if (topN <= 0) topN = 10;  // Asegurar un top válido
@@ -49,7 +49,6 @@ namespace Deportes_SC.Datos
 
         // ------------------------ Tabla de Posiciones ------------------------//
 
-        // Tabla de posiciones por torneo (3-1-0) usando partidos FINALIZADOS
         public DataTable TablaPosicionesPorTorneoSQL(int idTorneo)
         {
             var dt = new DataTable();

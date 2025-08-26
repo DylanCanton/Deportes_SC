@@ -17,18 +17,13 @@ namespace Deportes_SC.Presentacion
         {
             InitializeComponent();
 
-            // Cargar torneos y setear eventos de una vez
+            // Cargar torneos 
             CargarTorneos();
 
-            cmbTorneo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTorneo.SelectedIndexChanged += cmbTorneo_SelectedIndexChanged;
             tab_Reportes.SelectedIndexChanged += tab_Reportes_SelectedIndexChanged;
 
-            // Forzar selección inicial si hiciera falta
-            if (cmbTorneo.Items.Count > 0 && cmbTorneo.SelectedIndex < 0)
-                cmbTorneo.SelectedIndex = 0;
-
-            // Carga inicial según tab (por defecto, goleadores)
+            // Carga inicial
             RefrescarTab();
         }
 
@@ -77,23 +72,25 @@ namespace Deportes_SC.Presentacion
                 return t.Identificador;
             }
 
-            return 0; // 0 => todos los torneos / sin selección
+            return 0; // sino se selecciona ninguno
         }
 
         // ------------------------ TOP Goleadores ------------------------//
 
         private void RefrescarTopGoleadores()
         {
-            int idTorneo = ObtenerTorneoSeleccionado(); // 0 = todos
+            int idTorneo = ObtenerTorneoSeleccionado(); 
             var dt = estadistica.TopGoleadoresSQL(idTorneo, 10);
 
-            // limpiar columnas "de diseño" si las hubiera
+            // limpiar columnas 
             dgvGoleadores.AutoGenerateColumns = true;
             dgvGoleadores.Columns.Clear();
 
             BindTopGoleadores(dt);
         }
 
+
+        // Funcion SIMPLEMENTE VISUAL para que el datagridview se vea mas lindo
         private void BindTopGoleadores(DataTable dt)
         {
             // Agrega columna de posición con medallas
@@ -153,14 +150,13 @@ namespace Deportes_SC.Presentacion
             int idTorneo = ObtenerTorneoSeleccionado();
             if (idTorneo <= 0)
             {
-                // Si tienes una opción "Todos", puedes decidir dejar vacío o forzar seleccionar.
                 dgvPosiciones.DataSource = null;
                 return;
             }
 
             var dt = estadistica.TablaPosicionesPorTorneoSQL(idTorneo);
 
-            // Agregar columna de posición (medallas) como en goleadores
+            // Agregar columna de posición (medallas) 
             if (!dt.Columns.Contains("Pos")) dt.Columns.Add("Pos", typeof(string));
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -173,7 +169,7 @@ namespace Deportes_SC.Presentacion
             }
             dt.Columns["Pos"].SetOrdinal(0);
 
-            // Limpiar columnas “de diseñador” y bind
+            // Limpiar columnas 
             dgvPosiciones.AutoGenerateColumns = true;
             dgvPosiciones.Columns.Clear();
             dgvPosiciones.DataSource = dt;
@@ -190,7 +186,7 @@ namespace Deportes_SC.Presentacion
             if (dgvPosiciones.Columns["DG"] != null) dgvPosiciones.Columns["DG"].HeaderText = "DG";
             if (dgvPosiciones.Columns["Pts"] != null) dgvPosiciones.Columns["Pts"].HeaderText = "Pts";
 
-            // Ocultar Id técnico si está
+            // Ocultar Id 
             if (dgvPosiciones.Columns["IdEquipo"] != null) dgvPosiciones.Columns["IdEquipo"].Visible = false;
 
             // Estilos
@@ -230,11 +226,9 @@ namespace Deportes_SC.Presentacion
 
         // ---------------------------- Top Sanciones --------------------------------//
 
-        // ------------ SANCIONES (nuevo) ------------
         private void RefrescarTopSanciones()
         {
             int idTorneo = ObtenerTorneoSeleccionado();
-            // Elige por equipo (puedes cambiar a SancionesPorJugadorSQL si prefieres)
             var dt = estadistica.SancionesPorEquipoSQL(idTorneo);
 
             dgvSanciones.AutoGenerateColumns = true;
@@ -243,6 +237,8 @@ namespace Deportes_SC.Presentacion
             BindTopSanciones(dt);
         }
 
+
+        // Funcion SIMPLEMENTE VISUAL para que el datagridview se vea mas lindo
         private void BindTopSanciones(DataTable dt)
         {
             // Columna Pos (medallas)
@@ -261,7 +257,7 @@ namespace Deportes_SC.Presentacion
 
             dgvSanciones.DataSource = dt;
 
-            // Renombrar encabezados (por equipo)
+            // Renombrar encabezados
             if (dgvSanciones.Columns["Pos"] != null) dgvSanciones.Columns["Pos"].HeaderText = "#";
             if (dgvSanciones.Columns["NombreEquipo"] != null) dgvSanciones.Columns["NombreEquipo"].HeaderText = "Equipo";
             if (dgvSanciones.Columns["Amarillas"] != null) dgvSanciones.Columns["Amarillas"].HeaderText = "T. Amarillas";

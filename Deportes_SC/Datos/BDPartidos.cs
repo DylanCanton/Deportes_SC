@@ -31,6 +31,7 @@ namespace Deportes_SC.Datos
             return existe;
         }
 
+        // Guardar
         public bool GuardarPartidoSQL(Partido p)
         {
             string sql = @"
@@ -231,6 +232,7 @@ namespace Deportes_SC.Datos
             return dt;
         }
 
+        // Validacion de que el jugador pertenezca al equipo
         private bool JugadorPerteneceAlEquipo(int idJugador, int idEquipo)
         {
             try
@@ -251,7 +253,7 @@ namespace Deportes_SC.Datos
 
         public bool InsertarSancionSQL(int idPartido, int idEquipo, int idJugador, int minuto, string tipo, string detalle = null)
         {
-            // Seguridad: verificar que el jugador pertenezca a ese equipo
+            // Validacion
             if (!JugadorPerteneceAlEquipo(idJugador, idEquipo))
             {
                 MessageBox.Show("El jugador seleccionado no pertenece a ese equipo.");
@@ -269,7 +271,7 @@ namespace Deportes_SC.Datos
                     cmd.Parameters.AddWithValue("@e", idEquipo);
                     cmd.Parameters.AddWithValue("@j", idJugador);
                     cmd.Parameters.AddWithValue("@m", minuto);
-                    cmd.Parameters.AddWithValue("@t", tipo); // 'GOL','TJA','TJR'
+                    cmd.Parameters.AddWithValue("@t", tipo); 
                     int c = cmd.ExecuteNonQuery();
                     cx.Desconectar();
                     return (c == 1);
@@ -329,7 +331,7 @@ namespace Deportes_SC.Datos
             catch (Exception ex) { MessageBox.Show("Error listando sanciones: " + ex.Message); }
             return dt;
         }
-
+        // --------------------------------------------------------------------------------//
         // Estas funciones se utilizan en la parte de emparejamientos
         public bool LimpiarPorTorneo(int idTorneo)
         {
@@ -403,7 +405,7 @@ namespace Deportes_SC.Datos
 
 
 
-        // ELIMINAR SOLO UNA FASE
+        // eliminar una fase
         public bool EliminarFase(int idTorneo, string fase)
         {
             try
@@ -426,8 +428,7 @@ namespace Deportes_SC.Datos
             }
         }
 
-        // ¿TODOS LOS PARTIDOS DE LA FASE TERMINADOS?
-        // (no hay ninguno con estado <> 'Finalizado')
+        // Comprobar si todos los emparejamientos de la fase estan finalizados
         public bool FaseTerminada(int idTorneo, string fase)
         {
             try

@@ -35,6 +35,7 @@ namespace Deportes_SC.Datos
             return encontrado;
         }
 
+        // Guardar
         public bool guardarTorneoSQL(Torneo t)
         {
             string sql;
@@ -75,6 +76,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Modificar
         public bool modificarTorneoSQL(Torneo t)
         {
             string sql = "UPDATE Torneo SET " +
@@ -101,6 +103,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Eliminar
         public bool eliminarTorneoSQL(int idTorneo)
         {
             string sql = "DELETE FROM Torneo WHERE id = " + idTorneo;

@@ -67,7 +67,6 @@ namespace Deportes_SC.Datos
                 return false;
             }
 
-            // 5) Si existe -> UPDATE; si no -> INSERT (tu mismo patrón)
             if (BuscarJugadorSQL(j.Identificador) != 0)
             {
                 sql = "UPDATE Jugador SET " +
@@ -110,9 +109,10 @@ namespace Deportes_SC.Datos
         }
 
 
+        // MOdificar
         public bool modificarJugadorSQL(Jugador j)
         {
-            // UPDATE corregido: se asigna el valor de dorsal correctamente
+           
             string sql = "UPDATE Jugador SET " +
                          "cedula = '" + j.Cédula + "', " +
                          "nombre = '" + j.Nombre + "', " +
@@ -141,7 +141,7 @@ namespace Deportes_SC.Datos
         }
 
 
-
+        // Eliminar
         public bool eliminarEquipoSQL(int id)
         {
             string sql = "DELETE FROM Jugador WHERE id = " + id;
@@ -312,7 +312,7 @@ namespace Deportes_SC.Datos
             if (string.IsNullOrWhiteSpace(generoTorneo) || string.IsNullOrWhiteSpace(generoJugador))
                 return false;
 
-            // Compara ignorando mayúsculas/minúsculas y espacios
+            // usamos el "Trim" para evitar errores de mayusculas o asi
             generoTorneo = generoTorneo.Trim();
             generoJugador = generoJugador.Trim();
 

@@ -37,6 +37,7 @@ namespace Deportes_SC.Datos
             return encontrado;
         }
 
+        // Guardar
         public bool guardarUsuarioSQL(Usuario u)
         {
             String sql;
@@ -77,6 +78,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Modificar
         public bool modificarUsuarioSQL(Usuario u)
         {
             string sql = "UPDATE Usuario SET " +
@@ -103,6 +105,7 @@ namespace Deportes_SC.Datos
             }
         }
 
+        // Eliminar
         public bool eliminarUsuarioSQL(int idUsuario)
         {
             string sql = "DELETE FROM Usuario WHERE id = " + idUsuario;

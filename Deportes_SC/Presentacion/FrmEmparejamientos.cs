@@ -72,7 +72,7 @@ namespace Deportes_SC.Presentacion
             btnGenerarFinal.Enabled = false;
             try
             {
-                // Borrar SOLO la fase que voy a registrar
+                // Borrar SOLO la fase que se registra
                 if (!bdPartidos.EliminarFase(idTorneo, faseActual))
                 {
                     MessageBox.Show($"No se pudo limpiar la fase previa: {faseActual}");
@@ -190,14 +190,14 @@ namespace Deportes_SC.Presentacion
             }
             int idTorneo = Convert.ToInt32(cmbTorneo.SelectedValue);
 
-            // 1) Validar que REGULAR esté finalizada
+            // Validamos que la fase regular este finalizada
             if (!bdPartidos.FaseTerminada(idTorneo, "REGULAR"))
             {
                 MessageBox.Show("Aún hay partidos PENDIENTE en la fase REGULAR.");
                 return;
             }
 
-            // 2) Obtener Top 4 clasificados
+            // Obtenemos el top 4 de los clasificados
             var top4 = bdPartidos.TopKClasificados(idTorneo, 4);
             if (top4 == null || top4.Count < 2)
             {
@@ -205,7 +205,7 @@ namespace Deportes_SC.Presentacion
                 return;
             }
 
-            // 3) Generar FINAL (todos contra todos, UNA vuelta)
+            // Aca se genera la fase final
             var listaFinal = EmparejamientosGenerador.Generar(idTorneo, top4, false); // false = solo ida
             foreach (var p in listaFinal)
             {
@@ -221,13 +221,13 @@ namespace Deportes_SC.Presentacion
                 if (nombres.TryGetValue(p.EquipoVisita, out var nomV)) p.NombreEquipoVisita = nomV;
             }
 
-            // 4) Mostrar en el grid (y luego Registrar para guardar)
+            // mostramos en el grid
             partidosGenerados = listaFinal;
             dgvEmparejamientos.DataSource = null;
             dgvEmparejamientos.DataSource = partidosGenerados;
             AjustarColumnas();
 
-            MessageBox.Show("FASE FINAL (Top 4) generada. Revisá y presioná REGISTRAR para guardar.");
+            MessageBox.Show("FASE FINAL generada.");
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
