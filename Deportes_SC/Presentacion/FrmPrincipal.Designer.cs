@@ -45,6 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_CargarDatos = new System.Windows.Forms.Button();
             this.pnl_contenedor = new System.Windows.Forms.Panel();
+            this.cargarDatos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picFondo)).BeginInit();
             this.pnl_superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Exit)).BeginInit();
@@ -70,7 +71,7 @@
             this.btn_CerrarSesion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_CerrarSesion.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_CerrarSesion.Image = ((System.Drawing.Image)(resources.GetObject("btn_CerrarSesion.Image")));
-            this.btn_CerrarSesion.Location = new System.Drawing.Point(6, 754);
+            this.btn_CerrarSesion.Location = new System.Drawing.Point(0, 788);
             this.btn_CerrarSesion.Name = "btn_CerrarSesion";
             this.btn_CerrarSesion.Size = new System.Drawing.Size(241, 65);
             this.btn_CerrarSesion.TabIndex = 9;
@@ -85,7 +86,7 @@
             this.btn_Jugadores.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Jugadores.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Jugadores.Image = ((System.Drawing.Image)(resources.GetObject("btn_Jugadores.Image")));
-            this.btn_Jugadores.Location = new System.Drawing.Point(6, 411);
+            this.btn_Jugadores.Location = new System.Drawing.Point(3, 388);
             this.btn_Jugadores.Name = "btn_Jugadores";
             this.btn_Jugadores.Size = new System.Drawing.Size(241, 65);
             this.btn_Jugadores.TabIndex = 8;
@@ -100,7 +101,7 @@
             this.btn_Torneos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Torneos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Torneos.Image = ((System.Drawing.Image)(resources.GetObject("btn_Torneos.Image")));
-            this.btn_Torneos.Location = new System.Drawing.Point(6, 283);
+            this.btn_Torneos.Location = new System.Drawing.Point(3, 260);
             this.btn_Torneos.Name = "btn_Torneos";
             this.btn_Torneos.Size = new System.Drawing.Size(241, 65);
             this.btn_Torneos.TabIndex = 10;
@@ -115,7 +116,7 @@
             this.btn_Equipos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Equipos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Equipos.Image = ((System.Drawing.Image)(resources.GetObject("btn_Equipos.Image")));
-            this.btn_Equipos.Location = new System.Drawing.Point(6, 347);
+            this.btn_Equipos.Location = new System.Drawing.Point(3, 324);
             this.btn_Equipos.Name = "btn_Equipos";
             this.btn_Equipos.Size = new System.Drawing.Size(241, 65);
             this.btn_Equipos.TabIndex = 11;
@@ -130,7 +131,7 @@
             this.btn_Usuarios.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Usuarios.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Usuarios.Image = ((System.Drawing.Image)(resources.GetObject("btn_Usuarios.Image")));
-            this.btn_Usuarios.Location = new System.Drawing.Point(6, 667);
+            this.btn_Usuarios.Location = new System.Drawing.Point(3, 644);
             this.btn_Usuarios.Name = "btn_Usuarios";
             this.btn_Usuarios.Size = new System.Drawing.Size(241, 65);
             this.btn_Usuarios.TabIndex = 13;
@@ -145,7 +146,7 @@
             this.btn_Partidos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Partidos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Partidos.Image = ((System.Drawing.Image)(resources.GetObject("btn_Partidos.Image")));
-            this.btn_Partidos.Location = new System.Drawing.Point(6, 539);
+            this.btn_Partidos.Location = new System.Drawing.Point(3, 516);
             this.btn_Partidos.Name = "btn_Partidos";
             this.btn_Partidos.Size = new System.Drawing.Size(241, 65);
             this.btn_Partidos.TabIndex = 14;
@@ -160,7 +161,7 @@
             this.btn_Estadisticas.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Estadisticas.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Estadisticas.Image = ((System.Drawing.Image)(resources.GetObject("btn_Estadisticas.Image")));
-            this.btn_Estadisticas.Location = new System.Drawing.Point(6, 603);
+            this.btn_Estadisticas.Location = new System.Drawing.Point(3, 580);
             this.btn_Estadisticas.Name = "btn_Estadisticas";
             this.btn_Estadisticas.Size = new System.Drawing.Size(241, 65);
             this.btn_Estadisticas.TabIndex = 15;
@@ -209,6 +210,7 @@
             // pnl_izquierda
             // 
             this.pnl_izquierda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnl_izquierda.Controls.Add(this.cargarDatos);
             this.pnl_izquierda.Controls.Add(this.btn_Emparejamientos);
             this.pnl_izquierda.Controls.Add(this.btn_Torneos);
             this.pnl_izquierda.Controls.Add(this.btn_Jugadores);
@@ -230,7 +232,7 @@
             this.btn_Emparejamientos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btn_Emparejamientos.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_Emparejamientos.Image = ((System.Drawing.Image)(resources.GetObject("btn_Emparejamientos.Image")));
-            this.btn_Emparejamientos.Location = new System.Drawing.Point(6, 475);
+            this.btn_Emparejamientos.Location = new System.Drawing.Point(3, 452);
             this.btn_Emparejamientos.Name = "btn_Emparejamientos";
             this.btn_Emparejamientos.Size = new System.Drawing.Size(241, 65);
             this.btn_Emparejamientos.TabIndex = 16;
@@ -270,6 +272,20 @@
             this.pnl_contenedor.Name = "pnl_contenedor";
             this.pnl_contenedor.Size = new System.Drawing.Size(850, 972);
             this.pnl_contenedor.TabIndex = 21;
+            // 
+            // cargarDatos
+            // 
+            this.cargarDatos.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.cargarDatos.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.cargarDatos.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.cargarDatos.Image = ((System.Drawing.Image)(resources.GetObject("cargarDatos.Image")));
+            this.cargarDatos.Location = new System.Drawing.Point(89, 715);
+            this.cargarDatos.Name = "cargarDatos";
+            this.cargarDatos.Size = new System.Drawing.Size(68, 65);
+            this.cargarDatos.TabIndex = 18;
+            this.cargarDatos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cargarDatos.UseVisualStyleBackColor = false;
+            this.cargarDatos.Click += new System.EventHandler(this.cargarDatos_Click);
             // 
             // FrmPrincipal
             // 
@@ -313,5 +329,6 @@
         private System.Windows.Forms.Panel pnl_contenedor;
         private System.Windows.Forms.Button btn_Emparejamientos;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button cargarDatos;
     }
 }

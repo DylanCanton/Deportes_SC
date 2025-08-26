@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPartidos));
             this.pnl_superior = new System.Windows.Forms.Panel();
+            this.btnSalir = new System.Windows.Forms.PictureBox();
             this.volver = new System.Windows.Forms.PictureBox();
             this.cmbTorneo = new System.Windows.Forms.ComboBox();
             this.dgvPartidos = new System.Windows.Forms.DataGridView();
@@ -45,8 +46,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnGuardaResultado = new System.Windows.Forms.PictureBox();
             this.btnAgregaSancion = new System.Windows.Forms.PictureBox();
-            this.btnSalir = new System.Windows.Forms.PictureBox();
             this.pnl_superior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto1)).BeginInit();
@@ -54,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardaResultado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregaSancion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_superior
@@ -67,6 +67,17 @@
             this.pnl_superior.Name = "pnl_superior";
             this.pnl_superior.Size = new System.Drawing.Size(995, 44);
             this.pnl_superior.TabIndex = 46;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(946, 0);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(51, 44);
+            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSalir.TabIndex = 114;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // volver
             // 
@@ -137,7 +148,8 @@
             this.cmbTipo.Items.AddRange(new object[] {
             "Gol",
             "Tarjeta Amarilla",
-            "Tarjeta Roja"});
+            "Tarjeta Roja",
+            "Tarjeta Azul"});
             this.cmbTipo.Location = new System.Drawing.Point(315, 627);
             this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipo.Name = "cmbTipo";
@@ -241,17 +253,6 @@
             this.btnAgregaSancion.TabStop = false;
             this.btnAgregaSancion.Click += new System.EventHandler(this.btnAgregaSancion_Click);
             // 
-            // btnSalir
-            // 
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(946, 0);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(51, 44);
-            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnSalir.TabIndex = 114;
-            this.btnSalir.TabStop = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
             // FrmPartidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -277,6 +278,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPartidos";
             this.pnl_superior.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartidos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto1)).EndInit();
@@ -284,7 +286,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGuardaResultado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregaSancion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

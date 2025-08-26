@@ -91,15 +91,6 @@ namespace Deportes_SC.Presentacion
             return 0; // En caso de que no se seleccione nada
         }
 
-        // Funcion para filtrar la fase 
-        //private string ObtenerFaseSeleccionada()
-        //{
-        //    if (cmbFases.SelectedIndex < 0 || cmbFases.SelectedItem == null) return null;
-        //    string txt = cmbFases.SelectedItem.ToString().Trim().ToUpperInvariant();
-        //    if (txt == "REGULAR" || txt == "FINAL") return txt;
-        //    return null;
-        //}
-
         //Cargar los partidos en el dgv
         private void CargarPartidosDelTorneo()
         {
@@ -403,6 +394,16 @@ namespace Deportes_SC.Presentacion
                 return;
             }
 
+            if (tipoDb == "TJA")
+            {
+                int idTorneo = ObtenerTorneoSeleccionado();
+                int totalAmarillas = partidos.ContarAmarillasJugadorEnTorneo(idJugador, idTorneo);
+
+                // ¿Llegó a múltiplo de 5? Muestra aviso del cargo extra (el cálculo real se hace en estadísticas)
+                if (totalAmarillas % 5 == 0)
+                    MessageBox.Show("El jugador acumula " + totalAmarillas + " amarillas. Se aplica un cargo extra de ₡30 000.");
+            }
+
             // 4) Insertar sanción y reflejar en UI si corresponde
             btnAgregaSancion.Enabled = false;
             try
@@ -468,7 +469,7 @@ namespace Deportes_SC.Presentacion
 
         private string DeterminarFaseActual(int idTorneo)
         {
-            // 1) ¿Existe GRAN_FINAL?
+            // Verificar si existe
             if (partidos.ExistenPartidosDelTorneo(idTorneo, "GRAN_FINAL"))
             {
                 // Si hay GRAN_FINAL y está pendiente, la fase actual es GRAN_FINAL
@@ -507,6 +508,7 @@ namespace Deportes_SC.Presentacion
         {
             if (txt == "Gol") return "GOL";
             if (txt == "Tarjeta Amarilla") return "TJA";
+            if (txt == "Tarjeta Azul") return "TAZ";    
             if (txt == "Tarjeta Roja") return "TJR";
             return "";
         }

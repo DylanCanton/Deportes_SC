@@ -278,6 +278,32 @@ namespace Deportes_SC.Datos
             catch (Exception ex) { MessageBox.Show("Error insertando sanción: " + ex.Message); return false; }
         }
 
+        public int ContarAmarillasJugadorEnTorneo(int idJugador, int idTorneo)
+        {
+            try
+            {
+                Conexion cx = new Conexion();
+                string sql = @"
+            SELECT COUNT(*) 
+            FROM Sancion s
+            JOIN Partido p ON p.id = s.partido
+            WHERE s.tipo = 'TJA' AND s.jugador = @j AND p.torneo = @t;";
+                using (var cmd = new SqlCommand(sql, cx.Conectar()))
+                {
+                    cmd.Parameters.AddWithValue("@j", idJugador);
+                    cmd.Parameters.AddWithValue("@t", idTorneo);
+                    int c = Convert.ToInt32(cmd.ExecuteScalar());
+                    cx.Desconectar();
+                    return c;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error contando amarillas: " + ex.Message);
+                return 0;
+            }
+        }
+
 
         public DataTable ListarSancionesPorPartidoSQL(int idPartido)
         {
@@ -285,8 +311,8 @@ namespace Deportes_SC.Datos
             try
             {
                 Conexion cx = new Conexion();
-                        string sql = @"
-                SELECT s.id, s.minuto, s.tipo, s.detalle,
+                string sql = @"
+                SELECT s.id, s.minuto, s.tipo,
                        e.nombre AS Equipo, j.nombre AS Jugador, j.dorsal
                 FROM Sancion s
                 JOIN Equipo  e ON e.id = s.equipo

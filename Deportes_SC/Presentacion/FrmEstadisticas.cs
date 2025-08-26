@@ -228,6 +228,85 @@ namespace Deportes_SC.Presentacion
             if (dgv.Columns["Pts"] != null) dgv.Columns["Pts"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
+        // ---------------------------- Top Sanciones --------------------------------//
+
+        // ------------ SANCIONES (nuevo) ------------
+        private void RefrescarTopSanciones()
+        {
+            int idTorneo = ObtenerTorneoSeleccionado();
+            // Elige por equipo (puedes cambiar a SancionesPorJugadorSQL si prefieres)
+            var dt = estadistica.SancionesPorEquipoSQL(idTorneo);
+
+            dgvSanciones.AutoGenerateColumns = true;
+            dgvSanciones.Columns.Clear();
+
+            BindTopSanciones(dt);
+        }
+
+        private void BindTopSanciones(DataTable dt)
+        {
+            // Columna Pos (medallas)
+            if (!dt.Columns.Contains("Pos")) dt.Columns.Add("Pos", typeof(string));
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string medalla;
+                if (i == 0) medalla = "🥇";
+                else if (i == 1) medalla = "🥈";
+                else if (i == 2) medalla = "🥉";
+                else medalla = (i + 1).ToString();
+
+                dt.Rows[i]["Pos"] = medalla;
+            }
+            dt.Columns["Pos"].SetOrdinal(0);
+
+            dgvSanciones.DataSource = dt;
+
+            // Renombrar encabezados (por equipo)
+            if (dgvSanciones.Columns["Pos"] != null) dgvSanciones.Columns["Pos"].HeaderText = "#";
+            if (dgvSanciones.Columns["NombreEquipo"] != null) dgvSanciones.Columns["NombreEquipo"].HeaderText = "Equipo";
+            if (dgvSanciones.Columns["Amarillas"] != null) dgvSanciones.Columns["Amarillas"].HeaderText = "T. Amarillas";
+            if (dgvSanciones.Columns["Azules"] != null) dgvSanciones.Columns["Azules"].HeaderText = "T. Azules";
+            if (dgvSanciones.Columns["Rojas"] != null) dgvSanciones.Columns["Rojas"].HeaderText = "T. Rojas";
+            if (dgvSanciones.Columns["Monto"] != null)
+            {
+                dgvSanciones.Columns["Monto"].HeaderText = "Monto (₡)";
+                dgvSanciones.Columns["Monto"].DefaultCellStyle.Format = "N0"; // miles con separador
+                dgvSanciones.Columns["Monto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+
+            EstilarDgvSanciones(dgvSanciones);
+        }
+
+        private void EstilarDgvSanciones(DataGridView dgv)
+        {
+            dgv.ReadOnly = true;
+            dgv.MultiSelect = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.BackgroundColor = SystemColors.Window;
+            dgv.BorderStyle = BorderStyle.None;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 248, 255);
+            dgv.DefaultCellStyle.Padding = new Padding(4, 2, 4, 2);
+
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(235, 239, 250);
+            dgv.EnableHeadersVisualStyles = false;
+
+            // Alineaciones numéricas
+            string[] cols = { "Amarillas", "Azules", "Rojas" };
+            foreach (var c in cols)
+                if (dgv.Columns[c] != null)
+                    dgv.Columns[c].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            if (dgv.Columns["Pos"] != null)
+                dgv.Columns["Pos"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
         // ------------------------ Eventos y refresco general ------------------------//
 
         private void cmbTorneo_SelectedIndexChanged(object sender, EventArgs e)
@@ -262,7 +341,7 @@ namespace Deportes_SC.Presentacion
 
             if (tab_Reportes.SelectedTab == tab_Sanciones)
             {
-                // Aquí podrías cargar tu reporte de sanciones
+                RefrescarTopSanciones();
                 return;
             }
 
