@@ -148,8 +148,8 @@ namespace Deportes_SC.Presentacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            MenuSubAdmin subAdmin = new MenuSubAdmin();
+            subAdmin.Show();
             this.Hide();
         }
 

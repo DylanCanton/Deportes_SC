@@ -29,8 +29,8 @@ namespace Deportes_SC.Presentacion
 
         private void volver_Click(object sender, EventArgs e)
         {
-            Login principal = new Login();
-            principal.Show();
+            MenuSubAdmin subAdmin = new MenuSubAdmin();
+            subAdmin.Show();
             this.Hide();
         }
 
